@@ -1,3 +1,3 @@
-# [Class Project Title]
+# [Class Project 1]
 
-Provide a short description of your results, if applicable.
+A simple responsive hero section in Figma.
