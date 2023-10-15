@@ -77,7 +77,7 @@ export default function Navbar() {
               </svg>
             </button>
           )}
-          <div className={`sm:flex justify-between gap-8 ${isOpen ? 'flex flex-col items-end gap-0' : 'hidden'}`}>
+          <div className={`sm:flex justify-between ${isOpen ? 'flex flex-col items-end gap-0 z-10' : 'hidden gap-8'}`}>
             <Link href="/discover">
               <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/discover" ? "text-green-500 underline" : ""}`}>
                 Discover
