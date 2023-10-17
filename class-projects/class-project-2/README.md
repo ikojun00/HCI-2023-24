@@ -1,3 +1,3 @@
-# [Class Project Title]
+# [Class Project 2]
 
-Provide a short description of your results, if applicable.
+A sitemap for BookVoyage.
