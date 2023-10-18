@@ -37,7 +37,7 @@ export default function Discover() {
       }
     };
 
-    searchTerm ? fetchBooks() : setBooks([])
+    searchTerm ? fetchBooks() : setBooks([]) // popraviti ovo
 
   }, [searchTerm]);
 
