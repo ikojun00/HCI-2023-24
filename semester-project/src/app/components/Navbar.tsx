@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Dropdown from "./Dropdown"
 
 export default function Navbar() {
   const currentRoute = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 640) {
         setIsOpen(false);
@@ -35,7 +36,7 @@ export default function Navbar() {
               📖 BookVoyage
             </h1>
           </Link>
-          <div className={`${isOpen ? "flex flex-col items-end gap-0 mt-24" : ""}`}>
+          <div>
           {isOpen ? (
             <button
               className="sm:hidden block focus:outline-none"
@@ -77,28 +78,30 @@ export default function Navbar() {
               </svg>
             </button>
           )}
-          <div className={`sm:flex justify-between ${isOpen ? 'flex flex-col items-end gap-0 z-10' : 'hidden gap-8'}`}>
-            <Link href="/discover">
-              <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/discover" ? "text-green-500 underline" : ""}`}>
-                Discover
-              </h2>
-            </Link>
-            <Link href="/library">
-              <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/library" ? "text-green-500 underline" : ""}`}>
-                Library
-              </h2>
-            </Link>
-            <Link href="/about">
-              <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/about" ? "text-green-500 underline" : ""}`}>
-                About
-              </h2>
-            </Link>
-            <Link href="/signin">
-              <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/signin" ? "text-green-500 underline" : ""}`}>
-                Sign In
-              </h2>
-            </Link>
-          </div>
+          <div className={`sm:flex justify-between ${isOpen ? "" : 'hidden gap-8'}`}>
+          {isOpen ? (
+                <Dropdown heading=""/>
+                ) : (
+                <>
+                    <Link href="/discover">
+                    <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/discover" ? "text-green-500 underline" : ""}`}>
+                        Discover
+                    </h2>
+                    </Link>
+                    <Dropdown heading="Community" />
+                    <Link href="/about">
+                    <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/about" ? "text-green-500 underline" : ""}`}>
+                        About
+                    </h2>
+                    </Link>
+                    <Link href="/signin">
+                    <h2 className={`text-l font-semibold hover:underline ${currentRoute === "/signin" ? "text-green-500 underline" : ""}`}>
+                        Sign In
+                    </h2>
+                    </Link>
+                </>
+                )}
+             </div>
           </div>
         </div>
       </div>
