@@ -1,4 +1,4 @@
-# [Class Project 1]
+# [Class Project 1 - Figma essentials]
 
 A simple responsive hero section in Figma.
 
