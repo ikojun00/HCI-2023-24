@@ -97,7 +97,7 @@ export default function Navbar() {
                     </h2>
                   </Link>
                   <Dropdown heading="Community" />
-                  <Link href="/about">
+                  <Link href="/reading-log">
                     <h2
                       className={`text-l font-semibold hover:underline ${
                         currentRoute === "/about"
@@ -106,6 +106,17 @@ export default function Navbar() {
                       }`}
                     >
                       About
+                    </h2>
+                  </Link>
+                  <Link href="/book-manager">
+                    <h2
+                      className={`text-l font-semibold hover:underline ${
+                        currentRoute === "/about"
+                          ? "text-green-500 underline"
+                          : ""
+                      }`}
+                    >
+                      Book Manager
                     </h2>
                   </Link>
                   <Link href="/signin">

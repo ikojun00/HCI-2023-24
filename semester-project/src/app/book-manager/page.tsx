@@ -1,10 +1,10 @@
 import Navbar from "../components/Navbar";
 
-export default function About() {
+export default function BookManager() {
   return (
     <div>
       <Navbar />
-      About
+      Book Manager
     </div>
   );
 }
