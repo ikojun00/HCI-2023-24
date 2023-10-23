@@ -12,8 +12,13 @@ export const NavbarItems: NavbarItem[] = [
     isDropdown: true,
   },
   {
-    route: "/about",
-    label: "About",
+    route: "/reading-log",
+    label: "Reading Log",
+    isDropdown: false,
+  },
+  {
+    route: "/book-manager",
+    label: "Book Manager",
     isDropdown: false,
   },
   {

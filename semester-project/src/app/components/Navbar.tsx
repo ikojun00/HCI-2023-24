@@ -105,7 +105,7 @@ export default function Navbar() {
                           : ""
                       }`}
                     >
-                      About
+                      Reading log
                     </h2>
                   </Link>
                   <Link href="/book-manager">
