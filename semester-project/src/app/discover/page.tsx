@@ -1,9 +1,10 @@
 "use client";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
+import GoogleBooksService from "@/services/GoogleBooksService";
 
 interface Image {
   thumbnail: string;
@@ -26,18 +27,10 @@ export default function Discover() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      try {
-        const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=4`
-        );
-        const bookData = response.data.items;
-        setBooks(bookData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      setBooks(await GoogleBooksService(searchTerm))
     };
 
-    searchTerm ? fetchBooks() : setBooks([]); // popraviti ovo
+    searchTerm ? fetchBooks() : setBooks([]); // popraviti ovo, kad izbrišem input ne izbrišu se knjige
   }, [searchTerm]);
 
   return (
@@ -56,26 +49,28 @@ export default function Discover() {
         <ul className="flex flex-row justify-center gap-4 flex-wrap max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
           {books.map((book) => (
             <div className="max-w-xs" key={book.id}>
-              <li className="flex flex-row gap-4">
-                {book.volumeInfo.imageLinks?.thumbnail && (
-                  <Image
-                    src={book.volumeInfo.imageLinks?.thumbnail}
-                    alt="Cover"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "30%", height: "auto" }}
-                  />
-                )}
-                <div className="flex flex-col">
-                  <h2 className="line-clamp-1">{book.volumeInfo.title}</h2>
-                  <p className="line-clamp-1">
-                    Author:{" "}
-                    {book.volumeInfo.authors &&
-                      book.volumeInfo.authors.join(", ")}
-                  </p>
-                </div>
-              </li>
+              <Link href={`discover/${book.id}`}>
+                <li className="flex flex-row gap-4">
+                  {book.volumeInfo.imageLinks?.thumbnail && (
+                    <Image
+                      src={book.volumeInfo.imageLinks?.thumbnail}
+                      alt="Cover"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: "30%", height: "auto" }}
+                    />
+                  )}
+                  <div className="flex flex-col">
+                    <h2 className="line-clamp-1">{book.volumeInfo.title}</h2>
+                    <p className="line-clamp-1">
+                      Author:{" "}
+                      {book.volumeInfo.authors &&
+                        book.volumeInfo.authors.join(", ")}
+                    </p>
+                  </div>
+                </li>
+              </Link>
               <br />
             </div>
           ))}
