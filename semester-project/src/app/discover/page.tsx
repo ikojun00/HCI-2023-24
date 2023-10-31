@@ -27,7 +27,7 @@ export default function Discover() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      setBooks(await GoogleBooksService(searchTerm))
+      setBooks(await GoogleBooksService(searchTerm));
     };
 
     searchTerm ? fetchBooks() : setBooks([]); // popraviti ovo, kad izbrišem input ne izbrišu se knjige
@@ -35,7 +35,9 @@ export default function Discover() {
 
   return (
     <div>
-      <Navbar />
+      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+        <Navbar />
+      </div>
       <div className="flex items-center flex-col">
         <br />
         <input
