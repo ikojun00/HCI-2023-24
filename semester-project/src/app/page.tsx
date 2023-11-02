@@ -1,9 +1,9 @@
-import Feature from "@/views/Feature";
+import Feature from "@/views/homepage/Feature";
 import Navbar from "../components/Navbar";
-import Hero from "@/views/Hero";
-import FAQ from "@/views/FAQ";
-import Footer from "@/views/Footer";
-import LastCTA from "@/views/LastCTA";
+import Hero from "@/views/homepage/Hero";
+import FAQ from "@/views/homepage/FAQ";
+import Footer from "@/views/homepage/Footer";
+import LastCTA from "@/views/homepage/LastCTA";
 
 export default function Home() {
   return (
