@@ -10,8 +10,8 @@ export default function Discover() {
           </Link>
         </li>
         <li>
-          <Link href="#" className="block px-4 py-2 hover:underline">
-            Book Discovery
+          <Link href="/discover" className="block px-4 py-2 hover:underline">
+            Search Books
           </Link>
         </li>
         <li>
@@ -27,11 +27,6 @@ export default function Discover() {
         <li>
           <Link href="#" className="block px-4 py-2 hover:underline">
             Wanderlust
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="block px-4 py-2 hover:underline">
-            Genre Exploration
           </Link>
         </li>
         <li>

@@ -10,9 +10,9 @@ import ReadingLog from "@/views/dropdown/ReadingLog";
 export default function Navbar() {
   const currentRoute = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
 
-  const handleDropdownClick = (index: any) => {
+  const handleDropdownClick = (index: number) => {
     if (activeDropdown === index) {
       setActiveDropdown(null);
     } else {

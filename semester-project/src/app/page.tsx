@@ -16,7 +16,7 @@ export default function Home() {
           <Hero />
         </div>
       </div>
-      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 gap-44 mt-32">
+      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 gap-44 mt-24">
         <Feature />
         <FAQ />
         <LastCTA />
