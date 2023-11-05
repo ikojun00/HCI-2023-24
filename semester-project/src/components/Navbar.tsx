@@ -41,9 +41,9 @@ export default function Navbar() {
   };
 
   const dropdowns = [
-    { title: "Discover", component: <Discover /> },
-    { title: "Reading Log", component: <ReadingLog /> },
-    { title: "Community", component: <Community /> },
+    { title: "Discover ▼", component: <Discover /> },
+    { title: "Reading Log ▼", component: <ReadingLog /> },
+    { title: "Community ▼", component: <Community /> },
   ];
 
   const hamburgerIcon = (
