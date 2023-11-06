@@ -21,7 +21,7 @@ export default function Home() {
         <FAQ />
         <LastCTA />
       </div>
-      <div className="bg-slate-300">
+      <div className="bg-black">
         <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 mt-44">
           <Footer />
         </div>
