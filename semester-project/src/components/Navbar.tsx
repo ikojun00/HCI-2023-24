@@ -77,12 +77,16 @@ export default function Navbar() {
       <div
         className={`md:flex ${
           isOpen
-            ? "absolute text-center top-14 right-0 w-full bg-white pt-8"
+            ? "absolute text-center top-14 right-0 w-full pt-8"
             : "hidden gap-8"
         }`}
       >
         {dropdowns.map((item, index) => (
-          <div className="mb-8 md:mb-0" key={index} onClick={() => handleDropdownClick(index)}>
+          <div
+            className="mb-8 md:mb-0"
+            key={index}
+            onClick={() => handleDropdownClick(index)}
+          >
             <h2 className="text-base font-semibold hover:underline cursor-pointer">
               {item.title}
             </h2>
