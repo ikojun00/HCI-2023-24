@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Community() {
   return (
-    <div className="z-10 relative bg-white rounded-lg md:pr-16 md:absolute md:border-2 md:mt-2">
+    <div className="z-10 relative bg-slate-800 rounded-lg md:pr-16 md:absolute md:border-2 md:mt-2">
       <ul className="py-2 text-sm">
         <li>
           <Link href="#" className="block px-4 py-2 hover:underline">
