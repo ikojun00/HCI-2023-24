@@ -110,7 +110,7 @@ export default function Discover() {
                       pathname: `discover/${book.id}`,
                       query: {
                         title: book.volumeInfo.title,
-                        authors: book.volumeInfo.authors?.join(', '),
+                        authors: book.volumeInfo.authors?.join(", "),
                         image: book.volumeInfo.imageLinks?.thumbnail,
                         description: book.volumeInfo.description,
                       },
@@ -134,7 +134,7 @@ export default function Discover() {
                         <div className="flex flex-row gap-1 md:text-md">
                           <p>By:</p>
                           <p className="font-medium">
-                            {book.volumeInfo.authors?.join(', ')}
+                            {book.volumeInfo.authors?.join(", ")}
                           </p>
                         </div>
                       </div>
