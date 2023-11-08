@@ -6,10 +6,13 @@ import { useEffect, useState } from "react";
 import Community from "@/views/dropdown/Community";
 import Discover from "@/views/dropdown/Discover";
 import ReadingLog from "@/views/dropdown/ReadingLog";
+import ArrowDown from "./icons/ArrowUp";
+import ArrowUp from "./icons/ArrowDown";
+import HamburgerMenu from "./icons/HamburgerMenu";
 
 export default function Navbar() {
   const currentRoute = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
 
   const handleDropdownClick = (index: number) => {
@@ -41,9 +44,9 @@ export default function Navbar() {
   };
 
   const dropdowns = [
-    { title: "Discover ▼", component: <Discover /> },
-    { title: "Reading Log ▼", component: <ReadingLog /> },
-    { title: "Community ▼", component: <Community /> },
+    { title: "Discover", component: <Discover /> },
+    { title: "Reading Log", component: <ReadingLog /> },
+    { title: "Community", component: <Community /> },
   ];
 
   const hamburgerIcon = (
@@ -83,12 +86,13 @@ export default function Navbar() {
       >
         {dropdowns.map((item, index) => (
           <div
-            className="mb-8 md:mb-0"
+            className="flex flex-col items-center mb-8 md:mb-0"
             key={index}
             onClick={() => handleDropdownClick(index)}
           >
-            <h2 className="text-base font-semibold hover:underline cursor-pointer">
+            <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:bg-slate-700 p-2 rounded-lg cursor-pointer">
               {item.title}
+              {activeDropdown === index ? <ArrowUp /> : <ArrowDown />}
             </h2>
             {activeDropdown === index && <>{item.component}</>}
           </div>
