@@ -8,6 +8,7 @@ import Discover from "@/views/dropdown/Discover";
 import ReadingLog from "@/views/dropdown/ReadingLog";
 import ArrowDown from "./icons/ArrowDown";
 import ArrowUp from "./icons/ArrowUp";
+import Book from "./icons/Book";
 
 export default function Navbar() {
   const currentRoute = usePathname();
@@ -72,7 +73,7 @@ export default function Navbar() {
     <div className="flex justify-between items-center p-4">
       {hamburgerIcon}
       <Link href="/">
-        <h1 className="text-xl font-bold">📖 BookVoyage</h1>
+        <h1 className="flex items-center gap-2 text-xl font-bold"><Book /> BookVoyage</h1>
       </Link>
       <div
         className={`md:flex ${
