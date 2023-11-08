@@ -13,7 +13,7 @@ export default function ArrowUp() {
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
-          d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"
+          d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"
         />
       </svg>
     </div>

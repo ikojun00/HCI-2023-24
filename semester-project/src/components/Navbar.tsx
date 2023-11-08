@@ -6,9 +6,8 @@ import { useEffect, useState } from "react";
 import Community from "@/views/dropdown/Community";
 import Discover from "@/views/dropdown/Discover";
 import ReadingLog from "@/views/dropdown/ReadingLog";
-import ArrowDown from "./icons/ArrowUp";
-import ArrowUp from "./icons/ArrowDown";
-import HamburgerMenu from "./icons/HamburgerMenu";
+import ArrowDown from "./icons/ArrowDown";
+import ArrowUp from "./icons/ArrowUp";
 
 export default function Navbar() {
   const currentRoute = usePathname();
@@ -16,11 +15,9 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
 
   const handleDropdownClick = (index: number) => {
-    if (activeDropdown === index) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(index);
-    }
+    activeDropdown === index
+      ? setActiveDropdown(null)
+      : setActiveDropdown(index);
   };
 
   useEffect(() => {
@@ -86,7 +83,7 @@ export default function Navbar() {
       >
         {dropdowns.map((item, index) => (
           <div
-            className="flex flex-col items-center mb-8 md:mb-0"
+            className="flex flex-col items-center mb-8 md:block md:mb-0"
             key={index}
             onClick={() => handleDropdownClick(index)}
           >
