@@ -12,7 +12,7 @@ export default function Testimonials() {
         </p>
         <div>
           <Image
-            src="https://images.unsplash.com/photo-1633421878789-30435a5f7ea8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGl4ZWx8ZW58MHx8MHx8fDA%3D"
+            src="/sarah.webp"
             alt="Profile"
             className="rounded-full mb-2"
             width={50}
@@ -31,7 +31,7 @@ export default function Testimonials() {
         </p>
         <div>
           <Image
-            src="https://images.unsplash.com/photo-1633421878789-30435a5f7ea8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGl4ZWx8ZW58MHx8MHx8fDA%3D"
+            src="/mark.webp"
             alt="Profile"
             className="rounded-full mb-2"
             width={50}
@@ -50,7 +50,7 @@ export default function Testimonials() {
         </p>
         <div>
           <Image
-            src="https://images.unsplash.com/photo-1633421878789-30435a5f7ea8?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGl4ZWx8ZW58MHx8MHx8fDA%3D"
+            src="/lisa.webp"
             alt="Profile"
             className="rounded-full mb-2"
             width={50}
