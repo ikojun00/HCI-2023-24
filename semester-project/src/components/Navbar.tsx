@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Community from "@/views/dropdown/Community";
 import Discover from "@/views/dropdown/Discover";
@@ -9,9 +8,9 @@ import ReadingLog from "@/views/dropdown/ReadingLog";
 import ArrowDown from "./icons/ArrowDown";
 import ArrowUp from "./icons/ArrowUp";
 import Book from "./icons/Book";
+import SignInForm from "./SignInForm";
 
 export default function Navbar() {
-  const currentRoute = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
 
@@ -73,38 +72,34 @@ export default function Navbar() {
     <div className="flex justify-between items-center p-4">
       {hamburgerIcon}
       <Link href="/">
-        <h1 className="flex items-center gap-2 text-xl font-bold"><Book /> BookVoyage</h1>
+        <h1 className="flex items-center gap-2 text-xl font-bold">
+          <Book /> BookVoyage
+        </h1>
       </Link>
-      <div
-        className={`md:flex ${
-          isOpen
-            ? "absolute text-center top-14 right-0 w-full pt-8 bg-slate-800"
-            : "hidden gap-8"
-        }`}
-      >
-        {dropdowns.map((item, index) => (
-          <div
-            className="flex flex-col items-center mb-8 md:block md:mb-0"
-            key={index}
-            onClick={() => handleDropdownClick(index)}
-          >
-            <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:bg-slate-700 p-2 rounded-lg cursor-pointer">
-              {item.title}
-              {activeDropdown === index ? <ArrowUp /> : <ArrowDown />}
-            </h2>
-            {activeDropdown === index && <>{item.component}</>}
-          </div>
-        ))}
-      </div>
-      <Link href="/signin">
-        <h2
-          className={`text-l font-semibold hover:underline ${
-            currentRoute === "/signin" ? "text-green-500 underline" : ""
+      <div className="flex gap-8">
+        <div
+          className={`md:flex ${
+            isOpen
+              ? "absolute text-center top-14 right-0 w-full pt-8 bg-slate-800"
+              : "hidden gap-8"
           }`}
         >
-          Sign In
-        </h2>
-      </Link>
+          {dropdowns.map((item, index) => (
+            <div
+              className="flex flex-col items-center mb-8 md:block md:mb-0"
+              key={index}
+              onClick={() => handleDropdownClick(index)}
+            >
+              <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:bg-slate-700 p-2 rounded-lg cursor-pointer">
+                {item.title}
+                {activeDropdown === index ? <ArrowUp /> : <ArrowDown />}
+              </h2>
+              {activeDropdown === index && <>{item.component}</>}
+            </div>
+          ))}
+        </div>
+        <SignInForm />
+      </div>
     </div>
   );
 }
