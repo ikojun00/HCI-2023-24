@@ -4,7 +4,9 @@ import Navbar from "../../components/Navbar";
 export default function SignIn() {
   return (
     <div className="bg-fixed bg-center bg-cover custom-img h-screen text-white">
-      <Navbar />
+      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+        <Navbar />
+      </div>
       <div className="max-w-2xl mx-auto flex flex-col justify-center px-2 py-10 lg:px-4 bg-black bg-opacity-70 rounded-xl mt-10">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
