@@ -42,6 +42,11 @@ export default function FAQ() {
             <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:underline pb-2 rounded-lg cursor-pointer">
               {item.title}
               {activeDropdown === index ? <ArrowUp /> : <ArrowDown />}
+              {/* <ArrowDown
+                className={`transition-all duration-500 ${
+                  activeDropdown === index ? "rotate-180" : ""
+                }`}
+              /> */}
             </h2>
             {activeDropdown === index && <>{item.text}</>}
           </div>

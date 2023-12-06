@@ -34,7 +34,9 @@ export default function Feature() {
         </p>
       </div>
       <div className="flex flex-col gap-4 p-6 border-4">
-        <h2 className="flex items-center gap-2 text-sm md:text-base font-bold"><Brain/> Reading Challenges</h2>
+        <h2 className="flex items-center gap-2 text-sm md:text-base font-bold">
+          <Brain /> Reading Challenges
+        </h2>
         <p className="text-xs sm:text-sm">
           Set reading challenges to meet personal goals and visualize your
           progress.
