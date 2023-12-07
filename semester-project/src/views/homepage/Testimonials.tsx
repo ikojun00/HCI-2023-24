@@ -24,7 +24,7 @@ export default function Testimonials() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-16 overflow-hidden">
       {testimonials.map((item) => (
-        <TestimonialCard {...item} />
+        <TestimonialCard  key={item.name} {...item} />
       ))}
     </div>
   );
