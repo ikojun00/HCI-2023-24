@@ -10,7 +10,7 @@ export default function Feature() {
         <h2 className="flex items-center gap-2 text-sm md:text-base font-bold">
           <Telescope /> Discover New Reads
         </h2>
-        <p className="text-xs sm:text-sm">
+        <p className="text-sm sm:text-md">
           Personalized book recommendations based on user preferences and
           reading history.
         </p>
@@ -19,7 +19,7 @@ export default function Feature() {
         <h2 className="flex items-center gap-2 text-sm md:text-base font-bold">
           <Pencil /> Your book tracker
         </h2>
-        <p className="text-xs sm:text-sm">
+        <p className="text-sm sm:text-md">
           Track every book by want to read, currently reading, read and did not
           finish.
         </p>
@@ -28,7 +28,7 @@ export default function Feature() {
         <h2 className="flex items-center gap-2 text-sm md:text-base font-bold">
           <Community /> Community Interaction
         </h2>
-        <p className="text-xs sm:text-sm">
+        <p className="text-sm sm:text-md">
           Participate in discussions, forums and community activities. Share
           personal reviews and ratings for books.
         </p>
@@ -37,7 +37,7 @@ export default function Feature() {
         <h2 className="flex items-center gap-2 text-sm md:text-base font-bold">
           <Brain /> Reading Challenges
         </h2>
-        <p className="text-xs sm:text-sm">
+        <p className="text-sm sm:text-md">
           Set reading challenges to meet personal goals and visualize your
           progress.
         </p>

@@ -10,8 +10,8 @@ export interface TestimonialCardProps{
 export default function TestimonialCard({name, occupation, image, text}:TestimonialCardProps) {
   return (
     <div className="flex flex-col justify-between gap-16 p-6 border-4">
-      <p className="text-xs sm:text-sm">
-        ${text}
+      <p className="text-sm md:text-base">
+        {text}
       </p>
       <div>
         <Image
@@ -21,8 +21,8 @@ export default function TestimonialCard({name, occupation, image, text}:Testimon
           width={50}
           height={50}
         />
-        <p className="font-bold text-xs sm:text-sm">${name}</p>
-        <p className="text-xs sm:text-sm">${occupation}</p>
+        <p className="font-bold text-sm md:text-base">{name}</p>
+        <p className="text-sm md:text-base">{occupation}</p>
       </div>
     </div>
   );

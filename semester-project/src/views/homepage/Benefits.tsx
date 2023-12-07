@@ -8,7 +8,6 @@ export default function Benefits() {
       <BenefitsCard reversed={false}/>
       <BenefitsCard reversed={true}/>
       <BenefitsCard reversed={false}/>
-      <BenefitsCard reversed={true}/>
     </div>
   );
 }

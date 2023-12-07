@@ -7,8 +7,8 @@ interface BenefitsCardProps {
 
 export default function BenefitsCard({reversed}: BenefitsCardProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden">
-      <div className={`flex flex-col gap-4 order-first ${reversed ? "md:order-last" : "md:order-first"}`}>
+    <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden gap-y-4">
+      <div className={`flex flex-col px-2 gap-4 text-sm md:text-base order-first ${reversed ? "md:order-last" : "md:order-first"}`}>
         <h2 className="text-xl sm:text-2xl font-medium text">
           Keep track of your books like never before.
         </h2>
@@ -42,9 +42,9 @@ export default function BenefitsCard({reversed}: BenefitsCardProps) {
       <div className={`flex justify-center ${reversed ? "md:justify-start": "md:justify-end"} `}>
         <Image
           src="https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8&w=1000&q=80"
-          alt="Benefit 1"
+          alt="Benefit"
           width={500}
-          height={200}
+          height={100}
           style={{ width: "auto" }}
         />
       </div>

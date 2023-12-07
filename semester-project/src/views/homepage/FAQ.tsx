@@ -39,7 +39,7 @@ export default function FAQ() {
             key={index}
             onClick={() => handleDropdownClick(index)}
           >
-            <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:underline pb-2 rounded-lg cursor-pointer">
+            <h2 className="flex items-center max-w-fit gap-2 text-sm md:text-base font-semibold hover:underline pb-2 rounded-lg cursor-pointer">
               {item.title}
               {activeDropdown === index ? <ArrowUp /> : <ArrowDown />}
               {/* <ArrowDown
@@ -48,7 +48,7 @@ export default function FAQ() {
                 }`}
               /> */}
             </h2>
-            {activeDropdown === index && <>{item.text}</>}
+            {activeDropdown === index && <p className="text-sm md:text-base">{item.text}</p>}
           </div>
         ))}
       </div>
