@@ -1,4 +1,4 @@
-# Class Project 4: Low/High-fidelity prototype
+# Class Project 5: Next.js - Dynamic routes, data fetching
 
 Creating dynamic routes and server-side data fetching from Google Books API.
 
