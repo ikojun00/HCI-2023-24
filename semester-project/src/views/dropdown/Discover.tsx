@@ -1,39 +1,25 @@
 import Link from "next/link";
 
+const dropdownMenu = [
+  { title: "Recommendations", path: "#" },
+  { title: "Search Books", path: "#" },
+  { title: "Author Spotlight", path: "#" },
+  { title: "Quotes", path: "#" },
+  { title: "Wanderlust", path: "#" },
+  { title: "Book Adaptations", path: "#" },
+];
+
 export default function Discover() {
   return (
     <div className="z-10 relative bg-slate-800 rounded-lg md:pr-16 md:absolute md:border-2 md:mt-2">
       <ul className="py-2 text-sm">
-        <li>
-          <Link href="#" className="block px-4 py-2 hover:underline">
-            Recommendations
-          </Link>
-        </li>
-        <li>
-          <Link href="/discover" className="block px-4 py-2 hover:underline">
-            Search Books
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="block px-4 py-2 hover:underline">
-            Author Spotlight
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="block px-4 py-2 hover:underline">
-            Quotes
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="block px-4 py-2 hover:underline">
-            Wanderlust
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="block px-4 py-2 hover:underline">
-            Book Adaptations
-          </Link>
-        </li>
+      {dropdownMenu.map((item) => (
+          <li>
+            <Link href={item.path} className="block px-4 py-2 hover:underline">
+              {item.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
