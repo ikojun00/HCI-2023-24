@@ -6,7 +6,7 @@ export const NavbarItems: NavbarItem[] = [
     path: "#",
     dropdowns: [
       { title: "Recommendations", path: "#" },
-      { title: "Search Books", path: "#" },
+      { title: "Search Books", path: "/discover" },
       { title: "Author Spotlight", path: "#" },
       { title: "Quotes", path: "#" },
       { title: "Wanderlust", path: "#" },
