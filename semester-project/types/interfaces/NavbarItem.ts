@@ -1,5 +1,7 @@
+import DropdownItem from "./DropdownItem";
+
 export default interface NavbarItem {
-  route: string;
-  label: string;
-  isDropdown: Boolean;
+  title: string;
+  path: string;
+  dropdowns: DropdownItem[];
 }

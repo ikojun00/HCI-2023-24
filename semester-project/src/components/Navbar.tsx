@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Community from "@/views/dropdown/Community";
-import Discover from "@/views/dropdown/Discover";
-import ReadingLog from "@/views/dropdown/ReadingLog";
 import Book from "./icons/Book";
 import SignInForm from "./SignInForm";
 import Arrow from "./icons/Arrow";
+import Dropdown from "@/views/dropdown/Dropdown";
+import { NavbarItems } from "../../config/NavbarItems";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -38,12 +37,6 @@ export default function Navbar() {
     setIsOpen(!isOpen);
     setActiveDropdown(null);
   };
-
-  const dropdowns = [
-    { title: "Discover", component: <Discover /> },
-    { title: "Reading Log", component: <ReadingLog /> },
-    { title: "Community", component: <Community /> },
-  ];
 
   const hamburgerIcon = (
     <button
@@ -83,7 +76,7 @@ export default function Navbar() {
               : "hidden gap-8"
           }`}
         >
-          {dropdowns.map((item, index) => (
+          {NavbarItems.map((item, index) => (
             <div
               className="flex flex-col items-center mb-8 md:block md:mb-0"
               key={index}
@@ -93,7 +86,9 @@ export default function Navbar() {
                 {item.title}
                 <Arrow active={activeDropdown === index} />
               </h2>
-              {activeDropdown === index && <>{item.component}</>}
+              {activeDropdown === index && (
+                <Dropdown dropdownItems={item.dropdowns} />
+              )}
             </div>
           ))}
         </div>

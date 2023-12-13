@@ -2,23 +2,34 @@ import NavbarItem from "../types/interfaces/NavbarItem";
 
 export const NavbarItems: NavbarItem[] = [
   {
-    route: "/community",
-    label: "Community",
-    isDropdown: true,
+    title: "Discover",
+    path: "#",
+    dropdowns: [
+      { title: "Recommendations", path: "#" },
+      { title: "Search Books", path: "#" },
+      { title: "Author Spotlight", path: "#" },
+      { title: "Quotes", path: "#" },
+      { title: "Wanderlust", path: "#" },
+      { title: "Book Adaptations", path: "#" },
+    ],
   },
   {
-    route: "/",
-    label: "Discover",
-    isDropdown: true,
+    title: "Reading Log",
+    path: "#",
+    dropdowns: [
+      { title: "Progress Tracker", path: "#" },
+      { title: "Challenges", path: "#" },
+    ],
   },
   {
-    route: "/about",
-    label: "About",
-    isDropdown: false,
-  },
-  {
-    route: "/signin",
-    label: "Signin",
-    isDropdown: false,
+    title: "Community",
+    path: "#",
+    dropdowns: [
+      { title: "Discussions And Activities", path: "#" },
+      { title: "Book Club", path: "#" },
+      { title: "Book Swap And Trade", path: "#" },
+      { title: "Literary Events", path: "#" },
+      { title: "Bookstore and Library Locator", path: "#" },
+    ],
   },
 ];
