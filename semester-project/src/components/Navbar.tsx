@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 import Community from "@/views/dropdown/Community";
 import Discover from "@/views/dropdown/Discover";
 import ReadingLog from "@/views/dropdown/ReadingLog";
-import ArrowDown from "./icons/ArrowDown";
-import ArrowUp from "./icons/ArrowUp";
 import Book from "./icons/Book";
 import SignInForm from "./SignInForm";
+import Arrow from "./icons/Arrow";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -92,7 +91,7 @@ export default function Navbar() {
             >
               <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:bg-slate-700 p-2 rounded-lg cursor-pointer">
                 {item.title}
-                {activeDropdown === index ? <ArrowUp /> : <ArrowDown />}
+                <Arrow active={activeDropdown === index} />
               </h2>
               {activeDropdown === index && <>{item.component}</>}
             </div>

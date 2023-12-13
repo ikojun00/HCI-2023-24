@@ -1,7 +1,6 @@
 "use client";
 
-import ArrowDown from "@/components/icons/ArrowDown";
-import ArrowUp from "@/components/icons/ArrowUp";
+import Arrow from "@/components/icons/Arrow";
 import { useState } from "react";
 
 export default function FAQ() {
@@ -41,14 +40,15 @@ export default function FAQ() {
           >
             <h2 className="flex items-center max-w-fit gap-2 text-sm md:text-base font-semibold hover:underline pb-2 rounded-lg cursor-pointer">
               {item.title}
-              {activeDropdown === index ? <ArrowUp /> : <ArrowDown />}
-              {/* <ArrowDown
-                className={`transition-all duration-500 ${
-                  activeDropdown === index ? "rotate-180" : ""
-                }`}
-              /> */}
+              <Arrow active={activeDropdown === index} />
             </h2>
-            {activeDropdown === index && <p className="text-sm md:text-base">{item.text}</p>}
+            <p
+              className={`text-sm md:text-base overflow-hidden transition-all duration-500 ${
+                activeDropdown === index ? "max-h-screen" : "max-h-0"
+              }`}
+            >
+              {item.text}
+            </p>
           </div>
         ))}
       </div>
