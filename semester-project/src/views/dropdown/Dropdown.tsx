@@ -11,7 +11,11 @@ export default function Dropdown({ dropdownItems }: DropdownProps) {
       <ul className="py-2 text-sm">
         {dropdownItems.map((item) => (
           <li>
-            <Link href={item.path} className="block px-4 py-2 hover:underline">
+            <Link
+              key={item.title}
+              href={item.path}
+              className="block px-4 py-2 hover:underline"
+            >
               {item.title}
             </Link>
           </li>

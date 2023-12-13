@@ -31,7 +31,7 @@ export default function Feature() {
   return (
     <section className="grid grid-cols-2 md:grid-cols-4 gap-2 overflow-hidden">
       {features.map((item) => (
-        <FeatureCard {...item} />
+        <FeatureCard key={item.title} {...item} />
       ))}
     </section>
   );
