@@ -1,20 +1,5 @@
-import NavbarItem from "../../types/interfaces/NavbarItem";
-
-const qGetAllNavbarNames = `query {
-    navbarCollection {
-        items {
-            title,
-            path,
-            dropdowns
-        }
-    }
-}`;
-
-interface navbarCollectionResponse {
-  navbarCollection: {
-    items: NavbarItem[];
-  };
-}
+import navbarCollectionResponse from "../../types/interfaces/NavbarCollectionResponse";
+import qGetAllNavbarNames from "../../types/queries/GetAllNavbarNames";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
@@ -24,7 +9,7 @@ const getAllNavbarNames = async () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
       },
       body: JSON.stringify({ query: qGetAllNavbarNames }),
     });
@@ -33,13 +18,13 @@ const getAllNavbarNames = async () => {
       data: navbarCollectionResponse;
     };
 
-    const products = body.data.navbarCollection.items.map((item) => ({
+    const navbarNames = body.data.navbarCollection.items.map((item) => ({
       title: item.title,
       path: item.path,
-      dropdowns: item.dropdowns.map((dropdown) => dropdown)
+      dropdowns: item.dropdowns.map((dropdown) => dropdown),
     }));
 
-    return products;
+    return navbarNames;
   } catch (error) {
     console.log(error);
 

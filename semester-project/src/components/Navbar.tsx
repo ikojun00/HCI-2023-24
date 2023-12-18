@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import ContentfulService from "@/services/ContentfulService";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
-  const [navbarNames, setNavbarNames] = useState<NavbarItem[]>([])
+  const [navbarNames, setNavbarNames] = useState<NavbarItem[]>([]);
 
   const handleDropdownClick = (index: number) => {
     activeDropdown === index
@@ -86,7 +86,7 @@ export default function Navbar() {
               ? "absolute text-center top-14 right-0 w-full pt-8 bg-slate-800"
               : "hidden gap-8"
           }`}
-        > 
+        >
           {navbarNames.map((item: NavbarItem, index: number) => (
             <div
               className="flex flex-col items-center mb-8 md:block md:mb-0"
