@@ -7,10 +7,17 @@ import SignInForm from "./SignInForm";
 import Arrow from "./icons/Arrow";
 import Dropdown from "@/views/dropdown/Dropdown";
 import { NavbarItems } from "../../config/NavbarItems";
+import Searchbar from "./Searchbar";
+import Search from "./icons/Search";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+  const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
+
+  const handleSearchbar = () => {
+    setShowSearchbar(!showSearchbar);
+  };
 
   const handleDropdownClick = (index: number) => {
     activeDropdown === index
@@ -91,6 +98,12 @@ export default function Navbar() {
               )}
             </div>
           ))}
+        </div>
+        <div className="flex items-center">
+          <button className="text-white" onClick={handleSearchbar}>
+            <Search />
+          </button>
+          {showSearchbar && <Searchbar handleSearchbar={handleSearchbar} />}
         </div>
         <SignInForm />
       </div>
