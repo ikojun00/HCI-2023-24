@@ -1,18 +1,21 @@
 import Image from "next/image";
 
-export interface TestimonialCardProps{
-    name: string,
-    occupation:string,
-    image: string,
-    text: string
+export interface TestimonialCardProps {
+  name: string;
+  occupation: string;
+  image: string;
+  text: string;
 }
 
-export default function TestimonialCard({name, occupation, image, text}:TestimonialCardProps) {
+export default function TestimonialCard({
+  name,
+  occupation,
+  image,
+  text,
+}: TestimonialCardProps) {
   return (
-    <div className="flex flex-col justify-between gap-16 p-6 border-4">
-      <p className="text-sm md:text-base">
-        {text}
-      </p>
+    <div className="flex flex-col justify-between gap-16 p-6 border-4 rounded-md">
+      <p className="text-sm md:text-base">{text}</p>
       <div>
         <Image
           src={image}
