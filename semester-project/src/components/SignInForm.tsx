@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Profile from "@/views/dropdown/Profile";
+import Profile from "@/views/navbar/Profile";
+import Link from "next/link";
+import Button from "@/views/navbar/Button";
 
 export default function SignInForm() {
   const [activeDropdown, setActiveDropdown] = useState(false);
@@ -14,12 +16,7 @@ export default function SignInForm() {
   return (
     <div>
       {status !== "authenticated" ? (
-        <button
-          className="bg-green-600 max-w-fit rounded-lg hover:bg-green-700"
-          onClick={() => signIn("google")}
-        >
-          <h2 className="px-4 py-2">Login</h2>
-        </button>
+        <Button title={"Login"} link={"/signin"} />
       ) : (
         <button onClick={handleDropdownClick}>
           <Image

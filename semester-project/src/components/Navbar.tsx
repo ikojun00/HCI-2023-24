@@ -6,9 +6,12 @@ import Book from "./icons/Book";
 import SignInForm from "./SignInForm";
 import Arrow from "./icons/Arrow";
 import Dropdown from "@/views/dropdown/Dropdown";
+
 import { NavbarItems } from "../../config/NavbarItems";
 import Searchbar from "./Searchbar";
 import Search from "./icons/Search";
+import NavbarItem from "../../types/interfaces/NavbarItem";
+import ContentfulService from "@/services/ContentfulService";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -18,6 +21,7 @@ export default function Navbar() {
   const handleSearchbar = () => {
     setShowSearchbar(!showSearchbar);
   };
+  const [navbarNames, setNavbarNames] = useState<NavbarItem[]>([]);
 
   const handleDropdownClick = (index: number) => {
     activeDropdown === index
@@ -26,6 +30,15 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    (async () => {
+      try {
+        const data = await ContentfulService.getAllNavbarNames();
+        setNavbarNames(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    })();
+
     const handleResize = () => {
       if (window.innerWidth > 768) {
         setIsOpen(false);
@@ -83,7 +96,7 @@ export default function Navbar() {
               : "hidden gap-8"
           }`}
         >
-          {NavbarItems.map((item, index) => (
+          {navbarNames.map((item: NavbarItem, index: number) => (
             <div
               className="flex flex-col items-center mb-8 md:block md:mb-0"
               key={index}
