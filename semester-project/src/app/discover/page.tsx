@@ -124,7 +124,7 @@ export default function Discover() {
                           width={0}
                           height={0}
                           sizes="100vw"
-                          style={{ width: "100px", height: "auto" }}
+                          style={{ width: "auto", height: "100px" }}
                         />
                       )}
                       <div className="flex flex-col">
