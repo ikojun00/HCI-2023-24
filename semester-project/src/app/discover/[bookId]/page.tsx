@@ -3,9 +3,9 @@ import Image from "next/image";
 
 interface Params {
   title: string;
-  authors?: string[];
-  image: string;
+  author: string;
   description: string;
+  cover: string;
 }
 
 interface BookParams {
@@ -26,7 +26,7 @@ export default function BlogPost({ searchParams }: BookParams) {
       <div className="flex flex-col justify-start max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex flex-row">
           <Image
-            src={searchParams.image}
+            src={searchParams.cover}
             alt="Cover"
             width={0}
             height={0}
@@ -37,7 +37,7 @@ export default function BlogPost({ searchParams }: BookParams) {
             <h1 className="text-3xl font-bold">{searchParams.title}</h1>
             <div className="flex flex-row gap-1 items-center">
               <h1>By:</h1>
-              <h1 className="text-xl font-bold">{searchParams.authors}</h1>
+              <h1 className="text-xl font-bold">{searchParams.author}</h1>
             </div>
           </div>
         </div>

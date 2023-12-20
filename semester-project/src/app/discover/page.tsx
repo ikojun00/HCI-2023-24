@@ -5,6 +5,96 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import GoogleBooksService from "@/services/GoogleBooksService";
+import ContentfulService from "@/services/ContentfulService";
+import BookItem from "../../../types/interfaces/BookItem";
+
+export default function Discover() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [books, setBooks] = useState<BookItem[] | undefined>([]);
+
+  useEffect(() => {
+    (async () => {
+      if (searchTerm !== "") {
+        const newBooks = await ContentfulService.getAllBooks(searchTerm);
+        setBooks(newBooks);
+      }
+    })();
+  }, [searchTerm]);
+
+  return (
+    <div>
+      <div>
+        <div className="border-b-2">
+          <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+            <Navbar />
+          </div>
+        </div>
+        <div className="flex flex-col items-center max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+          <br />
+          <br />
+          <input
+            className="border rounded-lg pl-2 md:w-96 text-black"
+            type="text"
+            placeholder="Search for books"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+
+          <div className="flex items-center flex-col">
+            <br />
+            <ul className="flex flex-col items-start w-full gap-4 flex-wrap px-4 sm:px-6 lg:px-8 mt-4">
+              {books === undefined ? (
+                <p>No books.</p>
+              ) : (
+                books.map((book, index) => (
+                  <div className="max-w-3xl" key={index}>
+                    <Link
+                      href={{
+                        pathname: `discover/${index}`,
+                        query: {
+                          title: book.title,
+                          author: book.author,
+                          description: book.description,
+                          cover: book.cover.url,
+                        },
+                      }}
+                    >
+                      <li className="flex flex-row gap-4">
+                        <Image
+                          src={book.cover?.url}
+                          alt="Cover"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{ width: "100px", height: "auto" }}
+                        />
+                        <div className="flex flex-col">
+                          <h2 className="font-bold md:text-xl">{book.title}</h2>
+                          <div className="flex flex-row gap-1 md:text-md">
+                            <p>By:</p>
+                            <p className="font-medium">{book.author}</p>
+                          </div>
+                        </div>
+                      </li>
+                    </Link>
+                    <br />
+                  </div>
+                ))
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/*import Navbar from "../../components/Navbar";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import GoogleBooksService from "@/services/GoogleBooksService";
+import ContentfulService from "@/services/ContentfulService";
 
 interface Image {
   thumbnail: string;
@@ -41,9 +131,10 @@ export default function Discover() {
                 newBooks.find((book: Book) => book.volumeInfo.title === title)
               )
             );
+        const result = await ContentfulService.getAllBooks();
+        console.log(result);
       }
     };
-
     fetchBooks(); // popraviti ovo, kad izbrišem input ne izbrišu se knjige
   }, [category, filter, searchTerm]);
 
@@ -149,4 +240,4 @@ export default function Discover() {
       </div>
     </div>
   );
-}
+}*/
