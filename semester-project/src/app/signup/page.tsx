@@ -1,7 +1,53 @@
+"use client";
+
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import { useRef } from "react";
+import { Backend_URL } from "@/lib/constants";
 
-export default function page() {
+type FormInputs = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+};
+
+export default function SignUp() {
+  const register = async () => {
+    try {
+      const res = await fetch(Backend_URL + "/auth/signup", {
+        method: "POST",
+        body: JSON.stringify({
+          firstName: data.current.firstName,
+          lastName: data.current.lastName,
+          email: data.current.email,
+          password: data.current.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        const errorMessage = await res.text();
+        throw new Error(`Registration failed: ${errorMessage}`);
+      }
+
+      const response = await res.json();
+      alert("User Registered!");
+      console.log({ response });
+    } catch (error) {
+      console.error("Error during registration:", error);
+      alert("Registration failed. Please try again later.");
+    }
+  };
+  const data = useRef<FormInputs>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
   return (
     <div className="bg-fixed bg-center bg-cover custom-img h-screen text-white">
       <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
@@ -15,21 +61,40 @@ export default function page() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <div className="space-y-6">
             <div>
               <label
                 htmlFor="name"
                 className="block text-sm font-medium leading-6"
               >
-                Full Name
+                First Name
               </label>
               <div className="mt-2">
                 <input
-                  id="name"
-                  name="name"
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  required
+                  onChange={(e) => (data.current.firstName = e.target.value)}
+                  className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6"
+              >
+                Last Name
+              </label>
+              <div className="mt-2">
+                <input
+                  id="lastName"
+                  name="lastName"
                   type="text"
                   autoComplete="name"
                   required
+                  onChange={(e) => (data.current.lastName = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
@@ -48,6 +113,7 @@ export default function page() {
                   type="email"
                   autoComplete="email"
                   required
+                  onChange={(e) => (data.current.email = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-40"
                 />
               </div>
@@ -68,6 +134,7 @@ export default function page() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  onChange={(e) => (data.current.password = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
@@ -75,22 +142,22 @@ export default function page() {
 
             <div>
               <button
-                type="submit"
+                onClick={register}
                 className="flex w-full justify-center text-center bg-green-500 p-2 mt-10 rounded-xl hover:bg-green-600 tracking-wider"
               >
                 Sign up
               </button>
             </div>
-          </form>
+          </div>
 
-          <p className="mt-10 text-center text-sm text-gray-300">
+          <div className="flex justify-center mt-10 text-center text-sm text-gray-300 gap-1">
             Already have an account?
             <Link href="/signin">
-              <p className="font-bold text-green-400 hover:text-green-500">
+              <span className="font-bold text-green-400 hover:text-green-500">
                 Login Here
-              </p>
+              </span>
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </div>

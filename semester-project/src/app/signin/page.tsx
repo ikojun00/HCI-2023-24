@@ -1,7 +1,34 @@
+"use client";
+
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
+import { signIn } from "next-auth/react";
 
-export default function SignIn() {
+type Props = {
+  className?: string;
+  callbackUrl?: string;
+  error?: string;
+};
+
+export default function SignIn(props: Props) {
+  const router = useRouter();
+  const email = useRef("");
+  const password = useRef("");
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const res = await signIn("credentials", {
+      email: email.current,
+      password: password.current,
+      redirect: false,
+    });
+
+    if (!res?.error) {
+      router.push(props.callbackUrl ?? "http://localhost:3000");
+    }
+  };
+
   return (
     <div className="bg-fixed bg-center bg-cover custom-img h-screen text-white">
       <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
@@ -15,7 +42,7 @@ export default function SignIn() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form onSubmit={onSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -30,6 +57,7 @@ export default function SignIn() {
                   type="email"
                   autoComplete="email"
                   required
+                  onChange={(e) => (email.current = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-40"
                 />
               </div>
@@ -51,6 +79,7 @@ export default function SignIn() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  onChange={(e) => (password.current = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
@@ -66,14 +95,14 @@ export default function SignIn() {
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-300">
+          <div className="mt-10 text-center text-sm text-gray-300">
             Not a member?
             <Link href="/signup">
               <p className="font-bold text-green-400 hover:text-green-500">
                 Sign Up
               </p>
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </div>
