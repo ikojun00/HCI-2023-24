@@ -6,13 +6,7 @@ import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { signIn } from "next-auth/react";
 
-type Props = {
-  className?: string;
-  callbackUrl?: string;
-  error?: string;
-};
-
-export default function SignIn(props: Props) {
+export default function SignIn() {
   const router = useRouter();
   const email = useRef("");
   const password = useRef("");
@@ -25,7 +19,7 @@ export default function SignIn(props: Props) {
     });
 
     if (!res?.error) {
-      router.push(props.callbackUrl ?? "http://localhost:3000");
+      router.push("/");
     }
   };
 
