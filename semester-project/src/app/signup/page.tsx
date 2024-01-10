@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import { useRef } from "react";
 import { Backend_URL } from "@/lib/constants";
+import { useRouter } from "next/navigation";
 
 type FormInputs = {
   firstName: string;
@@ -13,33 +14,31 @@ type FormInputs = {
 };
 
 export default function SignUp() {
+  const router = useRouter();
   const register = async () => {
-    try {
-      const res = await fetch(Backend_URL + "/auth/signup", {
-        method: "POST",
-        body: JSON.stringify({
-          firstName: data.current.firstName,
-          lastName: data.current.lastName,
-          email: data.current.email,
-          password: data.current.password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    const res = await fetch(Backend_URL + "/auth/signup", {
+      method: "POST",
+      body: JSON.stringify({
+        firstName: data.current.firstName,
+        lastName: data.current.lastName,
+        email: data.current.email,
+        password: data.current.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-      if (!res.ok) {
-        const errorMessage = await res.text();
-        throw new Error(`Registration failed: ${errorMessage}`);
-      }
-
-      const response = await res.json();
-      alert("User Registered!");
-      console.log({ response });
-    } catch (error) {
-      console.error("Error during registration:", error);
-      alert("Registration failed. Please try again later.");
+    if (!res.ok) {
+      alert(res.statusText);
+      console.log(res.json());
+      return;
     }
+
+    const response = await res.json();
+    alert("User Registered!");
+    router.push("/signin");
+    console.log({ response });
   };
   const data = useRef<FormInputs>({
     firstName: "",

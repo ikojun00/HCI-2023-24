@@ -18,6 +18,11 @@ export default function SignIn() {
       redirect: false,
     });
 
+    if (res?.status === 401) {
+      alert("Unauthorized");
+      return;
+    }
+
     if (!res?.error) {
       router.push("/");
     }
@@ -89,7 +94,7 @@ export default function SignIn() {
             </div>
           </form>
 
-          <div className="mt-10 text-center text-sm text-gray-300">
+          <div className="flex justify-center mt-10 text-center text-sm text-gray-300 gap-1">
             Not a member?
             <Link href="/signup">
               <p className="font-bold text-green-400 hover:text-green-500">
