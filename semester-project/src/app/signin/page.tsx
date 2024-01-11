@@ -11,20 +11,17 @@ export default function SignIn() {
   const email = useRef("");
   const password = useRef("");
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const res = await signIn("credentials", {
-      email: email.current,
-      password: password.current,
-      redirect: false,
-    });
-
-    if (res?.status === 401) {
-      alert("Unauthorized");
-      return;
-    }
-
-    if (!res?.error) {
-      router.push("/");
+    try {
+      e.preventDefault();
+      const res = await signIn("credentials", {
+        email: email.current,
+        password: password.current,
+        redirect: false,
+      });
+      if (res?.error) alert(res?.error);
+      else router.push("/");
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -54,7 +51,6 @@ export default function SignIn() {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
                   required
                   onChange={(e) => (email.current = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-40"
@@ -76,7 +72,6 @@ export default function SignIn() {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
                   required
                   onChange={(e) => (password.current = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
