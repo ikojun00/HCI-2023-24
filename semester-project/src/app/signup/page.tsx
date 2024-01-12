@@ -1,7 +1,52 @@
+"use client";
+
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import { useRef } from "react";
+import { Backend_URL } from "@/lib/constants";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
-export default function page() {
+type FormInputs = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+};
+
+export default function SignUp() {
+  const router = useRouter();
+  const register = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post(
+        `${Backend_URL}/auth/signup`,
+        {
+          firstName: data.current.firstName,
+          lastName: data.current.lastName,
+          email: data.current.email,
+          password: data.current.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      alert("User Registered!");
+      router.push("/signin");
+      console.log({ response });
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
+  const data = useRef<FormInputs>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
   return (
     <div className="bg-fixed bg-center bg-cover custom-img h-screen text-white">
       <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
@@ -15,21 +60,39 @@ export default function page() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form onSubmit={register} className="space-y-6">
             <div>
               <label
                 htmlFor="name"
                 className="block text-sm font-medium leading-6"
               >
-                Full Name
+                First Name
               </label>
               <div className="mt-2">
                 <input
-                  id="name"
-                  name="name"
+                  id="firstName"
+                  name="firstName"
                   type="text"
-                  autoComplete="name"
                   required
+                  onChange={(e) => (data.current.firstName = e.target.value)}
+                  className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6"
+              >
+                Last Name
+              </label>
+              <div className="mt-2">
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  required
+                  onChange={(e) => (data.current.lastName = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
@@ -46,8 +109,8 @@ export default function page() {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
                   required
+                  onChange={(e) => (data.current.email = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-40"
                 />
               </div>
@@ -66,13 +129,12 @@ export default function page() {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
                   required
+                  onChange={(e) => (data.current.password = e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
@@ -83,14 +145,14 @@ export default function page() {
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-300">
+          <div className="flex justify-center mt-10 text-center text-sm text-gray-300 gap-1">
             Already have an account?
             <Link href="/signin">
               <p className="font-bold text-green-400 hover:text-green-500">
                 Login Here
               </p>
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </div>
