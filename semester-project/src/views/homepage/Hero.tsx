@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "../navbar/Button";
 
 export default function Hero() {
   return (
@@ -12,11 +13,7 @@ export default function Hero() {
             Easily keep tabs on every book, share them with the world and
             uncover life-altering reads.
           </h2>
-          <button className="bg-green-600 max-w-fit rounded-3xl hover:bg-green-700">
-            <Link href="/signup">
-              <h2 className="p-4 tracking-wider">Join For Free</h2>
-            </Link>
-          </button>
+          <Button title={"Join For Free"} link={"/signup"} />
         </div>
       </div>
     </div>

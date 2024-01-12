@@ -1,3 +1,4 @@
+import Book from "@/components/icons/Book";
 import Link from "next/link";
 
 export default function Footer() {
@@ -87,7 +88,9 @@ export default function Footer() {
       <div className="flex flex-col">
         <div className="flex justify-center">
           <Link href="/">
-            <h1 className="text-base sm:text-md font-bold">📖 BookVoyage</h1>
+            <h1 className="flex flex-row items-center gap-1 text-base sm:text-md font-bold">
+              <Book /> BookVoyage
+            </h1>
           </Link>
         </div>
         <div className="text-xs sm:text-sm flex justify-center">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "../navbar/Button";
 
 export default function LastCTA() {
   return (
@@ -6,11 +7,7 @@ export default function LastCTA() {
       <h1 className="text-3xl sm:text-5xl font-bold text-center">
         Join The Reading Revolution Today!
       </h1>
-      <button className="bg-green-600 max-w-fit rounded-3xl hover:bg-green-700">
-        <Link href="/signup">
-          <h2 className="p-4 tracking-wider">Join For Free</h2>
-        </Link>
-      </button>
+      <Button title={"Join For Free"} link={"/signup"} />
     </div>
   );
 }

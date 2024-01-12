@@ -4,11 +4,11 @@ import Arrow from "@/components/icons/Arrow";
 import { useState } from "react";
 
 export default function FAQ() {
-  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<number[]>([]);
   const handleDropdownClick = (index: number) => {
-    activeDropdown === index
-      ? setActiveDropdown(null)
-      : setActiveDropdown(index);
+    activeDropdown.includes(index)
+      ? setActiveDropdown(activeDropdown.filter((a) => a !== index))
+      : setActiveDropdown([...activeDropdown, index]);
   };
 
   const dropdowns = [
@@ -40,11 +40,11 @@ export default function FAQ() {
           >
             <h2 className="flex items-center max-w-fit gap-2 text-sm md:text-base font-semibold hover:underline pb-2 rounded-lg cursor-pointer">
               {item.title}
-              <Arrow active={activeDropdown === index} />
+              <Arrow active={activeDropdown.includes(index)} />
             </h2>
             <p
               className={`text-sm md:text-base overflow-hidden transition-all duration-500 ${
-                activeDropdown === index ? "max-h-screen" : "max-h-0"
+                activeDropdown.includes(index) ? "max-h-screen" : "max-h-0"
               }`}
             >
               {item.text}
