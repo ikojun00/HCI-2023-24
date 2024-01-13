@@ -6,8 +6,6 @@ import Book from "./icons/Book";
 import SignInForm from "./SignInForm";
 import Arrow from "./icons/Arrow";
 import Dropdown from "@/views/dropdown/Dropdown";
-
-import { NavbarItems } from "../../config/NavbarItems";
 import Searchbar from "./Searchbar";
 import Search from "./icons/Search";
 import NavbarItem from "../../types/interfaces/NavbarItem";
@@ -20,6 +18,9 @@ export default function Navbar() {
 
   const handleSearchbar = () => {
     setShowSearchbar(!showSearchbar);
+    !showSearchbar
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
   };
   const [navbarNames, setNavbarNames] = useState<NavbarItem[]>([]);
 
@@ -81,44 +82,49 @@ export default function Navbar() {
   );
 
   return (
-    <div className="flex justify-between items-center p-4">
-      {hamburgerIcon}
-      <Link href="/">
-        <h1 className="flex items-center gap-2 text-xl font-bold">
-          <Book /> BookVoyage
-        </h1>
-      </Link>
-      <div className="flex gap-8">
-        <div
-          className={`md:flex ${
-            isOpen
-              ? "absolute text-center top-14 right-0 w-full pt-8 bg-slate-800"
-              : "hidden gap-8"
-          }`}
-        >
-          {navbarNames.map((item: NavbarItem, index: number) => (
-            <div
-              className="flex flex-col items-center mb-8 md:block md:mb-0"
-              key={index}
-              onClick={() => handleDropdownClick(index)}
-            >
-              <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:bg-slate-700 p-2 rounded-lg cursor-pointer">
-                {item.title}
-                <Arrow active={activeDropdown === index} />
-              </h2>
-              {activeDropdown === index && (
-                <Dropdown dropdownItems={item.dropdowns} />
-              )}
+    <div className="sticky top-0 left-0 bg-slate-800 border-b-2">
+      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+        <div className="flex justify-between items-center p-4">
+          {hamburgerIcon}
+          <Link href="/">
+            <div className="flex items-center gap-2">
+              <Book />
+              <h1 className="hidden md:flex text-2xl font-bold">BookVoyage</h1>
             </div>
-          ))}
+          </Link>
+          <div className="flex gap-8">
+            <div
+              className={`md:flex ${
+                isOpen
+                  ? "absolute text-center top-14 right-0 w-full pt-8 bg-slate-800"
+                  : "hidden gap-8"
+              }`}
+            >
+              {navbarNames.map((item: NavbarItem, index: number) => (
+                <div
+                  className="flex flex-col items-center mb-8 md:block md:mb-0"
+                  key={index}
+                  onClick={() => handleDropdownClick(index)}
+                >
+                  <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:bg-slate-700 p-2 rounded-lg cursor-pointer">
+                    {item.title}
+                    <Arrow active={activeDropdown === index} />
+                  </h2>
+                  {activeDropdown === index && (
+                    <Dropdown dropdownItems={item.dropdowns} />
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center">
+              <button className="text-white" onClick={handleSearchbar}>
+                <Search />
+              </button>
+              {showSearchbar && <Searchbar handleSearchbar={handleSearchbar} />}
+            </div>
+            <SignInForm />
+          </div>
         </div>
-        <div className="flex items-center">
-          <button className="text-white" onClick={handleSearchbar}>
-            <Search />
-          </button>
-          {showSearchbar && <Searchbar handleSearchbar={handleSearchbar} />}
-        </div>
-        <SignInForm />
       </div>
     </div>
   );

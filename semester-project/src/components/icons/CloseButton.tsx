@@ -2,11 +2,10 @@ export default function CloseButton() {
   return (
     <div>
       <svg
+        className="w-4 h-4 md:w-6 md:h-6 text-white"
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
-        width="25"
-        height="25"
         viewBox="0,0,256,256"
       >
         <g fill="#ffffff">

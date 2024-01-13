@@ -2,7 +2,7 @@ export default function Book() {
   return (
     <div>
       <svg
-        className="w-4 h-4 text-white"
+        className="w-5 h-5 text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

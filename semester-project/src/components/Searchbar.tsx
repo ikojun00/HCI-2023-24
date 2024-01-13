@@ -52,17 +52,17 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
   }, [category, filter, searchTerm]);
 
   return (
-    <div className="w-8/12 z-50 border-4 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/8">
-      <div className="flex flex-col max-w-screen-xl mx-auto bg-slate-800">
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+      <div className="flex flex-col border-2 rounded-md w-9/12 md:w-6/12 mx-auto bg-slate-800">
         <div className="flex justify-end">
-          <button className="text-white m-8" onClick={handleSearchbar}>
+          <button className="text-white m-6 md:m-8" onClick={handleSearchbar}>
             <CloseButton />
           </button>
         </div>
         <div className="flex items-center flex-col">
-          <div className="w-full h-16 flex justify-center gap-4 flex-col px-8">
+          <div className="w-full md:h-12 flex justify-center gap-4 flex-col px-8">
             <input
-              className="border rounded-md pl-2 h-full text-2xl text-black"
+              className="border rounded-md pl-2 h-full md:text-2xl text-black"
               type="text"
               placeholder="Search for books"
               value={searchTerm}
@@ -110,6 +110,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                 books.map((book) => (
                   <div key={book.id}>
                     <Link
+                      onClick={handleSearchbar}
                       href={{
                         pathname: `discover/${book.id}`,
                         query: {
