@@ -10,11 +10,6 @@ import Benefits from "@/views/homepage/Benefits";
 export default function Home() {
   return (
     <>
-      <div className="sticky top-0 left-0 bg-slate-800 border-b-2">
-        <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
-          <Navbar />
-        </div>
-      </div>
       <div className="bg-fixed bg-center bg-cover custom-img">
         <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 py-44">
           <Hero />
