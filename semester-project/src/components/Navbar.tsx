@@ -61,7 +61,7 @@ export default function Navbar() {
 
   const hamburgerIcon = (
     <button
-      className="md:hidden block focus:outline-none"
+      className="border-2 rounded-md p-1 md:hidden block focus:outline-none"
       onClick={toggleHamburgerMenu}
     >
       <svg
@@ -89,24 +89,34 @@ export default function Navbar() {
           <Link href="/">
             <div className="flex items-center gap-2">
               <Book />
-              <h1 className="hidden md:flex text-2xl font-bold">BookVoyage</h1>
+              <h1 className="hidden sm:flex text-2xl font-bold">BookVoyage</h1>
             </div>
           </Link>
-          <div className="flex gap-8">
+          <div className="flex gap-8 items-center">
             <div
               className={`md:flex ${
                 isOpen
-                  ? "absolute text-center top-14 right-0 w-full pt-8 bg-slate-800"
+                  ? "absolute text-center top-20 right-0 w-full pt-8 bg-slate-800"
                   : "hidden gap-8"
               }`}
             >
+              <div className="flex justify-center">
+                <button
+                  className="flex flex-row text-white md:mb-0 mb-8 bg-slate-700 p-1 md:hover:bg-slate-500 rounded-md pl-2 pr-20 py-2 gap-1"
+                  onClick={handleSearchbar}
+                >
+                  <Search />
+                  <h1>Search Books</h1>
+                </button>
+              </div>
+              {showSearchbar && <Searchbar handleSearchbar={handleSearchbar} />}
               {navbarNames.map((item: NavbarItem, index: number) => (
                 <div
                   className="flex flex-col items-center mb-8 md:block md:mb-0"
                   key={index}
                   onClick={() => handleDropdownClick(index)}
                 >
-                  <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold hover:bg-slate-700 p-2 rounded-lg cursor-pointer">
+                  <h2 className="flex items-center max-w-fit gap-2 text-base font-semibold p-2 rounded-lg cursor-pointer">
                     {item.title}
                     <Arrow active={activeDropdown === index} />
                   </h2>
@@ -115,12 +125,6 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
-            </div>
-            <div className="flex items-center">
-              <button className="text-white" onClick={handleSearchbar}>
-                <Search />
-              </button>
-              {showSearchbar && <Searchbar handleSearchbar={handleSearchbar} />}
             </div>
             <SignInForm />
           </div>

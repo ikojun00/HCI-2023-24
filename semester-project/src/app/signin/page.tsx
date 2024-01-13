@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Navbar from "../../components/Navbar";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { signIn } from "next-auth/react";

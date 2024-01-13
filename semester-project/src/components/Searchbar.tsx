@@ -53,7 +53,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
-      <div className="flex flex-col border-2 rounded-md w-9/12 md:w-6/12 mx-auto bg-slate-800">
+      <div className="flex flex-col border-2 rounded-md w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 mx-auto bg-slate-800">
         <div className="flex justify-end">
           <button className="text-white m-6 md:m-8" onClick={handleSearchbar}>
             <CloseButton />

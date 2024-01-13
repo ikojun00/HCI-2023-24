@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Navbar from "../../components/Navbar";
 import { useRef } from "react";
 import { Backend_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
