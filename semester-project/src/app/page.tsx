@@ -8,14 +8,17 @@ import LastCTA from "@/views/homepage/LastCTA";
 import Testimonials from "@/views/homepage/Testimonials";
 import Benefits from "@/views/homepage/Benefits";
 import { useSession } from "next-auth/react";
+import Spinner from "@/components/icons/Spinner";
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <Spinner />;
+  }
 
   return session && session.user ? (
-    <div className="flex justify-center">
-      Welcome, {session.user.firstName}
-    </div>
+    <div className="flex justify-center">Welcome, {session.user.firstName}</div>
   ) : (
     <>
       <div className="bg-fixed bg-center bg-cover custom-img">

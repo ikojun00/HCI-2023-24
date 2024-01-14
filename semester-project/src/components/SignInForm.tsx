@@ -3,10 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import Button from "@/views/navbar/Button";
+import Spinner from "./icons/Spinner";
 
 export default function SignInForm() {
-  const { data: session } = useSession();
-  // prijedlog: mozda je bolje da prebacuje na novi link zvan profile naprimjer
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <Spinner />;
+  }
 
   return session && session.user ? (
     <div>
