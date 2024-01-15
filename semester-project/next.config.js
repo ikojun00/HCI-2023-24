@@ -5,6 +5,7 @@ const nextConfig = {
       "books.google.com",
       "images.unsplash.com",
       "lh3.googleusercontent.com",
+      "images.ctfassets.net",
     ],
   },
   env: {
