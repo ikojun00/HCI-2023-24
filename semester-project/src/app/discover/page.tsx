@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import GoogleBooksService from "@/services/GoogleBooksService";
 import ContentfulService from "@/services/ContentfulService";
 import BookItem from "../../../types/interfaces/BookItem";
 
@@ -23,11 +22,6 @@ export default function Discover() {
   return (
     <div>
       <div>
-        <div className="border-b-2">
-          <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
-            <Navbar />
-          </div>
-        </div>
         <div className="flex flex-col items-center max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
           <br />
           <br />
