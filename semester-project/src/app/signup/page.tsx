@@ -5,7 +5,6 @@ import { useRef } from "react";
 import { Backend_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { useSession } from "next-auth/react";
 
 type FormInputs = {
   firstName: string;

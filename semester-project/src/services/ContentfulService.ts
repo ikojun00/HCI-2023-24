@@ -1,7 +1,10 @@
 import navbarCollectionResponse from "../../types/interfaces/NavbarCollectionResponse";
 import qGetAllNavbarNames from "../../types/queries/GetAllNavbarNames";
-import qGetAllBooks from "../../types/queries/GetAllBooks";
 import booksCollectionResponse from "../../types/interfaces/BooksCollectionResponse";
+import qGetNewBooks from "../../types/queries/GetNewBooks";
+import qGetBookById from "../../types/queries/GetBookById";
+import qGetBooksByTitle from "../../types/queries/GetBooksByTitle";
+import BookItem from "../../types/interfaces/BookItem";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
@@ -34,7 +37,7 @@ const getAllNavbarNames = async () => {
   }
 };
 
-const getAllBooks = async (searchTerm: string) => {
+const getBooksByTitle = async (searchTerm: string) => {
   try {
     const response = await fetch(baseUrl, {
       method: "POST",
@@ -42,15 +45,15 @@ const getAllBooks = async (searchTerm: string) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
       },
-      body: JSON.stringify({ query: qGetAllBooks(searchTerm) }),
+      body: JSON.stringify({ query: qGetBooksByTitle(searchTerm) }),
     });
 
     const body = (await response.json()) as {
       data: booksCollectionResponse;
     };
-    console.log(body.data);
 
     const books = body.data.booksCollection.items.map((item) => ({
+      sys: item.sys,
       title: item.title,
       author: item.author,
       description: item.description,
@@ -65,9 +68,76 @@ const getAllBooks = async (searchTerm: string) => {
   }
 };
 
+const getNewBooks = async () => {
+  try {
+    const response = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+      },
+      body: JSON.stringify({ query: qGetNewBooks }),
+    });
+
+    const body = (await response.json()) as {
+      data: booksCollectionResponse;
+    };
+    console.log(body.data);
+
+    const books = body.data.booksCollection.items.map((item) => ({
+      sys: item.sys,
+      title: item.title,
+      author: item.author,
+      description: item.description,
+      cover: item.cover,
+    }));
+
+    return books;
+  } catch (error) {
+    console.log(error);
+
+    return [];
+  }
+};
+
+const getBookById = async (bookId: string) => {
+  try {
+    const response = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+      },
+      body: JSON.stringify({ query: qGetBookById(bookId) }),
+    });
+
+    const body = (await response.json()) as {
+      data: booksCollectionResponse;
+    };
+
+    console.log(body);
+
+    const books = body.data.booksCollection.items.map((item) => ({
+      sys: item.sys,
+      title: item.title,
+      author: item.author,
+      description: item.description,
+      cover: item.cover,
+    }));
+
+    return books[0];
+  } catch (error) {
+    console.log(error);
+
+    return [];
+  }
+};
+
 const ContentfulService = {
   getAllNavbarNames,
-  getAllBooks,
+  getBooksByTitle,
+  getNewBooks,
+  getBookById,
 };
 
 export default ContentfulService;

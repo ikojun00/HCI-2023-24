@@ -18,7 +18,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
   useEffect(() => {
     (async () => {
       if (searchTerm !== "") {
-        const newBooks = await ContentfulService.getAllBooks(searchTerm);
+        const newBooks = await ContentfulService.getBooksByTitle(searchTerm);
         setBooks(newBooks);
       }
     })();
@@ -48,19 +48,11 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
               {books === undefined ? (
                 <p>No books.</p>
               ) : (
-                books.map((book, index) => (
-                  <div key={index}>
+                books.map((book) => (
+                  <div key={book.sys.id}>
                     <Link
+                      href={`/discover/${book.sys.id}`}
                       onClick={handleSearchbar}
-                      href={{
-                        pathname: `discover/${index}`,
-                        query: {
-                          title: book.title,
-                          author: book.author,
-                          description: book.description,
-                          cover: book.cover.url,
-                        },
-                      }}
                     >
                       <li className="flex flex-row gap-4">
                         <Image

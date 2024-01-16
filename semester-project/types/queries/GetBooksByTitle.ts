@@ -1,7 +1,10 @@
-const qGetAllBooks = (searchTerm: string) => `
+const qGetBooksByTitle = (searchTerm: string) => `
   query {
     booksCollection(where: { title_contains: "${searchTerm}" }) {
       items {
+        sys {
+          id
+        }
         title
         author
         description
@@ -13,4 +16,4 @@ const qGetAllBooks = (searchTerm: string) => `
   }
 `;
 
-export default qGetAllBooks;
+export default qGetBooksByTitle;

@@ -13,7 +13,7 @@ export default function Discover() {
   useEffect(() => {
     (async () => {
       if (searchTerm !== "") {
-        const newBooks = await ContentfulService.getAllBooks(searchTerm);
+        const newBooks = await ContentfulService.getBooksByTitle(searchTerm);
         setBooks(newBooks);
       }
     })();
@@ -39,19 +39,9 @@ export default function Discover() {
               {books === undefined ? (
                 <p>No books.</p>
               ) : (
-                books.map((book, index) => (
-                  <div className="max-w-3xl" key={index}>
-                    <Link
-                      href={{
-                        pathname: `discover/${index}`,
-                        query: {
-                          title: book.title,
-                          author: book.author,
-                          description: book.description,
-                          cover: book.cover.url,
-                        },
-                      }}
-                    >
+                books.map((book) => (
+                  <div className="max-w-3xl" key={book.sys.id}>
+                    <Link href={`/discover/${book.sys.id}`}>
                       <li className="flex flex-row gap-4">
                         <Image
                           src={book.cover?.url}
