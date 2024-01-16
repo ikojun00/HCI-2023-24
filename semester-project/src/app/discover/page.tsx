@@ -5,16 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import ContentfulService from "@/services/ContentfulService";
 import BookItem from "../../../types/interfaces/BookItem";
+import Spinner from "@/components/icons/Spinner";
 
 export default function Discover() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [books, setBooks] = useState<BookItem[] | undefined>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [books, setBooks] = useState<BookItem[] | []>([]);
 
   useEffect(() => {
     (async () => {
       if (searchTerm !== "") {
+        setLoading(true);
         const newBooks = await ContentfulService.getBooksByTitle(searchTerm);
         setBooks(newBooks);
+        setLoading(false);
       }
     })();
   }, [searchTerm]);
@@ -36,12 +40,14 @@ export default function Discover() {
           <div className="flex items-center flex-col">
             <br />
             <ul className="flex flex-col items-start w-full gap-4 flex-wrap px-4 sm:px-6 lg:px-8 mt-4">
-              {books === undefined ? (
+              {loading ? (
+                <Spinner />
+              ) : books.length === 0 && searchTerm !== "" ? (
                 <p>No books.</p>
               ) : (
                 books.map((book) => (
-                  <div className="max-w-3xl" key={book.sys.id}>
-                    <Link href={`/discover/${book.sys.id}`}>
+                  <div className="max-w-3xl" key={book.bookId}>
+                    <Link href={`/discover/${book.bookId}`}>
                       <li className="flex flex-row gap-4">
                         <Image
                           src={book.cover?.url}

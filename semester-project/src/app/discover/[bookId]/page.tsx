@@ -5,15 +5,19 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import BookItem from "../../../../types/interfaces/BookItem";
+import Spinner from "@/components/icons/Spinner";
 
 export default function Book() {
   const [book, setBook] = useState<any>(); //figure this out, should be BookItem
+  const [loading, setLoading] = useState<boolean>(true);
   const pathname = usePathname().replace("/discover/", "");
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const newBook = await ContentfulService.getBookById(pathname);
       setBook(newBook);
+      setLoading(false);
     })();
   }, [pathname]);
 
@@ -24,7 +28,9 @@ export default function Book() {
       <br />
       <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex flex-row p-4">
-          {book === undefined ? (
+          {loading ? (
+            <Spinner />
+          ) : book === undefined ? (
             <p>No book.</p>
           ) : (
             <>

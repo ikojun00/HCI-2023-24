@@ -1,7 +1,5 @@
 export default interface BookItem {
-  sys: {
-    id: string;
-  };
+  bookId: number;
   title: string;
   author: string;
   description: string;

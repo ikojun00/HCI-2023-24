@@ -1,9 +1,7 @@
 const qGetBookById = (bookId: string) => `query {
-    booksCollection(where: { sys: {id: "${bookId}"}}) {
+    booksCollection(where: { bookId: ${bookId}}) {
       items {
-        sys {
-          id
-        }
+        bookId
         title
         author
         description

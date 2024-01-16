@@ -53,7 +53,7 @@ const getBooksByTitle = async (searchTerm: string) => {
     };
 
     const books = body.data.booksCollection.items.map((item) => ({
-      sys: item.sys,
+      bookId: item.bookId,
       title: item.title,
       author: item.author,
       description: item.description,
@@ -85,7 +85,7 @@ const getNewBooks = async () => {
     console.log(body.data);
 
     const books = body.data.booksCollection.items.map((item) => ({
-      sys: item.sys,
+      bookId: item.bookId,
       title: item.title,
       author: item.author,
       description: item.description,
@@ -118,7 +118,7 @@ const getBookById = async (bookId: string) => {
     console.log(body);
 
     const books = body.data.booksCollection.items.map((item) => ({
-      sys: item.sys,
+      bookId: item.bookId,
       title: item.title,
       author: item.author,
       description: item.description,

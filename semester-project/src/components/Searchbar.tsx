@@ -6,6 +6,7 @@ import Link from "next/link";
 import CloseButton from "./icons/CloseButton";
 import ContentfulService from "@/services/ContentfulService";
 import BookItem from "../../types/interfaces/BookItem";
+import Spinner from "./icons/Spinner";
 
 interface HandleSearchbarProps {
   handleSearchbar: () => void;
@@ -13,13 +14,17 @@ interface HandleSearchbarProps {
 
 export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [books, setBooks] = useState<BookItem[] | undefined>([]);
+  const [books, setBooks] = useState<BookItem[] | []>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
       if (searchTerm !== "") {
+        setLoading(true);
         const newBooks = await ContentfulService.getBooksByTitle(searchTerm);
         setBooks(newBooks);
+        console.log(newBooks);
+        setLoading(false);
       }
     })();
   }, [searchTerm]);
@@ -45,13 +50,15 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
           <br />
           <div className="w-full h-96 overflow-y-auto overflow-x-clip">
             <ul className="flex flex-col items-start gap-4 flex-wrap px-4 sm:px-6 lg:px-8 mt-4">
-              {books === undefined ? (
+              {loading ? (
+                <Spinner />
+              ) : books.length === 0 && searchTerm !== "" ? (
                 <p>No books.</p>
               ) : (
                 books.map((book) => (
-                  <div key={book.sys.id}>
+                  <div key={book.bookId}>
                     <Link
-                      href={`/discover/${book.sys.id}`}
+                      href={`/discover/${book.bookId}`}
                       onClick={handleSearchbar}
                     >
                       <li className="flex flex-row gap-4">

@@ -2,9 +2,7 @@ const qGetBooksByTitle = (searchTerm: string) => `
   query {
     booksCollection(where: { title_contains: "${searchTerm}" }) {
       items {
-        sys {
-          id
-        }
+        bookId
         title
         author
         description
