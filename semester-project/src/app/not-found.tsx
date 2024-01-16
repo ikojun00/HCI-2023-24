@@ -20,9 +20,11 @@ export default function NotFound() {
           Sorry, the page you are looking for cannot be found. Please go back to
           homepage!
         </p>
-        <button className="p-4 outline-none border-none rounded-md bg-red-900 text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-green-500">
-          <Link href="/">Return Home</Link>
-        </button>
+        <Link href="/">
+          <button className="p-4 outline-none border-none rounded-md bg-red-900 text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-green-500">
+            Return Home
+          </button>
+        </Link>
       </div>
     </div>
   );
