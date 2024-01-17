@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import BookItem from "../../../../types/interfaces/BookItem";
 import Spinner from "@/components/icons/Spinner";
+import Reviews from "@/views/book/Reviews";
 
 export default function Book() {
   const [book, setBook] = useState<any>(); //figure this out, should be BookItem
@@ -33,25 +34,28 @@ export default function Book() {
           ) : book === undefined ? (
             <p>No book.</p>
           ) : (
-            <>
-              <Image
-                src={book.cover?.url}
-                alt="Cover"
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ width: "auto", height: "300px" }}
-              />
-              <div className="flex flex-col pl-8 gap-4">
-                <h1 className="text-3xl font-bold">{book.title}</h1>
-                <div className="flex flex-row gap-1 items-center">
-                  <h1>By:</h1>
-                  <h1 className="text-xl font-bold">{book.author}</h1>
+            <div className="flex flex-col">
+              <div className="flex flex-row">
+                <Image
+                  src={book.cover?.url}
+                  alt="Cover"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: "auto", height: "300px" }}
+                />
+                <div className="flex flex-col pl-8 gap-4">
+                  <h1 className="text-3xl font-bold">{book.title}</h1>
+                  <div className="flex flex-row gap-1 items-center">
+                    <h1>By:</h1>
+                    <h1 className="text-xl font-bold">{book.author}</h1>
+                  </div>
+                  <br />
+                  <p>{book.description}</p>
                 </div>
-                <br />
-                <p>{book.description}</p>
               </div>
-            </>
+              <Reviews pathname={pathname} />
+            </div>
           )}
         </div>
       </div>
