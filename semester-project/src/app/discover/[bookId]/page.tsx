@@ -34,8 +34,8 @@ export default function Book() {
           ) : book === undefined ? (
             <p>No book.</p>
           ) : (
-            <div className="flex flex-col">
-              <div className="flex flex-row">
+            <div className="flex flex-col gap-32">
+              <div className="flex gap-4 flex-col md:flex-row">
                 <Image
                   src={book.cover?.url}
                   alt="Cover"

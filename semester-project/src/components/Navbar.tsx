@@ -96,7 +96,7 @@ export default function Navbar() {
             <div
               className={`md:flex ${
                 isOpen
-                  ? "absolute text-center top-20 right-0 w-full pt-8 bg-slate-800"
+                  ? "absolute text-center top-16 right-0 w-full pt-8 bg-slate-800"
                   : "hidden gap-8"
               }`}
             >
