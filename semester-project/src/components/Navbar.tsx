@@ -88,7 +88,7 @@ export default function Navbar() {
           {hamburgerIcon}
           <Link href="/">
             <div className="flex items-center gap-2">
-              <Book />
+              <Book inNavBar={true} />
               <h1 className="hidden sm:flex text-2xl font-bold">BookVoyage</h1>
             </div>
           </Link>

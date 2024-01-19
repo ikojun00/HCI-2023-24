@@ -89,7 +89,7 @@ export default function Footer() {
         <div className="flex justify-center">
           <Link href="/">
             <h1 className="flex flex-row items-center gap-1 text-base sm:text-md font-bold">
-              <Book /> BookVoyage
+              <Book inNavBar={false} /> BookVoyage
             </h1>
           </Link>
         </div>
