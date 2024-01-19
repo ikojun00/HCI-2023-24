@@ -9,3 +9,4 @@ References to class projects:
 - [Class project 5: [Next.js - Dynamic routes, data fetching]](/class-projects/class-project-5/)
 - [Class project 6: [Full Responsive Page Coding]](/class-projects/class-project-6/)
 - [Class project 7: [Authentication with NextAuth]](/class-projects/class-project-7/)
+- [Class project 8: [Reviews and 404 page]](/class-projects/class-project-8/)
