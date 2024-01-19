@@ -1,6 +1,6 @@
 export default function BulletPoint() {
   return (
-    <div>
+    <div className="pt-0.5">
       <svg
         className="w-4 h-4 mr-2 text-green-500 flex-shrink-0"
         aria-hidden="true"
