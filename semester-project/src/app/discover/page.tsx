@@ -41,7 +41,9 @@ export default function Discover() {
             <br />
             <ul className="flex flex-col items-start w-full gap-4 flex-wrap px-4 sm:px-6 lg:px-8 mt-4">
               {loading ? (
-                <Spinner />
+                <div className="h-[calc(100vh-78px)] flex justify-center items-center">
+                  <Spinner />
+                </div>
               ) : books.length === 0 && searchTerm !== "" ? (
                 <p>No books.</p>
               ) : (

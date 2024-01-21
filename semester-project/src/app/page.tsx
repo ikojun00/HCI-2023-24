@@ -15,7 +15,7 @@ export default function Home() {
 
   if (status === "loading") {
     return (
-      <div className="flex h-full justify-center items-center">
+      <div className="h-[calc(100vh-78px)] flex justify-center items-center">
         <Spinner />
       </div>
     );
@@ -36,11 +36,6 @@ export default function Home() {
         <Testimonials />
         <FAQ />
         <LastCTA />
-      </div>
-      <div className="bg-black">
-        <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 mt-44">
-          <Footer />
-        </div>
       </div>
     </>
   );

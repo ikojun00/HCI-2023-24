@@ -22,8 +22,8 @@ export default function RootLayout({
       <body className={`${inter.className} text-white bg-slate-800`}>
         <Providers>
           <Navbar />
-          <section className="h-[calc(100vh-78px)]">{children}</section>
-          {/* <Footer /> */}
+          <section>{children}</section>
+          <Footer />
         </Providers>
       </body>
     </html>
