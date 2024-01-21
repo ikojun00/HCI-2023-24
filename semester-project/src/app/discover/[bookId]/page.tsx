@@ -3,7 +3,7 @@
 import ContentfulService from "@/services/ContentfulService";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import BookItem from "../../../../types/interfaces/BookItem";
 import Spinner from "@/components/icons/Spinner";
 import Reviews from "@/views/book/Reviews";

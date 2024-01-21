@@ -14,7 +14,11 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <Spinner />;
+    return (
+      <div className="flex h-full justify-center items-center">
+        <Spinner />
+      </div>
+    );
   }
 
   return session && session.user ? (

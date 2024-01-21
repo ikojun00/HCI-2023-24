@@ -21,7 +21,7 @@ export default function HandleUpvote({ id, pathname }: Props) {
   //morat cu getUpvote ili isUpvoted na backendu
   useEffect(() => {
     (async () => {
-      if (status === "authenticated") {
+      if (session && session.user) {
         try {
           const res = await axios.get(
             `${Backend_URL}/review/${pathname}/upvote/${id}`,
@@ -37,7 +37,7 @@ export default function HandleUpvote({ id, pathname }: Props) {
         }
       }
     })();
-  }, [id, pathname, session?.backendTokens.accessToken, status]);
+  }, [id, pathname, session?.backendTokens.accessToken, session]);
 
   const handleLike = async () => {
     if (status !== "authenticated") router.push("/signin");
@@ -51,7 +51,6 @@ export default function HandleUpvote({ id, pathname }: Props) {
           },
         }
       );
-      console.log(res.data);
       setUpvoted(res.data.upvoted);
     } catch (error) {
       console.error("Error handling upvote:", error);
@@ -60,7 +59,7 @@ export default function HandleUpvote({ id, pathname }: Props) {
 
   return (
     <div>
-      <button onClick={handleLike}>
+      <button className="flex items-center" onClick={handleLike}>
         {upvoted === true ? <HeartFill /> : <Heart />}
       </button>
     </div>

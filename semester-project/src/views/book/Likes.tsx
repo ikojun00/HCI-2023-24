@@ -23,7 +23,7 @@ export default function Likes({ id, pathname }: Props) {
   }, [id, pathname]);
 
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center gap-2">
       {loading ? (
         <Spinner />
       ) : (
