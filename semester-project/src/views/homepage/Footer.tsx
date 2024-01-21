@@ -7,8 +7,8 @@ export default function Footer() {
       <div className=" flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 mt-44">
         <div className="flex flex-col gap-24 py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 overflow-hidden">
-            <div className="flex justify-center">
-              <div className="flex flex-col gap-5 p-8">
+            <div className="flex px-6">
+              <div className="flex flex-col gap-5 p-6">
                 <h1 className="text-sm sm:text-base font-bold">Discover</h1>
                 <ul>
                   <li className="text-xs sm:text-sm">
@@ -35,8 +35,8 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-center">
-              <div className="flex flex-col gap-5 p-8">
+            <div className="flex px-6">
+              <div className="flex flex-col gap-5 p-6">
                 <h1 className="text-sm sm:text-base font-bold">Reading Log</h1>
                 <ul>
                   <li className="text-xs sm:text-sm">
@@ -48,8 +48,8 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-center">
-              <div className="flex flex-col gap-5 p-8">
+            <div className="flex px-6">
+              <div className="flex flex-col gap-5 p-6">
                 <h1 className="text-sm sm:text-base font-bold">Community</h1>
                 <ul>
                   <li className="text-xs sm:text-sm">
@@ -70,8 +70,8 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-center">
-              <div className="flex flex-col gap-5 p-8">
+            <div className="flex px-6">
+              <div className="flex flex-col gap-5 p-6">
                 <h1 className="text-sm sm:text-base font-bold">Company</h1>
                 <ul>
                   <li className="text-xs sm:text-sm">
