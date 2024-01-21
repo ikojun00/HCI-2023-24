@@ -7,7 +7,11 @@ export default function Profile() {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <Spinner />;
+    return (
+      <div className="flex h-[calc(100vh-78px)] justify-center items-center">
+        <Spinner />
+      </div>
+    );
   }
 
   return session && session.user ? (

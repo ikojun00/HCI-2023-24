@@ -9,6 +9,7 @@ import Testimonials from "@/views/homepage/Testimonials";
 import Benefits from "@/views/homepage/Benefits";
 import { useSession } from "next-auth/react";
 import Spinner from "@/components/icons/Spinner";
+import Dashboard from "@/views/dashboard/Dashboard";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -22,7 +23,7 @@ export default function Home() {
   }
 
   return session && session.user ? (
-    <div className="flex justify-center">Welcome, {session.user.firstName}</div>
+    <Dashboard session={session} />
   ) : (
     <>
       <div className="bg-fixed bg-center bg-cover custom-img">

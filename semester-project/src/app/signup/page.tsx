@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Backend_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Spinner from "@/components/icons/Spinner";
 
 type FormInputs = {
   firstName: string;
@@ -15,11 +16,13 @@ type FormInputs = {
 
 export default function SignUp() {
   const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const register = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
+      setLoading(true);
       e.preventDefault();
-      const response = await axios.post(
+      await axios.post(
         `${Backend_URL}/auth/signup`,
         {
           firstName: data.current.firstName,
@@ -33,10 +36,11 @@ export default function SignUp() {
           },
         }
       );
+      setLoading(false);
       alert("User Registered!");
       router.push("/signin");
-      console.log({ response });
     } catch (error) {
+      setLoading(false);
       alert(error.response.data.message);
     }
   };
@@ -137,7 +141,7 @@ export default function SignUp() {
                 type="submit"
                 className="flex w-full justify-center text-center bg-green-500 p-2 mt-10 rounded-xl hover:bg-green-600 tracking-wider"
               >
-                Sign up
+                {loading ? <Spinner /> : "Sign up"}
               </button>
             </div>
           </form>

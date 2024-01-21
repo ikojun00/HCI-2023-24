@@ -2,25 +2,30 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
+import Spinner from "@/components/icons/Spinner";
 
 export default function SignIn() {
   const router = useRouter();
   const email = useRef("");
   const password = useRef("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
+      setLoading(true);
       e.preventDefault();
       const res = await signIn("credentials", {
         email: email.current,
         password: password.current,
         redirect: false,
       });
+      setLoading(false);
       if (res?.error) alert(res?.error);
       else router.push("/");
     } catch (error) {
+      setLoading(false);
       throw error;
     }
   };
@@ -81,7 +86,7 @@ export default function SignIn() {
                 type="submit"
                 className="flex w-full justify-center text-center bg-green-500 p-2 mt-10 rounded-xl hover:bg-green-600 tracking-wider"
               >
-                Sign in
+                {loading ? <Spinner /> : "Sign in"}
               </button>
             </div>
           </form>

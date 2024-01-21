@@ -23,7 +23,6 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
         setLoading(true);
         const newBooks = await ContentfulService.getBooksByTitle(searchTerm);
         setBooks(newBooks);
-        console.log(newBooks);
         setLoading(false);
       }
     })();
@@ -51,7 +50,9 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
           <div className="w-full h-96 overflow-y-auto overflow-x-clip">
             <ul className="flex flex-col items-start gap-4 flex-wrap px-4 sm:px-6 lg:px-8 mt-4">
               {loading ? (
-                <Spinner />
+                <div className="flex h-48 w-full justify-center items-center">
+                  <Spinner />
+                </div>
               ) : books.length === 0 && searchTerm !== "" ? (
                 <p>No books.</p>
               ) : (
