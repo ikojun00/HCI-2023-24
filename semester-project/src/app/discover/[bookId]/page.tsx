@@ -8,11 +8,13 @@ import BookItem from "../../../../types/interfaces/BookItem";
 import Spinner from "@/components/icons/Spinner";
 import Reviews from "@/views/book/Reviews";
 import AddBookOnBookshelf from "@/components/AddBookOnBookshelf";
+import YellowStar from "@/components/icons/YellowStar";
 
 export default function Book() {
   const [book, setBook] = useState<any>(); //figure this out, should be BookItem
   const [loading, setLoading] = useState<boolean>(true);
   const pathname = usePathname().replace("/discover/", "");
+  const [averageRating, setAverageRating] = useState<number>();
 
   useEffect(() => {
     (async () => {
@@ -37,28 +39,47 @@ export default function Book() {
           ) : book === undefined ? (
             <p>No book.</p>
           ) : (
-            <div className="flex flex-col gap-32">
+            <div className="flex flex-col gap-24">
               <div className="flex gap-4 flex-col md:flex-row">
-                <Image
-                  src={book.cover?.url}
-                  alt="Cover"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "auto", height: "300px" }}
-                />
-                <div className="flex flex-col pl-8 gap-4">
-                  <h1 className="text-3xl font-bold">{book.title}</h1>
-                  <div className="flex flex-row gap-1 items-center">
-                    <h1>By:</h1>
-                    <h1 className="text-xl font-bold">{book.author}</h1>
+                <div className="flex justify-center">
+                  <Image
+                    src={book.cover?.url}
+                    alt="Cover"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: "250px", height: "auto" }}
+                  />
+                </div>
+                <div className="flex flex-col gap-4 md:justify-between md:p-8">
+                  <div className="flex flex-col md:items-start items-center gap-4">
+                    <h1 className="text-3xl font-bold">{book.title}</h1>
+                    <div className="flex flex-row gap-1 items-center">
+                      <h1>By:</h1>
+                      <h1 className="text-xl font-bold">{book.author}</h1>
+                    </div>
                   </div>
-                  <br />
-                  <p>{book.description}</p>
+                  <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between md:items-center">
+                    <AddBookOnBookshelf pathname={pathname} />
+                    {averageRating && (
+                      <div className="flex items-center gap-2">
+                        <YellowStar />
+                        <h1 className="text-xl font-bold">{averageRating}</h1>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-              <AddBookOnBookshelf pathname={pathname} />
-              <Reviews pathname={pathname} />
+              <div>
+                <h1 className="text-3xl font-bold">Book Info</h1>
+                <hr />
+                <br />
+                <p className="">{book.description}</p>
+              </div>
+              <Reviews
+                setAverageRating={setAverageRating}
+                pathname={pathname}
+              />
             </div>
           )}
         </div>

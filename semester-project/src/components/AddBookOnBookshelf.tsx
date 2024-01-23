@@ -64,13 +64,13 @@ export default function AddBookOnBookshelf({ pathname }: Props) {
   };
 
   return (
-    <div className="mt-2">
+    <div>
       <select
         id="shelf"
         name="shelf"
         required
         onChange={handleSelectChange}
-        className="block w-full rounded-md border-0 py-1.5 text-black pl-2"
+        className="block w-full rounded-md border-2 py-1.5 bg-slate-700 pr-8 pl-2"
       >
         <option value="">{bookStatus}</option>
         {bookStatus !== "Currently Reading" && (

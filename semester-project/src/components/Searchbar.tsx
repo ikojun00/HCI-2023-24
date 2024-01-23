@@ -69,7 +69,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                           width={0}
                           height={0}
                           sizes="100vw"
-                          style={{ width: "100px", height: "auto" }}
+                          style={{ width: "auto", height: "100px" }}
                         />
                         <div className="flex flex-col">
                           <h2 className="font-bold md:text-xl">{book.title}</h2>

@@ -16,9 +16,10 @@ import Trash from "@/components/icons/Trash";
 
 type Props = {
   pathname: string;
+  setAverageRating: (value: number) => void;
 };
 
-export default function Reviews({ pathname }: Props) {
+export default function Reviews({ setAverageRating, pathname }: Props) {
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState<boolean>(true);
   const [reviews, setReviews] = useState<any>([]);
@@ -60,6 +61,13 @@ export default function Reviews({ pathname }: Props) {
     (async () => {
       setLoading(true);
       const res = await axios.get(`${Backend_URL}/review/${pathname}`);
+      console.log(res.data);
+      if (res.data.length !== 0) {
+        const response = await axios.get(
+          `${Backend_URL}/review/${pathname}/averageRating`
+        );
+        setAverageRating(Math.round(response.data.averageRating * 10) / 10);
+      }
       if (session && session.user) {
         const response = await axios.get(
           `${Backend_URL}/review/${pathname}/user`,
@@ -79,16 +87,17 @@ export default function Reviews({ pathname }: Props) {
             setReviewExists(removedObject);
           })();
       }
+
       setReviews(res.data);
       setLoading(false);
     })();
-  }, [pathname, session, status]);
+  }, [pathname, session, setAverageRating, status]);
 
   return (
-    <div className="flex flex-col gap-32">
+    <div className="flex flex-col gap-24">
       {reviewExists === undefined ? (
         <div>
-          <div className="flex justify-center">
+          <div className="flex flex-start">
             <button
               className="flex justify-center p-4 outline-none border-none rounded-md bg-green-600 text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-green-700"
               onClick={handleReview}
