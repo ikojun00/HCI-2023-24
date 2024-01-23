@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import BookItem from "../../../../types/interfaces/BookItem";
 import Spinner from "@/components/icons/Spinner";
 import Reviews from "@/views/book/Reviews";
+import AddBookOnBookshelf from "@/components/AddBookOnBookshelf";
 
 export default function Book() {
   const [book, setBook] = useState<any>(); //figure this out, should be BookItem
@@ -56,6 +57,7 @@ export default function Book() {
                   <p>{book.description}</p>
                 </div>
               </div>
+              <AddBookOnBookshelf pathname={pathname} />
               <Reviews pathname={pathname} />
             </div>
           )}

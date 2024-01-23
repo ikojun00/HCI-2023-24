@@ -1,6 +1,6 @@
 const qGetBooksByTitle = (searchTerm: string) => `
   query {
-    booksCollection(where: { title_contains: "${searchTerm}" }) {
+    booksCollection(where: { title_contains: "${searchTerm}" }, limit: 6) {
       items {
         bookId
         title

@@ -115,8 +115,6 @@ const getBookById = async (bookId: string) => {
       data: booksCollectionResponse;
     };
 
-    console.log(body);
-
     const books = body.data.booksCollection.items.map((item) => ({
       bookId: item.bookId,
       title: item.title,

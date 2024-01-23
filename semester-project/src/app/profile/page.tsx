@@ -1,6 +1,7 @@
 "use client";
 
 import Spinner from "@/components/icons/Spinner";
+import Bookshelf from "@/views/bookshelf/Bookshelf";
 import { signOut, useSession } from "next-auth/react";
 
 export default function Profile() {
@@ -21,6 +22,7 @@ export default function Profile() {
       <button className="text-red-600" onClick={() => signOut()}>
         Sign out
       </button>
+      <Bookshelf session={session} />
     </div>
   ) : (
     <div>No data.</div>
