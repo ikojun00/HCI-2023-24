@@ -10,3 +10,4 @@ References to class projects:
 - [Class project 6: [Full Responsive Page Coding]](/class-projects/class-project-6/)
 - [Class project 7: [Authentication with NextAuth]](/class-projects/class-project-7/)
 - [Class project 8: [Reviews and 404 page]](/class-projects/class-project-8/)
+- [Class project 9: [Bookmarking feature and average rating display]](/class-projects/class-project-9/)
