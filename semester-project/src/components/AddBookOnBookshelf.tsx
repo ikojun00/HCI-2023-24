@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface Props {
   pathname: string;
@@ -29,9 +30,9 @@ export default function AddBookOnBookshelf({ pathname }: Props) {
       if (shelfId === 1) setBookStatus("Currently Reading");
       else if (shelfId === 2) setBookStatus("Read");
       else if (shelfId === 3) setBookStatus("Want To Read");
-      alert("Bookshelf updated!");
+      toast.success("Bookshelf updated!");
     } catch (error) {
-      alert(error.response?.data?.message);
+      toast.error(error.response?.data?.message);
     }
   };
 
@@ -52,7 +53,7 @@ export default function AddBookOnBookshelf({ pathname }: Props) {
           else if (response.data.shelfId === 3) setBookStatus("Want To Read");
           else setBookStatus("Select Book Status");
         } catch (error) {
-          alert(error.response?.data?.message);
+          toast.error(error.response?.data?.message);
         }
       }
     })();

@@ -10,9 +10,10 @@ import ReviewItem from "../../../types/interfaces/ReviewItem";
 import Likes from "./Likes";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import PostModifyReview from "@/components/PostModifyReview";
+import PostModifyReview from "@/views/book/PostModifyReview";
 import Pencil from "@/components/icons/Pencil";
 import Trash from "@/components/icons/Trash";
+import { toast } from "react-toastify";
 
 type Props = {
   pathname: string;
@@ -22,8 +23,8 @@ type Props = {
 export default function Reviews({ setAverageRating, pathname }: Props) {
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState<boolean>(true);
-  const [reviews, setReviews] = useState<any>([]);
-  const [reviewExists, setReviewExists] = useState<ReviewItem>();
+  const [reviews, setReviews] = useState<ReviewItem[]>([]);
+  const [reviewExists, setReviewExists] = useState<ReviewItem | null>(null);
   const [showReview, setShowReview] = useState<boolean>(false);
   const router = useRouter();
 
@@ -43,6 +44,32 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
       : (document.body.style.overflow = "auto");
   };
 
+  const handleSubmitReview = async (
+    comment: string,
+    stars: number,
+    isModify: boolean
+  ) => {
+    try {
+      const res = await axios[isModify ? "patch" : "post"](
+        `${Backend_URL}/review/${pathname}`,
+        {
+          comment: comment,
+          stars: stars,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        }
+      );
+      setReviewExists(res.data);
+      handleReview();
+      toast.success(isModify === true ? "Review modified!" : "Review posted!");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   const handleDeleteReview = async () => {
     try {
       await axios.delete(`${Backend_URL}/review/${pathname}`, {
@@ -50,44 +77,53 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
           Authorization: `Bearer ${session?.backendTokens.accessToken}`,
         },
       });
-      window.location.reload();
-      alert("Review deleted!");
+      setReviewExists(null);
+      toast.success("Review deleted!");
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
   useEffect(() => {
+    const getUserReview = async (reviews: ReviewItem[]) => {
+      const response = await axios.get(
+        `${Backend_URL}/review/${pathname}/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        }
+      );
+
+      // find index of user review in reviews
+      const index = reviews.findIndex(
+        (item: ReviewItem) => item.id === response.data.id
+      );
+
+      // if user review exists, remove it from array review and set it setReviewExists state
+      index !== -1 &&
+        (() => {
+          const removedObject = reviews.splice(index, 1)[0];
+          setReviewExists(removedObject);
+        })();
+    };
+
+    const getAverageRating = async () => {
+      const response = await axios.get(
+        `${Backend_URL}/review/${pathname}/averageRating`
+      );
+      setAverageRating(Math.round(response.data.averageRating * 10) / 10);
+    };
+
     (async () => {
       setLoading(true);
       const res = await axios.get(`${Backend_URL}/review/${pathname}`);
-      console.log(res.data);
       if (res.data.length !== 0) {
-        const response = await axios.get(
-          `${Backend_URL}/review/${pathname}/averageRating`
-        );
-        setAverageRating(Math.round(response.data.averageRating * 10) / 10);
+        getAverageRating();
       }
       if (session && session.user) {
-        const response = await axios.get(
-          `${Backend_URL}/review/${pathname}/user`,
-          {
-            headers: {
-              Authorization: `Bearer ${session?.backendTokens.accessToken}`,
-            },
-          }
-        );
-        const index = res.data.findIndex(
-          (item: ReviewItem) => item.id === response.data.id
-        );
-
-        index !== -1 &&
-          (() => {
-            const removedObject = res.data.splice(index, 1)[0];
-            setReviewExists(removedObject);
-          })();
+        getUserReview(res.data);
       }
-
       setReviews(res.data);
       setLoading(false);
     })();
@@ -95,7 +131,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
 
   return (
     <div className="flex flex-col gap-24">
-      {reviewExists === undefined ? (
+      {reviewExists === null ? (
         <div>
           <div className="flex flex-start">
             <button
@@ -106,7 +142,11 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
             </button>
           </div>
           {showReview && (
-            <PostModifyReview handleReview={handleReview} pathname={pathname} />
+            <PostModifyReview
+              handleReview={handleReview}
+              handleSubmitReview={handleSubmitReview}
+              isModify={false}
+            />
           )}
         </div>
       ) : (
@@ -134,8 +174,8 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
                   {showReview && (
                     <PostModifyReview
                       handleReview={handleReview}
-                      pathname={pathname}
-                      isModify
+                      handleSubmitReview={handleSubmitReview}
+                      isModify={true}
                     />
                   )}
                 </div>

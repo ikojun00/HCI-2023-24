@@ -1,13 +1,14 @@
-import { useRef } from "react";
-import CloseButton from "./icons/CloseButton";
-import axios from "axios";
-import { Backend_URL } from "@/lib/constants";
-import { useSession } from "next-auth/react";
+import CloseButton from "@/components/icons/CloseButton";
+import { useState } from "react";
 
 interface Props {
   handleReview: () => void;
-  pathname: string;
-  isModify?: boolean; // Add a prop to determine whether it's a modify or post
+  handleSubmitReview: (
+    comment: string,
+    stars: number,
+    isModify: boolean
+  ) => void;
+  isModify: boolean;
 }
 
 type FormInputs = {
@@ -17,39 +18,15 @@ type FormInputs = {
 
 export default function PostModifyReview({
   handleReview,
-  pathname,
+  handleSubmitReview,
   isModify,
 }: Props) {
-  const { data: session, status } = useSession();
+  const [data, setData] = useState<FormInputs>({ comment: "", stars: 1 });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    try {
-      await axios[isModify ? "patch" : "post"](
-        `${Backend_URL}/review/${pathname}`,
-        {
-          comment: data.current.comment,
-          stars: data.current.stars,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
-          },
-        }
-      );
-
-      window.location.reload();
-      alert(isModify ? "Review modified!" : "Review posted!");
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    handleSubmitReview(data.comment, data.stars, isModify);
   };
-
-  const data = useRef<FormInputs>({
-    comment: "",
-    stars: 1,
-  });
 
   return (
     <div>
@@ -74,7 +51,12 @@ export default function PostModifyReview({
                     id="comment"
                     name="comment"
                     required
-                    onChange={(e) => (data.current.comment = e.target.value)}
+                    onChange={(e) =>
+                      setData((prevData) => ({
+                        ...prevData,
+                        comment: e.target.value,
+                      }))
+                    }
                     className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                   ></textarea>
                 </div>
@@ -93,7 +75,10 @@ export default function PostModifyReview({
                     name="stars"
                     required
                     onChange={(e) =>
-                      (data.current.stars = parseInt(e.target.value, 10))
+                      setData((prevData) => ({
+                        ...prevData,
+                        stars: parseInt(e.target.value, 10),
+                      }))
                     }
                     className="block w-full rounded-md border-0 py-1.5 text-black pl-2"
                   >

@@ -2,14 +2,22 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 import Spinner from "@/components/icons/Spinner";
+import { toast } from "react-toastify";
+
+type Credentials = {
+  email: string;
+  password: string;
+};
 
 export default function SignIn() {
   const router = useRouter();
-  const email = useRef("");
-  const password = useRef("");
+  const [credentials, setCredentials] = useState<Credentials>({
+    email: "",
+    password: "",
+  });
   const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,13 +25,16 @@ export default function SignIn() {
       setLoading(true);
       e.preventDefault();
       const res = await signIn("credentials", {
-        email: email.current,
-        password: password.current,
+        email: credentials.email,
+        password: credentials.password,
         redirect: false,
       });
       setLoading(false);
-      if (res?.error) alert(res?.error);
-      else router.push("/");
+      if (res?.error) toast.error(res?.error);
+      else {
+        toast.success("Login successful!");
+        router.push("/");
+      }
     } catch (error) {
       setLoading(false);
       throw error;
@@ -54,7 +65,12 @@ export default function SignIn() {
                   name="email"
                   type="email"
                   required
-                  onChange={(e) => (email.current = e.target.value)}
+                  onChange={(e) =>
+                    setCredentials((prevData: Credentials) => ({
+                      ...prevData,
+                      email: e.target.value,
+                    }))
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-40"
                 />
               </div>
@@ -75,7 +91,12 @@ export default function SignIn() {
                   name="password"
                   type="password"
                   required
-                  onChange={(e) => (password.current = e.target.value)}
+                  onChange={(e) =>
+                    setCredentials((prevData: Credentials) => ({
+                      ...prevData,
+                      password: e.target.value,
+                    }))
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>

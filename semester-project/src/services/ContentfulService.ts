@@ -127,7 +127,7 @@ const getBookById = async (bookId: string) => {
   } catch (error) {
     console.log(error);
 
-    return [];
+    return undefined;
   }
 };
 

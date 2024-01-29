@@ -11,7 +11,7 @@ import AddBookOnBookshelf from "@/components/AddBookOnBookshelf";
 import YellowStar from "@/components/icons/YellowStar";
 
 export default function Book() {
-  const [book, setBook] = useState<any>(); //figure this out, should be BookItem
+  const [book, setBook] = useState<BookItem | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
   const pathname = usePathname().replace("/discover/", "");
   const [averageRating, setAverageRating] = useState<number>();

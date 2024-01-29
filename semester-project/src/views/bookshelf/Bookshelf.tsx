@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import BookItem from "../../../types/interfaces/BookItem";
 import Link from "next/link";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 interface BookshelfItem {
   shelf: number;
@@ -51,7 +52,7 @@ export default function Bookshelf({ session }: Props) {
           console.log(bookshelfData);
           setBookshelf(bookshelfData);
         } catch (error) {
-          alert(error.response?.data?.message);
+          toast.error(error.response?.data?.message);
         }
       }
     })();

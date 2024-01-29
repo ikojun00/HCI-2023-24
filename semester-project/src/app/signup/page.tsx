@@ -6,6 +6,7 @@ import { Backend_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Spinner from "@/components/icons/Spinner";
+import { toast } from "react-toastify";
 
 type FormInputs = {
   firstName: string;
@@ -17,6 +18,12 @@ type FormInputs = {
 export default function SignUp() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
+  const [registration, setRegistration] = useState<FormInputs>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   const register = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -25,10 +32,10 @@ export default function SignUp() {
       await axios.post(
         `${Backend_URL}/auth/signup`,
         {
-          firstName: data.current.firstName,
-          lastName: data.current.lastName,
-          email: data.current.email,
-          password: data.current.password,
+          firstName: registration.firstName,
+          lastName: registration.lastName,
+          email: registration.email,
+          password: registration.password,
         },
         {
           headers: {
@@ -37,19 +44,13 @@ export default function SignUp() {
         }
       );
       setLoading(false);
-      alert("User Registered!");
+      toast.success("User Registered!");
       router.push("/signin");
     } catch (error) {
       setLoading(false);
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
-  const data = useRef<FormInputs>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
 
   return (
     <div className="text-white">
@@ -75,7 +76,12 @@ export default function SignUp() {
                   name="firstName"
                   type="text"
                   required
-                  onChange={(e) => (data.current.firstName = e.target.value)}
+                  onChange={(e) =>
+                    setRegistration((prevData: FormInputs) => ({
+                      ...prevData,
+                      firstName: e.target.value,
+                    }))
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
@@ -93,7 +99,12 @@ export default function SignUp() {
                   name="lastName"
                   type="text"
                   required
-                  onChange={(e) => (data.current.lastName = e.target.value)}
+                  onChange={(e) =>
+                    setRegistration((prevData: FormInputs) => ({
+                      ...prevData,
+                      lastName: e.target.value,
+                    }))
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
@@ -111,7 +122,12 @@ export default function SignUp() {
                   name="email"
                   type="email"
                   required
-                  onChange={(e) => (data.current.email = e.target.value)}
+                  onChange={(e) =>
+                    setRegistration((prevData: FormInputs) => ({
+                      ...prevData,
+                      email: e.target.value,
+                    }))
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-40"
                 />
               </div>
@@ -131,7 +147,12 @@ export default function SignUp() {
                   name="password"
                   type="password"
                   required
-                  onChange={(e) => (data.current.password = e.target.value)}
+                  onChange={(e) =>
+                    setRegistration((prevData: FormInputs) => ({
+                      ...prevData,
+                      password: e.target.value,
+                    }))
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>

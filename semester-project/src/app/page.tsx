@@ -3,7 +3,6 @@
 import Feature from "@/views/homepage/Feature";
 import Hero from "@/views/homepage/Hero";
 import FAQ from "@/views/homepage/FAQ";
-import Footer from "@/views/homepage/Footer";
 import LastCTA from "@/views/homepage/LastCTA";
 import Testimonials from "@/views/homepage/Testimonials";
 import Benefits from "@/views/homepage/Benefits";
