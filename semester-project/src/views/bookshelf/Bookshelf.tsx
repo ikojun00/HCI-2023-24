@@ -6,9 +6,11 @@ import BookItem from "../../../types/interfaces/BookItem";
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import ReadingStatus from "./ReadingStatus";
 
 interface BookshelfItem {
   shelf: number;
+  percentage: number;
   bookIds: [];
 }
 
@@ -27,6 +29,7 @@ interface Props {
 
 export default function Bookshelf({ session }: Props) {
   const [bookshelf, setBookshelf] = useState<BookshelfItem[]>([]);
+  const [showReadingStatus, setShowReadingStaus] = useState();
 
   useEffect(() => {
     const getBookById = async (item: string) =>
@@ -65,37 +68,44 @@ export default function Bookshelf({ session }: Props) {
           className="flex flex-col gap-10 max-w-screen-xl mx-auto"
           key={index}
         >
-          {item.shelf === 1
-            ? "Currently Reading"
-            : item.shelf === 2
-            ? "Read"
-            : item.shelf === 3
-            ? "Want to Read"
-            : ""}
-          {item.bookIds.map((book: BookItem) => (
-            <div className="max-w-3xl" key={book.bookId}>
-              <Link href={`/discover/${book.bookId}`}>
-                <li className="flex flex-row gap-4">
-                  <Image
-                    src={book.cover?.url}
-                    alt="Cover"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100px", height: "auto" }}
-                  />
-                  <div className="flex flex-col">
-                    <h2 className="font-bold md:text-xl">{book.title}</h2>
-                    <div className="flex flex-row gap-1 md:text-md">
-                      <p>By:</p>
-                      <p className="font-medium">{book.author}</p>
+          {item.shelf === 1 ? (
+            <h1>Currently Reading</h1>
+          ) : item.shelf === 2 ? (
+            <h1>Read</h1>
+          ) : item.shelf === 3 ? (
+            <h1>Want to Read</h1>
+          ) : (
+            ""
+          )}
+          <div className="flex flex-row gap-4">
+            {item.bookIds.map((book: BookItem) => (
+              <div className="max-w-3xl" key={book.bookId}>
+                <Link href={`/discover/${book.bookId}`}>
+                  <li className="flex flex-row gap-4">
+                    <Image
+                      src={book.cover?.url}
+                      alt="Cover"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: "100px", height: "auto" }}
+                    />
+                    <div className="flex flex-col">
+                      <h2 className="font-bold md:text-xl">{book.title}</h2>
+                      <div className="flex flex-row gap-1 md:text-md">
+                        <p>By:</p>
+                        <p className="font-medium">{book.author}</p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </Link>
-              <br />
-            </div>
-          ))}
+                  </li>
+                </Link>
+                {item.shelf === 1 && (
+                  <ReadingStatus bookId={book.bookId} session={session} />
+                )}
+                <br />
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
