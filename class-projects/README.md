@@ -11,3 +11,4 @@ References to class projects:
 - [Class project 7: [Authentication with NextAuth]](/class-projects/class-project-7/)
 - [Class project 8: [Reviews and 404 page]](/class-projects/class-project-8/)
 - [Class project 9: [Bookmarking feature and average rating display]](/class-projects/class-project-9/)
+- [Class project 10: [Reading progress feature and informative feedback with React-Toastify]](/class-projects/class-project-10/)
