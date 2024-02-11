@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Button from "@/views/navbar/Button";
 import Spinner from "./icons/Spinner";
+import PlaceholderIcon from "./icons/PlaceholderIcon";
 
 export default function SignInForm() {
   const { data: session, status } = useSession();
@@ -14,15 +15,9 @@ export default function SignInForm() {
 
   return session && session.user ? (
     <div>
-      <button className="rounded-full border-2 border-slate-600 hover:border-slate-400">
-        <Link href={"/profile"} className="flex gap-4 text-red-600">
-          <Image
-            src="/lisa.webp"
-            alt="Profile"
-            className="rounded-full"
-            width={40}
-            height={40}
-          />
+      <button className="relative w-10 h-10 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
+        <Link href={"/profile"}>
+          <PlaceholderIcon />
         </Link>
       </button>
 

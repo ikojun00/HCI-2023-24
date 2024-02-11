@@ -4,7 +4,6 @@ import booksCollectionResponse from "../../types/interfaces/BooksCollectionRespo
 import qGetNewBooks from "../../types/queries/GetNewBooks";
 import qGetBookById from "../../types/queries/GetBookById";
 import qGetBooksByTitle from "../../types/queries/GetBooksByTitle";
-import BookItem from "../../types/interfaces/BookItem";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
@@ -100,7 +99,7 @@ const getNewBooks = async () => {
   }
 };
 
-const getBookById = async (bookId: string) => {
+const getBookById = async (bookId: number) => {
   try {
     const response = await fetch(baseUrl, {
       method: "POST",

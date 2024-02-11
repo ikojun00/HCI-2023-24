@@ -1,4 +1,4 @@
-const qGetBookById = (bookId: string) => `query {
+const qGetBookById = (bookId: number) => `query {
     booksCollection(where: { bookId: ${bookId}}) {
       items {
         bookId
