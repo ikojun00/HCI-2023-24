@@ -23,7 +23,7 @@ export default function BenefitsCard({
           reversed ? "md:order-last" : "md:order-first"
         }`}
       >
-        <h2 className="text-xl sm:text-2xl font-medium text">{title}</h2>
+        <h2 className="text-xl sm:text-2xl font-medium">{title}</h2>
         <h3>{subtitle}</h3>
         <ul>
           {bulletpoints.map((item, index) => (

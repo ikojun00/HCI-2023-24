@@ -32,42 +32,43 @@ export default function Genre() {
   return (
     <div>
       <div>
-        <div className="flex flex-col items-center max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+        <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
           <br />
           <br />
-          <h1>{pathname}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold p-4 capitalize">
+            {pathname}
+          </h1>
           <div className="flex items-center flex-col">
             <br />
-            <ul className="flex flex-col items-start w-full gap-4 flex-wrap px-4 sm:px-6 lg:px-8 mt-4">
+            <ul className="flex flex-col items-start w-full gap-16 px-4 mt-4">
               {loading ? (
-                <div className="h-[calc(100vh-78px)] flex justify-center items-center">
-                  <Spinner />
-                </div>
+                <Spinner />
               ) : books.length === 0 ? (
                 <p>No books.</p>
               ) : (
                 books.map((book) => (
-                  <div className="max-w-3xl" key={book.bookId}>
-                    <Link href={`/discover/${book.bookId}`}>
-                      <li className="flex flex-row gap-4">
-                        <Image
-                          src={book.cover?.url}
-                          alt="Cover"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          style={{ width: "100px", height: "auto" }}
-                        />
-                        <div className="flex flex-col">
-                          <h2 className="font-bold md:text-xl">{book.title}</h2>
-                          <div className="flex flex-row gap-1 md:text-md">
-                            <p>By:</p>
-                            <p className="font-medium">{book.author}</p>
-                          </div>
+                  <div key={book.bookId}>
+                    <li className="flex flex-row gap-8">
+                      <Image
+                        src={book.cover?.url}
+                        alt="Cover"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        style={{ width: "100px", height: "auto" }}
+                      />
+                      <div className="flex flex-col gap-2">
+                        <Link href={`/discover/${book.bookId}`}>
+                          <h2 className="text-2xl font-bold hover:underline">
+                            {book.title}
+                          </h2>
+                        </Link>
+                        <div className="flex flex-row gap-1 md:text-md">
+                          <p>By:</p>
+                          <p className="font-medium">{book.author}</p>
                         </div>
-                      </li>
-                    </Link>
-                    <br />
+                      </div>
+                    </li>
                   </div>
                 ))
               )}

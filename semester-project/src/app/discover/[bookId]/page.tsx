@@ -19,7 +19,7 @@ export default function Book() {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const newBook = await ContentfulService.getBookById(pathname);
+      const newBook = await ContentfulService.getBookById(parseInt(pathname));
       setBook(newBook);
       setLoading(false);
     })();
