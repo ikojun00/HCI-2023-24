@@ -7,17 +7,30 @@ import qGetBooksByTitle from "../../types/queries/GetBooksByTitle";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
+const graphqlRequest = async (query: string) => {
+  return await fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+    },
+    body: JSON.stringify({ query: query }),
+  });
+};
+
+const booksCollection = (data: booksCollectionResponse) => {
+  return data.booksCollection.items.map((item) => ({
+    bookId: item.bookId,
+    title: item.title,
+    author: item.author,
+    description: item.description,
+    cover: item.cover,
+  }));
+};
+
 const getAllNavbarNames = async () => {
   try {
-    const response = await fetch(baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query: qGetAllNavbarNames }),
-    });
-
+    const response = await graphqlRequest(qGetAllNavbarNames);
     const body = (await response.json()) as {
       data: navbarCollectionResponse;
     };
@@ -38,28 +51,13 @@ const getAllNavbarNames = async () => {
 
 const getBooksByTitle = async (searchTerm: string) => {
   try {
-    const response = await fetch(baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query: qGetBooksByTitle(searchTerm) }),
-    });
+    const response = await graphqlRequest(qGetBooksByTitle(searchTerm));
 
     const body = (await response.json()) as {
       data: booksCollectionResponse;
     };
 
-    const books = body.data.booksCollection.items.map((item) => ({
-      bookId: item.bookId,
-      title: item.title,
-      author: item.author,
-      description: item.description,
-      cover: item.cover,
-    }));
-
-    return books;
+    return booksCollection(body.data);
   } catch (error) {
     console.log(error);
 
@@ -69,29 +67,12 @@ const getBooksByTitle = async (searchTerm: string) => {
 
 const getNewBooks = async () => {
   try {
-    const response = await fetch(baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query: qGetNewBooks }),
-    });
+    const response = await graphqlRequest(qGetNewBooks);
 
     const body = (await response.json()) as {
       data: booksCollectionResponse;
     };
-    console.log(body.data);
-
-    const books = body.data.booksCollection.items.map((item) => ({
-      bookId: item.bookId,
-      title: item.title,
-      author: item.author,
-      description: item.description,
-      cover: item.cover,
-    }));
-
-    return books;
+    return booksCollection(body.data);
   } catch (error) {
     console.log(error);
 
@@ -101,28 +82,13 @@ const getNewBooks = async () => {
 
 const getBookById = async (bookId: number) => {
   try {
-    const response = await fetch(baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query: qGetBookById(bookId) }),
-    });
+    const response = await graphqlRequest(qGetBookById(bookId));
 
     const body = (await response.json()) as {
       data: booksCollectionResponse;
     };
 
-    const books = body.data.booksCollection.items.map((item) => ({
-      bookId: item.bookId,
-      title: item.title,
-      author: item.author,
-      description: item.description,
-      cover: item.cover,
-    }));
-
-    return books[0];
+    return booksCollection(body.data)[0];
   } catch (error) {
     console.log(error);
 

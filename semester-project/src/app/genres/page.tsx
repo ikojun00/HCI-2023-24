@@ -1,5 +1,15 @@
 import Link from "next/link";
 
+const genres = [
+  { name: "Fiction", slug: "fiction" },
+  { name: "Nonfiction", slug: "nonfiction" },
+  { name: "Fantasy", slug: "fantasy" },
+  { name: "Adventure", slug: "adventure" },
+  { name: "Sports", slug: "sports" },
+  { name: "Romance", slug: "romance" },
+  { name: "Self-help", slug: "self-help" },
+];
+
 export default function Genres() {
   return (
     <div className="max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
@@ -12,27 +22,11 @@ export default function Genres() {
           <h2>Explore all books on BookVoyage by genre.</h2>
         </div>
         <div className="flex flex-col gap-4">
-          <Link href={`/genres/fiction`}>
-            <div className="hover:underline">Fiction</div>
-          </Link>
-          <Link href={`/genres/nonfiction`}>
-            <div className="hover:underline">Nonfiction</div>
-          </Link>
-          <Link href={`/genres/fantasy`}>
-            <div className="hover:underline">Fantasy</div>
-          </Link>
-          <Link href={`/genres/adventure`}>
-            <div className="hover:underline">Adventure</div>
-          </Link>
-          <Link href={`/genres/sports`}>
-            <div className="hover:underline">Sports</div>
-          </Link>
-          <Link href={`/genres/romance`}>
-            <div className="hover:underline">Romance</div>
-          </Link>
-          <Link href={`/genres/self-help`}>
-            <div className="hover:underline">Self-help</div>
-          </Link>
+          {genres.map((genre) => (
+            <Link href={`/genres/${genre.slug}`} key={genre.slug}>
+              <p className="hover:underline">{genre.name}</p>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
