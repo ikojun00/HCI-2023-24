@@ -33,7 +33,7 @@ export default function Bookshelf({ session }: Props) {
 
   useEffect(() => {
     const getBookById = async (item: string) =>
-      await ContentfulService.getBookById(item);
+      await ContentfulService.getBookById(parseInt(item));
     (async () => {
       if (session && session.user) {
         try {
