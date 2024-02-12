@@ -10,6 +10,7 @@ import Searchbar from "./Searchbar";
 import Search from "./icons/Search";
 import NavbarItem from "../../types/interfaces/NavbarItem";
 import ContentfulService from "@/services/ContentfulService";
+import HamburgerIcon from "./icons/HamburgerIcon";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -61,23 +62,10 @@ export default function Navbar() {
 
   const hamburgerIcon = (
     <button
-      className="border-2 rounded-md p-1 md:hidden block focus:outline-none"
+      className="p-1 md:hidden block focus:outline-none"
       onClick={toggleHamburgerMenu}
     >
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-        />
-      </svg>
+      <HamburgerIcon isOpen={isOpen} />
     </button>
   );
 

@@ -46,7 +46,7 @@ export default function Footer() {
   return (
     <div className="bg-black">
       <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 mt-44 py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 overflow-hidden">
+        <div className="grid grid-cols-2 lg:grid-cols-4 overflow-hidden">
           {linkGroups.map((group, index) => (
             <FooterLinkList
               key={index}

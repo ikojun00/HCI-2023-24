@@ -18,7 +18,6 @@ export default function HandleUpvote({ id, pathname }: Props) {
   const [upvoted, setUpvoted] = useState<boolean>(false);
   const router = useRouter();
 
-  //morat cu getUpvote ili isUpvoted na backendu
   useEffect(() => {
     (async () => {
       if (session && session.user) {

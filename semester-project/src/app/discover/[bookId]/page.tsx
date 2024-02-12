@@ -9,17 +9,33 @@ import Spinner from "@/components/icons/Spinner";
 import Reviews from "@/views/book/Reviews";
 import AddBookOnBookshelf from "@/components/AddBookOnBookshelf";
 import YellowStar from "@/components/icons/YellowStar";
+import { Backend_URL } from "@/lib/constants";
+import axios from "axios";
+import Link from "next/link";
+
+type Title = {
+  title: string;
+};
+
+type Genre = {
+  bookId: number;
+  genre: Title;
+};
 
 export default function Book() {
   const [book, setBook] = useState<BookItem | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
   const pathname = usePathname().replace("/discover/", "");
   const [averageRating, setAverageRating] = useState<number>();
+  const [genres, setGenres] = useState<Genre[]>([]);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       const newBook = await ContentfulService.getBookById(parseInt(pathname));
+      const res = (await axios.get(`${Backend_URL}/genre/book/${pathname}`))
+        .data;
+      setGenres(res);
       setBook(newBook);
       setLoading(false);
     })();
@@ -58,6 +74,19 @@ export default function Book() {
                       <h1>By:</h1>
                       <h1 className="text-xl font-bold">{book.author}</h1>
                     </div>
+                  </div>
+                  <div className="flex flex-row items-center gap-4">
+                    Genres:
+                    {genres.map((item: Genre) => (
+                      <Link
+                        href={`/genres/${item.genre.title.toLowerCase()}`}
+                        key={item.genre.title}
+                      >
+                        <div className="bg-slate-500 py-1 px-2 rounded-md">
+                          {item.genre.title}
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                   <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between md:items-center">
                     <AddBookOnBookshelf pathname={pathname} />

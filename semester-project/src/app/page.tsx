@@ -13,6 +13,7 @@ import Dashboard from "@/views/dashboard/Dashboard";
 export default function Home() {
   const { data: session, status } = useSession();
 
+  // solution for spinner: remove scroll when loading
   if (status === "loading") {
     return (
       <div className="h-[calc(100vh-78px)] flex justify-center items-center">
