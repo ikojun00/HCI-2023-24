@@ -62,7 +62,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
           },
         }
       );
-      setReviewExists(res.data);
+      await getUserReview();
       handleReview();
       toast.success(isModify === true ? "Review modified!" : "Review posted!");
     } catch (error) {
@@ -84,8 +84,18 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
     }
   };
 
+  // code duplicate - setting as one function is difficult
+  const getUserReview = async () => {
+    const response = await axios.get(`${Backend_URL}/review/${pathname}/user`, {
+      headers: {
+        Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+      },
+    });
+    setReviewExists(response.data);
+  };
+
   useEffect(() => {
-    const getUserReview = async (reviews: ReviewItem[]) => {
+    const separateUserReviewFromReviews = async (reviews: ReviewItem[]) => {
       const response = await axios.get(
         `${Backend_URL}/review/${pathname}/user`,
         {
@@ -122,7 +132,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
         getAverageRating();
       }
       if (session && session.user) {
-        getUserReview(res.data);
+        separateUserReviewFromReviews(res.data);
       }
       setReviews(res.data);
       setLoading(false);
