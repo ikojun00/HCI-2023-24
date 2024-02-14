@@ -7,10 +7,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import ReadingStatus from "./ReadingStatus";
+import Trash from "@/components/icons/Trash";
 
 interface BookshelfItem {
   shelf: number;
-  percentage: number;
   bookIds: [];
 }
 
@@ -29,7 +29,32 @@ interface Props {
 
 export default function Bookshelf({ session }: Props) {
   const [bookshelf, setBookshelf] = useState<BookshelfItem[]>([]);
-  const [showReadingStatus, setShowReadingStaus] = useState();
+
+  const handleDeleteBookFromBookshelf = async (bookId: number) => {
+    try {
+      const response = await axios.delete(
+        `${Backend_URL}/bookshelf/${bookId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        }
+      );
+
+      // solve error
+      /*const updatedBookshelf = bookshelf.map((item) => ({
+        shelf: item.shelf,
+        bookIds: item.bookIds.filter(
+          (book: BookItem) => book.bookId !== response.data.bookId
+        ),
+      }));
+
+      setBookshelf(updatedBookshelf);*/
+      toast.success("Book removed from bookshelf!");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
 
   useEffect(() => {
     const getBookById = async (item: string) =>
@@ -80,6 +105,11 @@ export default function Bookshelf({ session }: Props) {
           <div className="flex flex-row gap-4">
             {item.bookIds.map((book: BookItem) => (
               <div className="max-w-3xl" key={book.bookId}>
+                <button
+                  onClick={() => handleDeleteBookFromBookshelf(book.bookId)}
+                >
+                  <Trash />
+                </button>
                 <Link href={`/discover/${book.bookId}`}>
                   <li className="flex flex-row gap-4">
                     <Image

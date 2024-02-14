@@ -18,6 +18,7 @@ export default function Navbar() {
   const [showSearchbar, setShowSearchbar] = useState<boolean>(false);
 
   const handleSearchbar = () => {
+    if (activeDropdown !== null) setActiveDropdown(null);
     setShowSearchbar(!showSearchbar);
     !showSearchbar
       ? (document.body.style.overflow = "hidden")
