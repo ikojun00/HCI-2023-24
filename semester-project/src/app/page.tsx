@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect } from "react";
 import Feature from "@/views/homepage/Feature";
 import Hero from "@/views/homepage/Hero";
 import FAQ from "@/views/homepage/FAQ";
@@ -13,11 +14,20 @@ import Dashboard from "@/views/dashboard/Dashboard";
 export default function Home() {
   const { data: session, status } = useSession();
 
-  // solution for spinner: remove scroll when loading
+  useEffect(() => {
+    if (status === "loading") {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "auto";
+      };
+    }
+  }, [status]);
+
   if (status === "loading") {
     return (
-      <div className="h-[calc(100vh-78px)] flex justify-center items-center">
+      <div className="h-[calc(100vh-78px)] flex flex-col gap-4 justify-center items-center">
         <Spinner />
+        <h1>Preparing to launch...</h1>
       </div>
     );
   }

@@ -11,7 +11,12 @@ import Trash from "@/components/icons/Trash";
 
 interface BookshelfItem {
   shelf: number;
-  bookIds: [];
+  bookIds: BookItem[];
+}
+
+interface BookshelfItemFetch {
+  shelf: number;
+  bookIds: string[];
 }
 
 interface Session {
@@ -41,15 +46,14 @@ export default function Bookshelf({ session }: Props) {
         }
       );
 
-      // solve error
-      /*const updatedBookshelf = bookshelf.map((item) => ({
+      const updatedBookshelf = bookshelf.map((item: BookshelfItem) => ({
         shelf: item.shelf,
         bookIds: item.bookIds.filter(
           (book: BookItem) => book.bookId !== response.data.bookId
         ),
       }));
 
-      setBookshelf(updatedBookshelf);*/
+      setBookshelf(updatedBookshelf);
       toast.success("Book removed from bookshelf!");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -57,8 +61,6 @@ export default function Bookshelf({ session }: Props) {
   };
 
   useEffect(() => {
-    const getBookById = async (item: string) =>
-      await ContentfulService.getBookById(parseInt(item));
     (async () => {
       if (session && session.user) {
         try {
@@ -68,16 +70,16 @@ export default function Bookshelf({ session }: Props) {
             },
           });
           const bookshelfData = await Promise.all(
-            response.data.map(async (item: BookshelfItem) => ({
+            response.data.map(async (item: BookshelfItemFetch) => ({
               shelf: item.shelf,
               bookIds: await Promise.all(
                 item.bookIds.map(
-                  async (element: string) => await getBookById(element)
+                  async (bookId: string) =>
+                    await ContentfulService.getBookById(parseInt(bookId))
                 )
               ),
             }))
           );
-          console.log(bookshelfData);
           setBookshelf(bookshelfData);
         } catch (error) {
           toast.error(error.response?.data?.message);
