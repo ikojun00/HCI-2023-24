@@ -25,7 +25,7 @@ export default function Home() {
 
   if (status === "loading") {
     return (
-      <div className="h-[calc(100vh-78px)] flex flex-col gap-4 justify-center items-center">
+      <div className="h-[calc(100vh-78px)] flex flex-col overflow-hidden gap-4 justify-center items-center">
         <Spinner />
         <h1>Preparing to launch...</h1>
       </div>
@@ -36,8 +36,8 @@ export default function Home() {
     <Dashboard session={session} />
   ) : (
     <>
-      <div className="bg-fixed bg-center bg-cover custom-img">
-        <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 py-44">
+      <div className="bg-slate-900">
+        <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 py-16">
           <Hero />
         </div>
       </div>

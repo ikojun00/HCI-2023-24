@@ -1,3 +1,4 @@
+import QuotationMark from "@/components/icons/QuotationMark";
 import Image from "next/image";
 
 export interface TestimonialCardProps {
@@ -14,9 +15,10 @@ export default function TestimonialCard({
   text,
 }: TestimonialCardProps) {
   return (
-    <div className="flex flex-col justify-between gap-16 p-6 border-4 rounded-md">
-      <p className="text-sm md:text-base">{text}</p>
-      <div>
+    <div className="flex flex-col justify-between gap-12 p-12">
+      <QuotationMark />
+      <p className="text-lg md:text-xl font-medium">{text}</p>
+      <div className="flex justify-center items-center gap-4">
         <Image
           src={image}
           alt="Profile"
@@ -25,7 +27,7 @@ export default function TestimonialCard({
           height={50}
         />
         <p className="font-bold text-sm md:text-base">{name}</p>
-        <p className="text-sm md:text-base">{occupation}</p>
+        <p className="text-sm md:text-base text-slate-400">{occupation}</p>
       </div>
     </div>
   );

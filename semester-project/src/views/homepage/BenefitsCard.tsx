@@ -1,5 +1,4 @@
 import BulletPoint from "@/components/icons/BulletPoint";
-import Image from "next/image";
 
 interface BenefitsCardProps {
   reversed: Boolean;
@@ -17,7 +16,7 @@ export default function BenefitsCard({
   imageElement,
 }: BenefitsCardProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden gap-y-4 items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden gap-y-4 gap-96 md:gap-0 items-center">
       <div
         className={`flex flex-col px-2 gap-4 text-sm md:text-base order-first ${
           reversed ? "md:order-last" : "md:order-first"

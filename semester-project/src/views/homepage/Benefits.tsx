@@ -43,9 +43,13 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-24">
       {benefits.map((item, index) => (
-        <BenefitsCard key={item.title} reversed={index % 2 ? true : false} {...item} />
+        <BenefitsCard
+          key={item.title}
+          reversed={index % 2 ? true : false}
+          {...item}
+        />
       ))}
     </div>
   );
