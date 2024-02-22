@@ -16,30 +16,24 @@ export default function BenefitsCard({
   imageElement,
 }: BenefitsCardProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden gap-y-4 gap-96 md:gap-0 items-center">
+    <div className="flex px-2 flex-col gap-20 sm:flex-row md:justify-between sm:items-center items-start">
       <div
-        className={`flex flex-col px-2 gap-4 text-sm md:text-base order-first ${
-          reversed ? "md:order-last" : "md:order-first"
+        className={`flex flex-col gap-6 text-sm md:text-base order-first ${
+          reversed ? "sm:order-last" : "sm:order-first"
         }`}
       >
-        <h2 className="text-xl sm:text-2xl font-medium">{title}</h2>
-        <h3>{subtitle}</h3>
+        <h2 className="text-2xl md:text-3xl font-medium">{title}</h2>
+        <h3 className="text-base md:text-lg">{subtitle}</h3>
         <ul>
           {bulletpoints.map((item, index) => (
             <li className="flex items-start" key={index}>
               <BulletPoint />
-              {item}
+              <p className="text-sm md:text-base">{item}</p>
             </li>
           ))}
         </ul>
       </div>
-      <div
-        className={`flex justify-center max-w-full ${
-          reversed ? "md:justify-start md:pl-3" : "md:justify-end"
-        } `}
-      >
-        {imageElement}
-      </div>
+      <div className="w-3/5">{imageElement}</div>
     </div>
   );
 }

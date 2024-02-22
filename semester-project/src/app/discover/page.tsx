@@ -26,7 +26,7 @@ export default function Discover() {
   return (
     <div>
       <div>
-        <div className="flex flex-col items-center max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+        <div className="flex flex-col items-center max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
           <br />
           <br />
           <input
@@ -131,7 +131,7 @@ export default function Discover() {
 
   return (
     <div>
-      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
         <br />
         <br />
         <div className="flex items-center flex-col">

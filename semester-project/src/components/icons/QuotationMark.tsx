@@ -2,7 +2,7 @@ export default function QuotationMark() {
   return (
     <div>
       <svg
-        className="h-10 mx-auto text-slate-400"
+        className="h-8 md:h-10 mx-auto text-slate-400"
         viewBox="0 0 24 27"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

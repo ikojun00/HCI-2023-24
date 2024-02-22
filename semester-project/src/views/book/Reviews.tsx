@@ -161,7 +161,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
         </div>
       ) : (
         <div>
-          <div className="flex flex-col gap-10 max-w-screen-xl mx-auto">
+          <div className="flex flex-col gap-10 max-w-screen-lg mx-auto">
             <div>
               <h1 className="text-3xl font-bold">Your Review</h1>
               <hr />
@@ -216,7 +216,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
         ) : (
           reviews.map((review: ReviewItem, index: number) => (
             <div
-              className="flex flex-col gap-10 max-w-screen-xl mx-auto"
+              className="flex flex-col gap-10 max-w-screen-lg mx-auto"
               key={index}
             >
               <div className="flex flex-row items-center justify-between">

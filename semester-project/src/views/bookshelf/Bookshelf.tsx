@@ -92,7 +92,7 @@ export default function Bookshelf({ session }: Props) {
     <div>
       {bookshelf.map((item, index) => (
         <div
-          className="flex flex-col gap-10 max-w-screen-xl mx-auto"
+          className="flex flex-col gap-10 max-w-screen-lg mx-auto"
           key={index}
         >
           {item.shelf === 1 ? (

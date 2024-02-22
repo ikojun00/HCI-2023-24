@@ -46,7 +46,7 @@ export default function Book() {
       <br />
       <br />
       <br />
-      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex flex-row p-4">
           {loading ? (
             <div className="h-[calc(100vh-78px)] flex justify-center items-center">

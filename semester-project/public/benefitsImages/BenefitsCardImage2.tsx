@@ -3,7 +3,6 @@ export default function BenefitsCardImage2() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
-      className="w-4/5"
       viewBox="0 0 884.54918 560"
     >
       <rect

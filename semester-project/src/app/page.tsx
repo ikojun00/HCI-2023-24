@@ -37,11 +37,11 @@ export default function Home() {
   ) : (
     <>
       <div className="bg-slate-900">
-        <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 py-16">
+        <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 py-16">
           <Hero />
         </div>
       </div>
-      <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 gap-44 mt-24">
+      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-44 mt-24">
         <Feature />
         <Benefits />
         <Testimonials />

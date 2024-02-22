@@ -32,7 +32,7 @@ export default function Genre() {
   return (
     <div>
       <div>
-        <div className="flex flex-col max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6">
+        <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
           <br />
           <br />
           <h1 className="text-xl sm:text-2xl font-bold p-4 capitalize">

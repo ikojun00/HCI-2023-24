@@ -29,7 +29,7 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="flex flex-col items-start gap-12 p-4">
+    <div className="flex flex-col items-start gap-12 p-2">
       <h1 className="text-3xl sm:text-5xl font-bold">FAQ</h1>
       <div className="flex flex-col gap-8">
         {dropdowns.map((item, index) => (
@@ -38,7 +38,7 @@ export default function FAQ() {
             key={index}
             onClick={() => handleDropdownClick(index)}
           >
-            <h2 className="flex items-center justify-between text-sm md:text-base font-semibold pb-4 border-b cursor-pointer">
+            <h2 className="flex items-center justify-between text-sm md:text-base font-semibold gap-1 pb-4 border-b cursor-pointer">
               {item.title}
               <Arrow active={activeDropdown.includes(index)} />
             </h2>

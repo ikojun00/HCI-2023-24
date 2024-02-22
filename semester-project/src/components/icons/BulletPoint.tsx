@@ -2,7 +2,7 @@ export default function BulletPoint() {
   return (
     <div className="pt-0.5">
       <svg
-        className="w-4 h-4 mr-2 text-green-500 flex-shrink-0"
+        className="w-4 h-4 mr-2 mt-0.5 text-green-500"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

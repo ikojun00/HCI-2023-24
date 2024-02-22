@@ -17,7 +17,7 @@ export default function TestimonialCard({
   return (
     <div className="flex flex-col justify-between gap-12 p-12">
       <QuotationMark />
-      <p className="text-lg md:text-xl font-medium">{text}</p>
+      <p className="text-lg text-center md:text-xl md:font-medium">{text}</p>
       <div className="flex justify-center items-center gap-4">
         <Image
           src={image}

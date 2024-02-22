@@ -1,8 +1,8 @@
-interface ArrowProps{
-    active: Boolean,
+interface ArrowProps {
+  active: Boolean;
 }
 
-export default function Arrow({active}: ArrowProps) {
+export default function Arrow({ active }: ArrowProps) {
   return (
     <div className={`transition-all duration-500 ${active && "-rotate-180"}`}>
       <svg

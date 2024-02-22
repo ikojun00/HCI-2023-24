@@ -28,9 +28,9 @@ export default function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <div className="bg-slate-700 rounded-lg p-4 m-4">
+    <div className="bg-slate-700 rounded-lg p-4 m-2">
       <div className="flex gap-8">
-        <div className="flex items-center">
+        <div className="hidden md:flex items-center">
           <button
             onClick={() => setCurrentSlide((currentSlide + 2) % 3)}
             className="p-4"
@@ -47,7 +47,7 @@ export default function Testimonials() {
             <TestimonialCard {...item} />
           </div>
         ))}
-        <div className="flex items-center">
+        <div className="hidden md:flex items-center">
           <button
             onClick={() => setCurrentSlide((currentSlide + 1) % 3)}
             className="p-4"
@@ -58,6 +58,14 @@ export default function Testimonials() {
       </div>
 
       <div className="flex justify-center items-center gap-4 py-4">
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setCurrentSlide((currentSlide + 2) % 3)}
+            className="p-4"
+          >
+            <Previous />
+          </button>
+        </div>
         {testimonials.map((_, index) => (
           <div key={index}>
             <button
@@ -68,6 +76,14 @@ export default function Testimonials() {
             ></button>
           </div>
         ))}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setCurrentSlide((currentSlide + 1) % 3)}
+            className="p-4"
+          >
+            <Next />
+          </button>
+        </div>
       </div>
     </div>
   );

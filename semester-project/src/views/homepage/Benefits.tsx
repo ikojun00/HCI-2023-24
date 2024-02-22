@@ -18,11 +18,11 @@ const benefits = [
   {
     title: "Keep track of your books like never before",
     subtitle:
-      "BookVoyage is built to handle all libraries, from the smallest to the most complex. You can track:",
+      "BookVoyage is built to handle all libraries, from the smallest to the most complex.",
     bulletpoints: [
-      "Your status for every book.",
-      "Progress on your current book(s).",
-      "Your rating in star increments.",
+      "Track status for every book.",
+      "Track progress on your currently read book(s).",
+      "Give rating(s) in star increments.",
       "Your review.",
       "Any number of lists for each book.",
     ],
@@ -43,7 +43,7 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <div className="flex flex-col gap-24">
+    <div className="flex flex-col gap-32">
       {benefits.map((item, index) => (
         <BenefitsCard
           key={item.title}

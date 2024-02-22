@@ -5,7 +5,6 @@ export default function BenefitsCardImage1() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
-      className="w-4/5"
       viewBox="0 0 737.66564 594"
     >
       <path
