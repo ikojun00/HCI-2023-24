@@ -1,13 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const genres = [
-  { name: "Fiction" },
-  { name: "Nonfiction" },
-  { name: "Fantasy" },
-  { name: "Adventure" },
-  { name: "Sports" },
-  { name: "Romance" },
-  { name: "Self-help" },
+  { name: "Adventure", image: "/adventure.webp" },
+  { name: "Fantasy", image: "/fantasy.webp" },
+  { name: "Fiction", image: "/fiction.webp" },
+  { name: "Nonfiction", image: "/nonfiction.webp" },
+  { name: "Romance", image: "/romance.webp" },
+  { name: "Sports", image: "/sports.webp" },
+  { name: "Self-help", image: "/self-help.webp" },
 ];
 
 export default function Genres() {
@@ -21,10 +22,24 @@ export default function Genres() {
           <h1 className="text-xl sm:text-2xl font-medium">Genres</h1>
           <h2>Explore all books on BookVoyage by genre.</h2>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           {genres.map((genre) => (
-            <Link href={`/genres/${genre.name.toLowerCase()}`} key={genre.name}>
-              <p className="hover:underline">{genre.name}</p>
+            <Link
+              className="hover:scale-105"
+              href={`/genres/${genre.name.toLowerCase()}`}
+              key={genre.name}
+            >
+              <Image
+                src={genre.image}
+                alt="Genre"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "200px", height: "auto" }}
+              />
+              <div className="relative bottom-6 bg-slate-700">
+                <p className="pl-1">{genre.name}</p>
+              </div>
             </Link>
           ))}
         </div>

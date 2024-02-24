@@ -49,7 +49,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
             <div className="w-full pl-4 flex border rounded-md h-10 md:h-12 items-center bg-slate-700 gap-4">
               <Search />
               <input
-                className="pl-2 h-full focus:outline-none text-lg md:text-xl bg-slate-700"
+                className="pl-2 w-11/12 h-full focus:outline-none text-lg md:text-xl bg-slate-700"
                 type="text"
                 placeholder="Search for books"
                 value={searchTerm}

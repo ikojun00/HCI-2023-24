@@ -71,7 +71,7 @@ export default function Navbar() {
   );
 
   return (
-    <div className="sticky top-0 left-0 bg-slate-800 border-b-2">
+    <div className="sticky z-10 top-0 left-0 bg-slate-800 border-b-2">
       <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4">
         <div className="flex justify-between items-center p-4">
           {hamburgerIcon}
