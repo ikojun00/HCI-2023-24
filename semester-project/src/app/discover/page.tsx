@@ -16,7 +16,10 @@ export default function Discover() {
     (async () => {
       if (searchTerm !== "") {
         setLoading(true);
-        const newBooks = await ContentfulService.getBooksByTitle(searchTerm);
+        const newBooks = await ContentfulService.getBooksByTabs(
+          "title",
+          searchTerm
+        );
         setBooks(newBooks);
         setLoading(false);
       }

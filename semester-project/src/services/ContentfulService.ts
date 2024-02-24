@@ -50,7 +50,7 @@ const getAllNavbarNames = async () => {
   }
 };
 
-const getBooksByTitle = async (tab: string, searchTerm: string) => {
+const getBooksByTabs = async (tab: string, searchTerm: string) => {
   try {
     const response = await graphqlRequest(qGetBooksByTabs(tab, searchTerm));
 
@@ -97,7 +97,7 @@ const getBookById = async (bookId: number): Promise<BookItem> => {
 
 const ContentfulService = {
   getAllNavbarNames,
-  getBooksByTitle,
+  getBooksByTabs,
   getNewBooks,
   getBookById,
 };

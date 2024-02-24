@@ -25,10 +25,10 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
         setLoading(true);
         tabs === "books"
           ? setBooks(
-              await ContentfulService.getBooksByTitle("title", searchTerm)
+              await ContentfulService.getBooksByTabs("title", searchTerm)
             )
           : setBooks(
-              await ContentfulService.getBooksByTitle("author", searchTerm)
+              await ContentfulService.getBooksByTabs("author", searchTerm)
             );
 
         setLoading(false);
