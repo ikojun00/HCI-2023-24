@@ -3,7 +3,7 @@ import qGetAllNavbarNames from "../../types/queries/GetAllNavbarNames";
 import booksCollectionResponse from "../../types/interfaces/BooksCollectionResponse";
 import qGetNewBooks from "../../types/queries/GetNewBooks";
 import qGetBookById from "../../types/queries/GetBookById";
-import qGetBooksByTitle from "../../types/queries/GetBooksByTitle";
+import qGetBooksByTabs from "../../types/queries/GetBooksByTabs";
 import BookItem from "../../types/interfaces/BookItem";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
@@ -50,9 +50,9 @@ const getAllNavbarNames = async () => {
   }
 };
 
-const getBooksByTitle = async (searchTerm: string) => {
+const getBooksByTitle = async (tab: string, searchTerm: string) => {
   try {
-    const response = await graphqlRequest(qGetBooksByTitle(searchTerm));
+    const response = await graphqlRequest(qGetBooksByTabs(tab, searchTerm));
 
     const body = (await response.json()) as {
       data: booksCollectionResponse;
