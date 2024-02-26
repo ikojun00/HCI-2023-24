@@ -5,6 +5,7 @@ const qGetBookById = (bookId: number) => `query {
         title
         author
         description
+        pages
         cover {
             url
         }

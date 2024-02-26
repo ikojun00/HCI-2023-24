@@ -3,6 +3,7 @@ export default interface BookItem {
   title: string;
   author: string;
   description: string;
+  pages: number;
   cover: {
     url: string;
   };

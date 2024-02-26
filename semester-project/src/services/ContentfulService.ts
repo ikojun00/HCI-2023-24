@@ -5,6 +5,9 @@ import qGetNewBooks from "../../types/queries/GetNewBooks";
 import qGetBookById from "../../types/queries/GetBookById";
 import qGetBooksByTabs from "../../types/queries/GetBooksByTabs";
 import BookItem from "../../types/interfaces/BookItem";
+import qGetAllGenres from "../../types/queries/GetAllGenres";
+import genresCollectionResponse from "../../types/interfaces/GenresCollectionResponse";
+import GenreItem from "../../types/interfaces/GenreItem";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
@@ -25,6 +28,7 @@ const booksCollection = (data: booksCollectionResponse) => {
     title: item.title,
     author: item.author,
     description: item.description,
+    pages: item.pages,
     cover: item.cover,
   }));
 };
@@ -50,9 +54,16 @@ const getAllNavbarNames = async () => {
   }
 };
 
-const getBooksByTabs = async (tab: string, searchTerm: string) => {
+const getBooksByTabs = async (
+  tab: string,
+  searchTerm: string,
+  limit: number,
+  skip: number
+) => {
   try {
-    const response = await graphqlRequest(qGetBooksByTabs(tab, searchTerm));
+    const response = await graphqlRequest(
+      qGetBooksByTabs(tab, searchTerm, limit, skip)
+    );
 
     const body = (await response.json()) as {
       data: booksCollectionResponse;
@@ -95,11 +106,32 @@ const getBookById = async (bookId: number): Promise<BookItem> => {
   }
 };
 
+const getAllGenres = async (): Promise<GenreItem[]> => {
+  try {
+    const response = await graphqlRequest(qGetAllGenres);
+    const body = (await response.json()) as {
+      data: genresCollectionResponse;
+    };
+
+    const genres = body.data.genresCollection.items.map((item) => ({
+      title: item.title,
+      image: item.image,
+    }));
+
+    return genres;
+  } catch (error) {
+    console.log(error);
+
+    return [];
+  }
+};
+
 const ContentfulService = {
   getAllNavbarNames,
   getBooksByTabs,
   getNewBooks,
   getBookById,
+  getAllGenres,
 };
 
 export default ContentfulService;

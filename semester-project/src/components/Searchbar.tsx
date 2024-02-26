@@ -14,23 +14,32 @@ interface HandleSearchbarProps {
 }
 
 export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
+  const limit = 5;
   const [searchTerm, setSearchTerm] = useState("");
-  const [books, setBooks] = useState<BookItem[] | []>([]);
+  const [books, setBooks] = useState<BookItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [tabs, setTabs] = useState("books");
+  const [tabs, setTabs] = useState("title");
+  const [page, setPage] = useState(1);
+
+  const handleMoreBooks = async () => {
+    const newBooks = await ContentfulService.getBooksByTabs(
+      tabs,
+      searchTerm,
+      limit,
+      limit * page
+    );
+    setBooks(books.concat(newBooks));
+    setPage(page + 1);
+  };
 
   useEffect(() => {
     (async () => {
       if (searchTerm !== "") {
+        setPage(1);
         setLoading(true);
-        tabs === "books"
-          ? setBooks(
-              await ContentfulService.getBooksByTabs("title", searchTerm)
-            )
-          : setBooks(
-              await ContentfulService.getBooksByTabs("author", searchTerm)
-            );
-
+        setBooks(
+          await ContentfulService.getBooksByTabs(tabs, searchTerm, limit, 0)
+        );
         setLoading(false);
       }
     })();
@@ -58,17 +67,17 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
             </div>
             <div className="flex gap-6 border-b">
               <button
-                onClick={() => setTabs("books")}
+                onClick={() => setTabs("title")}
                 className={`${
-                  tabs === "books" ? "border-yellow-400" : "border-slate-800"
+                  tabs === "title" ? "border-yellow-400" : "border-slate-800"
                 } border-b-2`}
               >
                 Books
               </button>
               <button
-                onClick={() => setTabs("authors")}
+                onClick={() => setTabs("author")}
                 className={`${
-                  tabs === "authors" ? "border-yellow-400" : "border-slate-800"
+                  tabs === "author" ? "border-yellow-400" : "border-slate-800"
                 } border-b-2`}
               >
                 Authors
@@ -85,12 +94,9 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
               ) : books.length === 0 && searchTerm !== "" ? (
                 <p>No books.</p>
               ) : (
-                books.map((book) => (
-                  <div key={book.bookId}>
-                    <Link
-                      href={`/discover/${book.bookId}`}
-                      onClick={handleSearchbar}
-                    >
+                <>
+                  {books.map((book) => (
+                    <div key={book.bookId}>
                       <li className="flex flex-row gap-4">
                         <Image
                           src={book.cover?.url}
@@ -101,18 +107,26 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                           style={{ width: "auto", height: "100px" }}
                         />
                         <div className="flex flex-col">
-                          <h2 className="font-bold text-base md:text-lg">
-                            {book.title}
-                          </h2>
+                          <Link
+                            href={`/discover/${book.bookId}`}
+                            onClick={handleSearchbar}
+                          >
+                            <h2 className="font-bold text-base md:text-lg hover:underline">
+                              {book.title}
+                            </h2>
+                          </Link>
                           <div className="flex flex-row gap-1 text-sm md:text-base">
                             <p>By:</p>
                             <p className="font-medium">{book.author}</p>
                           </div>
                         </div>
                       </li>
-                    </Link>
-                  </div>
-                ))
+                    </div>
+                  ))}
+                  {books.length !== 0 && books.length % limit === 0 && (
+                    <button onClick={() => handleMoreBooks()}>See more</button>
+                  )}
+                </>
               )}
             </ul>
           </div>

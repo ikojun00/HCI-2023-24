@@ -1,7 +1,9 @@
+import Pencil from "@/components/icons/Pencil";
 import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import ChangeReadingStatus from "./ChangeReadingStatus";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
@@ -15,29 +17,19 @@ interface Session {
 interface Props {
   session: Session;
   bookId: number;
+  pages: number;
 }
 
-export default function ReadingStatus({ session, bookId }: Props) {
+export default function ReadingStatus({ session, bookId, pages }: Props) {
   const [data, setData] = useState<number>();
-  const handleChangingReadingStatus = async () => {
-    try {
-      await axios.post(
-        `${Backend_URL}/bookshelf/${bookId}/reading`,
-        {
-          percentage: data,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
-          },
-        }
-      );
-      toast.success("Reading status changed!");
-    } catch (error) {
-      console.log(error);
-      toast.error(error.response?.data?.message);
-    }
+  const [showModifyReadingStatus, setShowModifyReadingStatus] = useState(false);
+
+  // mora se updejtat reading status kad se promijeni
+
+  const handleShowModifyReadingStatus = () => {
+    setShowModifyReadingStatus(!showModifyReadingStatus);
   };
+
   useEffect(() => {
     (async () => {
       try {
@@ -58,15 +50,32 @@ export default function ReadingStatus({ session, bookId }: Props) {
   return (
     <div>
       {data !== undefined && (
-        <div className="flex items-start flex-col gap-2">
-          <div className="flex gap-4">{data}%</div>
-          <input
-            type="range"
-            value={data}
-            className="w-full h-2 rounded-lg appearance-none cursor-pointerbg-gray-700"
-            onChange={(e) => setData(parseInt(e.target.value))}
-          />
-          <button onClick={handleChangingReadingStatus}>Save</button>
+        <div className="flex items-center gap-2">
+          {showModifyReadingStatus !== true ? (
+            <>
+              <div className="w-full bg-gray-700 rounded-full">
+                <div
+                  style={{ width: `${data}%` }}
+                  className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                >
+                  {data}%
+                </div>
+              </div>
+              <button
+                onClick={handleShowModifyReadingStatus}
+                className="scale-75"
+              >
+                <Pencil />
+              </button>
+            </>
+          ) : (
+            <ChangeReadingStatus
+              bookId={bookId}
+              pages={pages}
+              handleShowModifyReadingStatus={handleShowModifyReadingStatus}
+              session={session}
+            />
+          )}
         </div>
       )}
     </div>

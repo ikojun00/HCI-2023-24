@@ -5,6 +5,7 @@ const qGetNewBooks = `query {
       title
       author
       description
+      pages
       cover {
           url
       }
