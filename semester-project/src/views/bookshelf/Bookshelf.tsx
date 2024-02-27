@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import ReadingStatus from "./ReadingStatus";
+import CloseButton from "@/components/icons/CloseButton";
 
 interface BookshelfItem {
   shelf: number;
@@ -96,7 +97,7 @@ export default function Bookshelf({ session, tabs }: Props) {
           key={index}
         >
           {item.shelf === tabs && (
-            <div className="flex flex-col gap-8 py-8">
+            <div className="flex flex-col gap-16 py-8">
               {item.bookIds.map((book: BookItem) => (
                 <div className="flex justify-between" key={book.bookId}>
                   <li className="flex flex-row gap-4">
@@ -111,11 +112,11 @@ export default function Bookshelf({ session, tabs }: Props) {
                     <div className="flex flex-col justify-between">
                       <div>
                         <Link href={`/discover/${book.bookId}`}>
-                          <h2 className="font-bold md:text-xl hover:underline">
+                          <h2 className="font-bold text-base sm:text-lg md:text-xl hover:underline">
                             {book.title}
                           </h2>
                         </Link>
-                        <div className="flex flex-row gap-1 md:text-md">
+                        <div className="flex flex-row gap-1 text-sm sm:text-base md:text-md">
                           <p>By:</p>
                           <p className="font-medium">{book.author}</p>
                         </div>
@@ -130,12 +131,12 @@ export default function Bookshelf({ session, tabs }: Props) {
                     </div>
                   </li>
 
-                  <div className="flex flex-col justify-between">
+                  <div className="flex flex-col justify-center">
                     <button
-                      className="bg-red-700 p-4 rounded-lg"
+                      className="bg-red-700 scale-75 p-2 md:p-4 rounded-lg"
                       onClick={() => handleDeleteBookFromBookshelf(book.bookId)}
                     >
-                      Delete from bookshelf
+                      <CloseButton />
                     </button>
                   </div>
                 </div>

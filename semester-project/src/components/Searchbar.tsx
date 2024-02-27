@@ -54,11 +54,13 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
           </button>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-4 px-4 sm:px-6 lg:px-8">
-            <div className="w-full pl-4 flex border rounded-md h-10 md:h-12 items-center bg-slate-700 gap-4">
-              <Search />
+          <div className="flex flex-col gap-2 md:gap-4 px-4 sm:px-6 lg:px-8">
+            <div className="w-full md:pl-4 flex border rounded-md h-10 md:h-12 items-center bg-slate-700 gap-4">
+              <div className="scale-75 md:scale-100">
+                <Search />
+              </div>
               <input
-                className="pl-2 w-11/12 h-full focus:outline-none text-lg md:text-xl bg-slate-700"
+                className="w-11/12 h-full focus:outline-none text-base sm:text-lg md:text-xl bg-slate-700"
                 type="text"
                 placeholder="Search for books"
                 value={searchTerm}
@@ -68,7 +70,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
             <div className="flex gap-6 border-b">
               <button
                 onClick={() => setTabs("title")}
-                className={`${
+                className={`text-sm md:text-base ${
                   tabs === "title" ? "border-yellow-400" : "border-slate-800"
                 } border-b-2`}
               >
@@ -76,7 +78,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
               </button>
               <button
                 onClick={() => setTabs("author")}
-                className={`${
+                className={`text-sm md:text-base ${
                   tabs === "author" ? "border-yellow-400" : "border-slate-800"
                 } border-b-2`}
               >
@@ -111,11 +113,11 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                             href={`/discover/${book.bookId}`}
                             onClick={handleSearchbar}
                           >
-                            <h2 className="font-bold text-base md:text-lg hover:underline">
+                            <h2 className="font-bold text-base sm:text-lg md:text-xl hover:underline">
                               {book.title}
                             </h2>
                           </Link>
-                          <div className="flex flex-row gap-1 text-sm md:text-base">
+                          <div className="flex flex-row gap-1 text-sm sm:text-base md:text-md">
                             <p>By:</p>
                             <p className="font-medium">{book.author}</p>
                           </div>
@@ -123,9 +125,16 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                       </li>
                     </div>
                   ))}
-                  {books.length !== 0 && books.length % limit === 0 && (
-                    <button onClick={() => handleMoreBooks()}>See more</button>
-                  )}
+                  <div className="flex w-full justify-center">
+                    {books.length !== 0 && books.length % limit === 0 && (
+                      <button
+                        className="bg-slate-700 px-2 py-1 md:px-4 md:py-2 rounded-lg text-sm sm:text-base md:text-md"
+                        onClick={handleMoreBooks}
+                      >
+                        Show more books
+                      </button>
+                    )}
+                  </div>
                 </>
               )}
             </ul>

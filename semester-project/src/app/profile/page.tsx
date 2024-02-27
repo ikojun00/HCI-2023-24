@@ -29,7 +29,7 @@ export default function Profile() {
       <div className="flex gap-6 border-b">
         <button
           onClick={() => setTabs(1)}
-          className={`${
+          className={`text-sm md:text-base ${
             tabs === 1 ? "border-yellow-400" : "border-slate-800"
           } border-b-2`}
         >
@@ -37,7 +37,7 @@ export default function Profile() {
         </button>
         <button
           onClick={() => setTabs(2)}
-          className={`${
+          className={`text-sm md:text-base ${
             tabs === 2 ? "border-yellow-400" : "border-slate-800"
           } border-b-2`}
         >
@@ -45,7 +45,7 @@ export default function Profile() {
         </button>
         <button
           onClick={() => setTabs(3)}
-          className={`${
+          className={`text-sm md:text-base ${
             tabs === 3 ? "border-yellow-400" : "border-slate-800"
           } border-b-2`}
         >
