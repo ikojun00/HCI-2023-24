@@ -18,7 +18,9 @@ export default function Discover() {
         setLoading(true);
         const newBooks = await ContentfulService.getBooksByTabs(
           "title",
-          searchTerm
+          searchTerm,
+          5,
+          0
         );
         setBooks(newBooks);
         setLoading(false);
