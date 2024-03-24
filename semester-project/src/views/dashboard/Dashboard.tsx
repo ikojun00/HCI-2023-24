@@ -72,7 +72,7 @@ export default function Dashboard({ session }: Props) {
     setProgress(newProgress);
   };*/
   return (
-    <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-44">
+    <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-28">
       <div className="flex justify-center mt-44 text-2xl">
         Welcome, {session.user.firstName}! Here is what we have been reading...
       </div>
@@ -82,7 +82,7 @@ export default function Dashboard({ session }: Props) {
         {/* Section title and line below */}
         <div className="mb-7">
           <h3 className="uppercase text-base text-gray-400 mb-2">
-            {session.user.firstName}&apos;s overview
+            {`${session.user.firstName}'s overview`}
           </h3>
           <hr />
         </div>
@@ -99,10 +99,10 @@ export default function Dashboard({ session }: Props) {
           </div>
 
           {/* Section with current read, recently read and recently added */}
-          <div className="grow flex justify-between gap-8">
+          <div className="grow flex justify-between">
             {[...Array(3)].map((_, index) => (
               <div key={index} className="w-40 flex flex-col gap-2">
-                <div className="w-full h-56 bg-white border-black border-2">
+                <div className="w-full h-60 bg-white border-black border-2">
                   <Image
                     src="/tomor.jpg"
                     alt="book"
@@ -118,9 +118,44 @@ export default function Dashboard({ session }: Props) {
         </div>
       </section>
 
-      <section className="bg-red-500"> Popular books</section>
+      {/* New on Bookvoyage section */}
+      <section className="">
+        {/* Section title and line below */}
+        <div className="mb-7">
+          <h3 className="uppercase text-base text-gray-400 mb-2">
+            New on Bookvoyage
+          </h3>
+          <hr />
+        </div>
 
-      {/* <section className="flex flex-col">
+        {/* Section with 5 newest books */}
+        <div className="flex justify-between items-center">
+          {[...Array(5)].map((_, index) => (
+            <div key={index} className="w-40 flex flex-col gap-2">
+              <div className="w-full h-60 bg-white border-black border-2">
+                <Image
+                  src="/tomor.jpg"
+                  alt="book"
+                  width={150}
+                  height={250}
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="gap-0">
+                <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis">
+                  Long book title title title
+                </p>
+                <p className="text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis">
+                  Author Name
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/*
+      <section className="flex flex-col">
         <div className="mb-4">
           <h1 className="text-3xl font-medium mb-1">
             {"Books You're Currently Reading..."}
@@ -171,8 +206,9 @@ export default function Dashboard({ session }: Props) {
             </div>
           ))}
         </div>
-      </section> 
-
+      </section>
+      */}
+      {/*
       <section className="flex flex-col h-full">
         <div className="mb-4">
           <h1 className="text-3xl font-medium mb-1">{"Trending books"}</h1>
@@ -247,33 +283,6 @@ export default function Dashboard({ session }: Props) {
         </div>
       </section>
       */}
-
-      <section>
-        <div>
-          <h1 className="text-3xl font-medium mb-1">
-            {"Your recent activity"}
-          </h1>
-          <hr />
-        </div>
-        <div>
-          {/*get 5 most recent reviews here */}
-          <article>
-            <p>YourName reviewed ThisTitle</p>
-            <div className="flex gap-4">
-              <div className="h-32 w-20 bg-red-700">RImage</div>
-              <div>
-                <p>ReviewBookTitle</p>
-                <p>ReviewBookAuthor</p>
-                <div>Stars Container</div>
-                <div>
-                  If there is book review comment then post the comment, else
-                  post No text
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
     </div>
   );
 }
