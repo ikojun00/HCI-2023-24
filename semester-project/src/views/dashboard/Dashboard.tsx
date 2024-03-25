@@ -8,7 +8,7 @@ import Image from "next/image";
 
 interface BookshelfItem {
   shelf: number;
-  bookids: [];
+  bookIds: [];
 }
 
 interface Session {

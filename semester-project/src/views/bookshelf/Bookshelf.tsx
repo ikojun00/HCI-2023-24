@@ -11,12 +11,12 @@ import CloseButton from "@/components/icons/CloseButton";
 
 interface BookshelfItem {
   shelf: number;
-  bookids: BookItem[];
+  bookIds: BookItem[];
 }
 
 interface BookshelfItemFetch {
   shelf: number;
-  bookids: string[];
+  bookIds: string[];
 }
 
 interface Session {
@@ -49,7 +49,7 @@ export default function Bookshelf({ session, tabs }: Props) {
 
       const updatedBookshelf = bookshelf.map((item: BookshelfItem) => ({
         shelf: item.shelf,
-        bookids: item.bookids.filter(
+        bookIds: item.bookIds.filter(
           (book: BookItem) => book.bookId !== response.data.bookId
         ),
       }));
@@ -73,8 +73,8 @@ export default function Bookshelf({ session, tabs }: Props) {
           const bookshelfData = await Promise.all(
             response.data.map(async (item: BookshelfItemFetch) => ({
               shelf: item.shelf,
-              bookids: await Promise.all(
-                item.bookids.map(
+              bookIds: await Promise.all(
+                item.bookIds.map(
                   async (bookId: string) =>
                     await ContentfulService.getBookById(parseInt(bookId))
                 )
@@ -98,7 +98,7 @@ export default function Bookshelf({ session, tabs }: Props) {
         >
           {item.shelf === tabs && (
             <div className="flex flex-col gap-16 py-8">
-              {item.bookids.map((book: BookItem) => (
+              {item.bookIds.map((book: BookItem) => (
                 <div className="flex justify-between" key={book.bookId}>
                   <li className="flex flex-row gap-4">
                     <Image
