@@ -32,7 +32,7 @@ export default function ReadingStatus({ session, bookId, pages }: Props) {
       await axios.post(
         `${Backend_URL}/bookshelf/${bookId}/reading`,
         {
-          percentage: parseInt(value),
+          completion_percentage: parseInt(value),
         },
         {
           headers: {
@@ -63,7 +63,7 @@ export default function ReadingStatus({ session, bookId, pages }: Props) {
             },
           }
         );
-        setData(response.data.percentage);
+        setData(response.data.completion_percentage);
       } catch (error) {
         toast.error(error.response?.data?.message);
       }
