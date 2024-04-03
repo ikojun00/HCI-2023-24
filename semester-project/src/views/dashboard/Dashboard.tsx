@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import BookItem from "../../../types/interfaces/BookItem";
 import Link from "next/link";
 import Image from "next/image";
+import CircleReadingProgress from "./CircleReadingProgress";
 
 interface BookshelfItem {
   shelf: number;
@@ -25,10 +26,26 @@ interface Props {
 }
 
 export default function Dashboard({ session }: Props) {
-  const [progress, setProgress] = useState(50);
+  const [progress, setProgress] = useState(0);
   const [currentlyReadingBookIDs, setCurrentlyReadingBookIDs] = useState<[]>(
     []
   );
+  const yearlyReadingGoal = 12; /* get from user's database */
+  const booksReadThisYear = 4; /* get from user's database */
+  const progressValue = (booksReadThisYear / yearlyReadingGoal) * 100;
+
+  useEffect(() => {
+    if (progress < progressValue) {
+      const interval = setInterval(() => {
+        setProgress((prevProgress) =>
+          prevProgress >= progressValue ? progressValue : prevProgress + 1
+        );
+      }, 50);
+
+      return () => clearInterval(interval);
+    }
+  }, [progressValue, progress]);
+
   /*
   useEffect(() => {
     const getBookById = async (bookId: number) =>
@@ -89,20 +106,17 @@ export default function Dashboard({ session }: Props) {
 
         <div className="flex gap-20 justify-between items-center">
           {/* Circle for progress */}
-          <div className="w-64 h-64 aspect-square flex justify-center items-center">
-            <div className=" w-full h-full border border-blue-400 rounded-full flex justify-center items-center p-2">
-              <div className="w-full h-full border border-blue-400 rounded-full flex flex-col justify-center items-center">
-                <h1 className="text-6xl">65%</h1>
-                <p className="uppercase text-lg">12 books left</p>
-              </div>
-            </div>
+          
+          <div className="w-64 h-64 flex justify-center items-center">
+            <CircleReadingProgress progress={progress} circleWidthRem={15} />
+           
           </div>
 
           {/* Section with current read, recently read and recently added */}
           <div className="grow flex justify-between">
             {[...Array(3)].map((_, index) => (
               <div key={index} className="w-40 flex flex-col gap-2">
-                <div className="w-full h-60 bg-white border-black border-2">
+                <div className="w-full h-60 border-white border-2">
                   <Image
                     src="/tomor.jpg"
                     alt="book"
@@ -132,7 +146,7 @@ export default function Dashboard({ session }: Props) {
         <div className="flex justify-between items-center">
           {[...Array(5)].map((_, index) => (
             <div key={index} className="w-40 flex flex-col gap-2">
-              <div className="w-full h-60 bg-white border-black border-2">
+              <div className="w-full h-60 border-white border-2">
                 <Image
                   src="/tomor.jpg"
                   alt="book"
