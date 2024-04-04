@@ -7,7 +7,21 @@ import { useState } from "react";
 
 export default function Profile() {
   const { data: session, status } = useSession();
-  const [tabs, setTabs] = useState(1);
+  const [bookshelfNumber, setBookshelf] = useState(1);
+  const [tab, setTab] = useState("bookshelves");
+  const [goal, setGoal] = useState("");
+
+  const handleChange = (e: { target: { value: any } }) => {
+    const { value } = e.target;
+    // Ensure only numbers are entered
+    const newValue = value.replace(/\D/g, "");
+    setGoal(newValue);
+  };
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    alert(`Your reading goal is set to: ${goal}`);
+  };
 
   if (status === "loading") {
     return (
@@ -28,31 +42,79 @@ export default function Profile() {
       </div>
       <div className="flex gap-6 border-b">
         <button
-          onClick={() => setTabs(1)}
+          onClick={() => setTab("bookshelves")}
           className={`text-sm md:text-base ${
-            tabs === 1 ? "border-yellow-400" : "border-slate-800"
+            bookshelfNumber === 1 ? "border-yellow-400" : "border-slate-800"
           } border-b-2`}
         >
-          Currently reading
+          Bookshelves
         </button>
         <button
-          onClick={() => setTabs(2)}
+          onClick={() => setTab("readingGoal")}
           className={`text-sm md:text-base ${
-            tabs === 2 ? "border-yellow-400" : "border-slate-800"
+            bookshelfNumber === 1 ? "border-yellow-400" : "border-slate-800"
           } border-b-2`}
         >
-          Read
-        </button>
-        <button
-          onClick={() => setTabs(3)}
-          className={`text-sm md:text-base ${
-            tabs === 3 ? "border-yellow-400" : "border-slate-800"
-          } border-b-2`}
-        >
-          Want to read
+          Reading Goal
         </button>
       </div>
-      <Bookshelf session={session} tabs={tabs} />
+      {tab == "bookshelves" && (
+        <>
+          <div className="flex gap-6 border-b">
+            <button
+              onClick={() => setBookshelf(1)}
+              className={`text-sm md:text-base ${
+                bookshelfNumber === 1 ? "border-yellow-400" : "border-slate-800"
+              } border-b-2`}
+            >
+              Currently reading
+            </button>
+            <button
+              onClick={() => setBookshelf(2)}
+              className={`text-sm md:text-base ${
+                bookshelfNumber === 2 ? "border-yellow-400" : "border-slate-800"
+              } border-b-2`}
+            >
+              Read
+            </button>
+            <button
+              onClick={() => setBookshelf(3)}
+              className={`text-sm md:text-base ${
+                bookshelfNumber === 3 ? "border-yellow-400" : "border-slate-800"
+              } border-b-2`}
+            >
+              Want to read
+            </button>
+          </div>
+          <Bookshelf session={session} bookshelfNumber={bookshelfNumber} />
+        </>
+      )}
+      {tab == "readingGoal" && (
+        <div className="flex justify-center items-center my-32">
+          <form onSubmit={handleSubmit} className="text-center">
+            <label htmlFor="goal" className="block mb-4">
+              Choose your reading goal:
+            </label>
+            <input
+              type="number"
+              id="goal"
+              name="goal"
+              value={goal}
+              min={0}
+              onChange={handleChange}
+              className="w-32 px-3 py-2 border rounded-md text-center text-black mr-4"
+              placeholder="Enter goal"
+              required
+            />
+            <button
+              type="submit"
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300"
+            >
+              Set Goal
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   ) : (
     <div>No data.</div>

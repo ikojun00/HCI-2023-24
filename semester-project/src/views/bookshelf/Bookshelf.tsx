@@ -30,10 +30,10 @@ interface Session {
 
 interface Props {
   session: Session;
-  tabs: number;
+  bookshelfNumber: number;
 }
 
-export default function Bookshelf({ session, tabs }: Props) {
+export default function Bookshelf({ session, bookshelfNumber }: Props) {
   const [bookshelf, setBookshelf] = useState<BookshelfItem[]>([]);
 
   const handleDeleteBookFromBookshelf = async (bookId: number) => {
@@ -96,7 +96,7 @@ export default function Bookshelf({ session, tabs }: Props) {
           className="flex flex-col gap-10 max-w-screen-lg mx-auto"
           key={index}
         >
-          {item.shelf === tabs && (
+          {item.shelf === bookshelfNumber && (
             <div className="flex flex-col gap-16 py-8">
               {item.bookIds.map((book: BookItem) => (
                 <div className="flex justify-between" key={book.bookId}>

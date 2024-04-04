@@ -106,10 +106,9 @@ export default function Dashboard({ session }: Props) {
 
         <div className="flex gap-20 justify-between items-center">
           {/* Circle for progress */}
-          
+
           <div className="w-64 h-64 flex justify-center items-center">
             <CircleReadingProgress progress={progress} circleWidthRem={15} />
-           
           </div>
 
           {/* Section with current read, recently read and recently added */}

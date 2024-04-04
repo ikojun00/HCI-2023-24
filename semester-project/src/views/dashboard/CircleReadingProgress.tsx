@@ -6,7 +6,7 @@ interface Props {
 }
 const CircleReadingProgress = ({ progress, circleWidthRem }: Props) => {
   const circleWidth = circleWidthRem * 16;
-  const radius = circleWidth / 2 -8;
+  const radius = circleWidth / 2 - 8;
   const dashArray = radius * Math.PI * 2;
   const dashOffset = dashArray - (dashArray * progress) / 100;
   return (
@@ -38,7 +38,7 @@ const CircleReadingProgress = ({ progress, circleWidthRem }: Props) => {
           }}
           transform={`rotate(-90 ${circleWidth / 2} ${circleWidth / 2})`}
         />
-    
+
         <text
           x="50%"
           y="45%"
