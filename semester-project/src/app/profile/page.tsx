@@ -9,18 +9,22 @@ export default function Profile() {
   const { data: session, status } = useSession();
   const [bookshelfNumber, setBookshelf] = useState(1);
   const [tab, setTab] = useState("bookshelves");
-  const [goal, setGoal] = useState("");
+  const [goal, setGoal] = useState(0);
 
-  const handleChange = (e: { target: { value: any } }) => {
-    const { value } = e.target;
-    // Ensure only numbers are entered
-    const newValue = value.replace(/\D/g, "");
-    setGoal(newValue);
+  const handleNewGoal = (newGoal: number) => {
+    if (newGoal < 0) {
+      return;
+    }
+    setGoal(newGoal);
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    alert(`Your reading goal is set to: ${goal}`);
+  const handleSaveGoal = () => {
+    if (goal <= 0) {
+      //Set a message underneath that says "You goal must be greater than 0"
+      return;
+    }
+    console.log(goal);
+    // Save goal to database
   };
 
   if (status === "loading") {
@@ -90,7 +94,30 @@ export default function Profile() {
         </>
       )}
       {tab == "readingGoal" && (
-        <div className="flex justify-center items-center my-32">
+        <div className="flex flex-col items-center justify-center mt-36">
+          <p className="text-xl">Choose your yearly reading goal!</p>
+          <div className="my-8 w-60 h-24 bg-gray-300 text-black flex items-center justify-center rounded-sm shadow-2xl">
+            <span
+              className="w-full text-center  text-bv-blue text-4xl font-semibold cursor-pointer"
+              onClick={() => handleNewGoal(goal - 1)}
+            >
+              -
+            </span>
+            <span className="w-full text-center text-4xl font-semibold border-x-2 border-gray-400 pointer-events-none">
+              {goal}
+            </span>
+            <span
+              className="w-full text-center text-bv-blue text-4xl font-semibold cursor-pointer"
+              onClick={() => handleNewGoal(goal + 1)}
+            >
+              +
+            </span>
+          </div>
+          <button className="" onClick={handleSaveGoal}>
+            Set Goal
+          </button>
+        </div>
+        /* <div className="flex justify-center items-center my-32">
           <form onSubmit={handleSubmit} className="text-center">
             <label htmlFor="goal" className="block mb-4">
               Choose your reading goal:
@@ -113,7 +140,7 @@ export default function Profile() {
               Set Goal
             </button>
           </form>
-        </div>
+        </div> */
       )}
     </div>
   ) : (
