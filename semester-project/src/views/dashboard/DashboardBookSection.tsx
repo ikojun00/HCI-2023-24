@@ -15,6 +15,7 @@ export default function DashboardBookSection({ sectionName }: Props) {
       {/* Section with 5 newest books */}
       <div className="flex justify-between items-center">
         {[...Array(5)].map((_, index) => (
+          //key should be book.bookId, but as a placeholder we use index
           <DashboardBookItem
             key={index}
             book={{
