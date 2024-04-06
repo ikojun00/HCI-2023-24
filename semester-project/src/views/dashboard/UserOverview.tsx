@@ -5,6 +5,7 @@ import Image from "next/image";
 import CircleReadingProgress from "./CircleReadingProgress";
 import { toast } from "react-toastify";
 import DashboardSectionTitle from "./DashboardSectionTitle";
+import UserOverviewBookItem from "./UserOverviewBookItem";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
@@ -63,20 +64,39 @@ export default function UserOverview({ session }: Props) {
 
         {/* Section with current read, recently read and recently added */}
         <div className="grow flex justify-between">
-          {[...Array(3)].map((_, index) => (
-            <div key={index} className="w-40 flex flex-col gap-2">
-              <div className="w-full h-60 border-white border-2">
-                <Image
-                  src="/tomor.jpg"
-                  alt="book"
-                  width={150}
-                  height={250}
-                  className="w-full h-full"
-                />
-              </div>
-              <p className="uppercase text-base">Current read</p>
-            </div>
-          ))}
+          <UserOverviewBookItem
+            sectionTitle="Current read"
+            book={{
+              bookId: 99,
+              title: "Tomor",
+              author: "Someone",
+              description: "Not important",
+              pages: 19,
+              cover: { url: "/tomor.jpg" },
+            }}
+          />
+          <UserOverviewBookItem
+            sectionTitle="Recently read"
+            book={{
+              bookId: 99,
+              title: "Tomor",
+              author: "Someone",
+              description: "Not important",
+              pages: 19,
+              cover: { url: "/tomor.jpg" },
+            }}
+          />
+          <UserOverviewBookItem
+            sectionTitle="Recently added"
+            book={{
+              bookId: 99,
+              title: "Tomor",
+              author: "Someone",
+              description: "Not important",
+              pages: 19,
+              cover: { url: "/tomor.jpg" },
+            }}
+          />
         </div>
       </div>
     </section>
