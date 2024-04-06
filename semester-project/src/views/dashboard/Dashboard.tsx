@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import BookItem from "../../../types/interfaces/BookItem";
 import Link from "next/link";
 import Image from "next/image";
-import CircleReadingProgress from "./CircleReadingProgress";
+import { toast } from "react-toastify";
+import UserOverview from "./UserOverview";
+import DashboardBookSection from "./DashboardBookSection";
 
 interface BookshelfItem {
   shelf: number;
@@ -26,25 +28,9 @@ interface Props {
 }
 
 export default function Dashboard({ session }: Props) {
-  const [progress, setProgress] = useState(0);
   const [currentlyReadingBookIDs, setCurrentlyReadingBookIDs] = useState<[]>(
     []
   );
-  const yearlyReadingGoal = 12; /* get from user's database */
-  const booksReadThisYear = 4; /* get from user's database */
-  const progressValue = (booksReadThisYear / yearlyReadingGoal) * 100;
-
-  useEffect(() => {
-    if (progress < progressValue) {
-      const interval = setInterval(() => {
-        setProgress((prevProgress) =>
-          prevProgress >= progressValue ? progressValue : prevProgress + 1
-        );
-      }, 50);
-
-      return () => clearInterval(interval);
-    }
-  }, [progressValue, progress]);
 
   /*
   useEffect(() => {
@@ -90,82 +76,15 @@ export default function Dashboard({ session }: Props) {
   };*/
   return (
     <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-28">
-      <div className="flex justify-center mt-44 text-2xl">
+      <div className="flex justify-center mt-44 text-2xl px-2">
         Welcome, {session.user.firstName}! Here is what we have been reading...
       </div>
 
       {/* User's overview section */}
-      <section className="">
-        {/* Section title and line below */}
-        <div className="mb-7">
-          <h3 className="uppercase text-base text-gray-400 mb-2">
-            {`${session.user.firstName}'s overview`}
-          </h3>
-          <hr />
-        </div>
-
-        <div className="flex gap-20 justify-between items-center">
-          {/* Circle for progress */}
-
-          <div className="w-64 h-64 flex justify-center items-center">
-            <CircleReadingProgress progress={progress} circleWidthRem={15} />
-          </div>
-
-          {/* Section with current read, recently read and recently added */}
-          <div className="grow flex justify-between">
-            {[...Array(3)].map((_, index) => (
-              <div key={index} className="w-40 flex flex-col gap-2">
-                <div className="w-full h-60 border-white border-2">
-                  <Image
-                    src="/tomor.jpg"
-                    alt="book"
-                    width={150}
-                    height={250}
-                    className="w-full h-full"
-                  />
-                </div>
-                <p className="uppercase text-base">Current read</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <UserOverview session={session} />
 
       {/* New on Bookvoyage section */}
-      <section className="">
-        {/* Section title and line below */}
-        <div className="mb-7">
-          <h3 className="uppercase text-base text-gray-400 mb-2">
-            New on Bookvoyage
-          </h3>
-          <hr />
-        </div>
-
-        {/* Section with 5 newest books */}
-        <div className="flex justify-between items-center">
-          {[...Array(5)].map((_, index) => (
-            <div key={index} className="w-40 flex flex-col gap-2">
-              <div className="w-full h-60 border-white border-2">
-                <Image
-                  src="/tomor.jpg"
-                  alt="book"
-                  width={150}
-                  height={250}
-                  className="w-full h-full"
-                />
-              </div>
-              <div className="gap-0">
-                <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis">
-                  Long book title title title
-                </p>
-                <p className="text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis">
-                  Author Name
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <DashboardBookSection sectionName="New on Bookvoyage" />
 
       {/*
       <section className="flex flex-col">

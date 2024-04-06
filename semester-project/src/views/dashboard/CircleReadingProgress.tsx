@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
-  progress: number;
   circleWidthRem: number;
+  yearlyReadingGoal: number;
+  booksReadThisYear: number;
 }
-const CircleReadingProgress = ({ progress, circleWidthRem }: Props) => {
+export default function CircleReadingProgress({
+  circleWidthRem,
+  yearlyReadingGoal,
+  booksReadThisYear,
+}: Props) {
+  const [progress, setProgress] = useState(0);
+  const progressValue = (booksReadThisYear / yearlyReadingGoal) * 100;
+  useEffect(() => {
+    if (progress < progressValue) {
+      const interval = setInterval(() => {
+        setProgress((prevProgress) =>
+          prevProgress >= progressValue ? progressValue : prevProgress + 1
+        );
+      }, 50);
+
+      return () => clearInterval(interval);
+    }
+  }, [progressValue, progress]);
+
   const circleWidth = circleWidthRem * 16;
   const radius = circleWidth / 2 - 8;
   const dashArray = radius * Math.PI * 2;
@@ -57,11 +76,9 @@ const CircleReadingProgress = ({ progress, circleWidthRem }: Props) => {
           dominantBaseline="middle"
           className="text-base fill-gray-400"
         >
-          12 books left
+          {yearlyReadingGoal - booksReadThisYear} books left
         </text>
       </svg>
     </div>
   );
-};
-
-export default CircleReadingProgress;
+}

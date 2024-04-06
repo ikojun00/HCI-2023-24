@@ -1,15 +1,18 @@
 "use client";
 
 import Spinner from "@/components/icons/Spinner";
+import { Backend_URL } from "@/lib/constants";
 import Bookshelf from "@/views/bookshelf/Bookshelf";
+import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Profile() {
   const { data: session, status } = useSession();
   const [bookshelfNumber, setBookshelf] = useState(1);
   const [tab, setTab] = useState("bookshelves");
-  const [goal, setGoal] = useState(0);
+  const [goal, setGoal] = useState(1);
 
   const handleNewGoal = (newGoal: number) => {
     if (newGoal < 0) {
@@ -18,13 +21,29 @@ export default function Profile() {
     setGoal(newGoal);
   };
 
-  const handleSaveGoal = () => {
-    if (goal <= 0) {
+  const handleSaveGoal = async () => {
+    if (goal <= 0 || Number.isNaN(goal)) {
       //Set a message underneath that says "You goal must be greater than 0"
+      console.log("Must be a number over 0");
       return;
     }
-    console.log(goal);
-    // Save goal to database
+    try {
+      await axios.patch(
+        `${Backend_URL}/users/readingGoal`,
+        {
+          readingGoal: goal,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        }
+      );
+      toast.success("Reading goal changed!");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response?.data?.message);
+    }
   };
 
   if (status === "loading") {
@@ -103,9 +122,19 @@ export default function Profile() {
             >
               -
             </span>
-            <span className="w-full text-center text-4xl font-semibold border-x-2 border-gray-400 pointer-events-none">
+            <input
+              type="number"
+              value={goal}
+              onChange={(e) => {
+                handleNewGoal(parseInt(e.target.value));
+              }}
+              onWheel={(e) => e.preventDefault()} // Prevent mouse wheel from changing the value
+              min={1}
+              className="w-full text-center text-4xl font-semibold border-0 appearance-none outline-none focus:outline-none focus:border-bv-purple focus:transition-all focus:duration-300 border-x-2 border-gray-400 bg-transparent"
+            />
+            {/* <span className="w-full text-center text-4xl font-semibold border-x-2 border-gray-400 pointer-events-none">
               {goal}
-            </span>
+            </span> */}
             <span
               className="w-full text-center text-bv-blue text-4xl font-semibold cursor-pointer"
               onClick={() => handleNewGoal(goal + 1)}
