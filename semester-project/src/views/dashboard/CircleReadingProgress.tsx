@@ -1,24 +1,57 @@
+import { Backend_URL } from "@/lib/constants";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
+interface Session {
+  user: { id: number; email: string; firstName: string };
+  backendTokens: {
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: number;
+  };
+}
 
 interface Props {
   circleWidthRem: number;
-  yearlyReadingGoal: number;
-  booksReadThisYear: number;
+  session: Session;
 }
 export default function CircleReadingProgress({
   circleWidthRem,
-  yearlyReadingGoal,
-  booksReadThisYear,
+  session
 }: Props) {
+  const [yearlyReadingGoal, setYearlyReadingGoal] = useState<number>(2); //ovo ce bit 0 kao i u donjem useStateu, kada dodemo do toga da dohvacamo booksReadThisYear
+  const [booksReadThisYear, setBooksReadThisYear] = useState<number>(40);
   const [progress, setProgress] = useState(0);
   const progressValue = (booksReadThisYear / yearlyReadingGoal) * 100;
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(`${Backend_URL}/users/readingGoal`, {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        });
+        if (response.data.readingGoal) {
+          console.log(response.data.readingGoal);
+          console.log(typeof response.data.readingGoal);
+          setYearlyReadingGoal(response.data.readingGoal);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response?.data?.message);
+      }
+    })();
+  }, [session, session?.backendTokens.accessToken]);
+  
   useEffect(() => {
     if (progress < progressValue) {
       const interval = setInterval(() => {
         setProgress((prevProgress) =>
           prevProgress >= progressValue ? progressValue : prevProgress + 1
         );
-      }, 50);
+      }, 30);
 
       return () => clearInterval(interval);
     }
