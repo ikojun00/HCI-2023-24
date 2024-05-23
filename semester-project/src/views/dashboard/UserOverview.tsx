@@ -6,6 +6,8 @@ import CircleReadingProgress from "./CircleReadingProgress";
 import { toast } from "react-toastify";
 import DashboardSectionTitle from "./DashboardSectionTitle";
 import UserOverviewBookItem from "./UserOverviewBookItem";
+import ContentfulService from "@/services/ContentfulService";
+import BookItem from "../../../types/interfaces/BookItem";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
@@ -16,30 +18,56 @@ interface Session {
   };
 }
 
+interface BookshelfItemFetch {
+  shelf: number;
+  bookIds: string[];
+}
+
 interface Props {
   session: Session;
 }
 
 export default function UserOverview({ session }: Props) {
-  const [yearlyReadingGoal, setYearlyReadingGoal] = useState<number>(0);
-  const [booksReadThisYear, setBooksReadThisYear] = useState<number>(1);
+  const [lastCurrentBook, setLastCurrentBook] = useState<BookItem | null>(null);
+  const [lastReadBook, setLastReadBook] = useState<BookItem | null>(null);
+  const [lastAddedBook, setLastAddedBook] = useState<BookItem | null>(null);
 
   useEffect(() => {
     (async () => {
-      try {
-        const response = await axios.get(`${Backend_URL}/users/readingGoal`, {
-          headers: {
-            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
-          },
-        });
-        if (response.data.readingGoal) {
-          console.log(response.data.readingGoal);
-          console.log(typeof response.data.readingGoal);
-          setYearlyReadingGoal(response.data.readingGoal);
+      if (session && session.user) {
+        try {
+          const response = await axios.get(`${Backend_URL}/bookshelf`, {
+            headers: {
+              Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+            },
+          });
+
+          const lastItems = await Promise.all(
+            response.data.map(async (item: BookshelfItemFetch) => {
+              const lastBookIdOnThisShelf =
+                item.bookIds[item.bookIds.length - 1];
+
+              const book = await ContentfulService.getBookById(
+                parseInt(lastBookIdOnThisShelf)
+              );
+              return {
+                bookId: book.bookId,
+                title: book.title,
+                author: book.author,
+                description: book.description,
+                pages: book.pages,
+                cover: {
+                  url: book.cover.url,
+                },
+              } as BookItem;
+            })
+          );
+          setLastCurrentBook(lastItems[0]);
+          setLastReadBook(lastItems[1]);
+          setLastAddedBook(lastItems[2]);
+        } catch (error) {
+          toast.error(error.response?.data?.message);
         }
-      } catch (error) {
-        console.log(error);
-        toast.error(error.response?.data?.message);
       }
     })();
   }, [session, session?.backendTokens.accessToken]);
@@ -55,47 +83,24 @@ export default function UserOverview({ session }: Props) {
         {/* Circle for progress */}
 
         <div className="w-64 h-64 flex justify-center items-center">
-          <CircleReadingProgress
-            circleWidthRem={15}
-            yearlyReadingGoal={yearlyReadingGoal}
-            booksReadThisYear={booksReadThisYear}
-          />
+          <CircleReadingProgress circleWidthRem={15} session={session} />
         </div>
 
         {/* Section with current read, recently read and recently added */}
         <div className="grow flex justify-between">
           <UserOverviewBookItem
             sectionTitle="Current read"
-            book={{
-              bookId: 99,
-              title: "Tomor",
-              author: "Someone",
-              description: "Not important",
-              pages: 19,
-              cover: { url: "/tomor.jpg" },
-            }}
+            book={lastCurrentBook}
           />
+
           <UserOverviewBookItem
             sectionTitle="Recently read"
-            book={{
-              bookId: 99,
-              title: "Tomor",
-              author: "Someone",
-              description: "Not important",
-              pages: 19,
-              cover: { url: "/tomor.jpg" },
-            }}
+            book={lastReadBook}
           />
+
           <UserOverviewBookItem
             sectionTitle="Recently added"
-            book={{
-              bookId: 99,
-              title: "Tomor",
-              author: "Someone",
-              description: "Not important",
-              pages: 19,
-              cover: { url: "/tomor.jpg" },
-            }}
+            book={lastAddedBook}
           />
         </div>
       </div>
