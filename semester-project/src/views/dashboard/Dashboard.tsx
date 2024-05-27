@@ -2,10 +2,6 @@ import { Backend_URL } from "@/lib/constants";
 import ContentfulService from "@/services/ContentfulService";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import BookItem from "../../../types/interfaces/BookItem";
-import Link from "next/link";
-import Image from "next/image";
-import { toast } from "react-toastify";
 import UserOverview from "./UserOverview";
 import DashboardBookSection from "./DashboardBookSection";
 
@@ -85,6 +81,9 @@ export default function Dashboard({ session }: Props) {
 
       {/* New on Bookvoyage section */}
       <DashboardBookSection sectionName="New on Bookvoyage" />
+
+      {/* New on Bookvoyage section */}
+      <DashboardBookSection sectionName="Popular on Bookvoyage" />
 
       {/*
       <section className="flex flex-col">
@@ -215,6 +214,173 @@ export default function Dashboard({ session }: Props) {
         </div>
       </section>
       */}
+
+      {/* <section className="flex flex-col">
+        <div className="mb-4">
+          <h1 className="text-3xl font-medium mb-1">
+            {"Books You're Currently Reading..."}
+          </h1>
+          <hr />
+        </div>
+        <div className="py-8 w-full overflow-x-auto no-scrollbar flex gap-4 ">
+          <div className="flex w-96 flex-none mt-2 px-6 mb-0 rounded-md bg-slate-400 gap-8">
+            <Link href={`/discover`} className="w-20 flex-none">
+              <Image
+                width={200}
+                height={300}
+                src="/tomor.jpg"
+                alt="book"
+                className="w-full max-w-full rounded-md transition-all duration-200 -translate-y-5"
+              />
+            </Link>
+            <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
+              <div className="w-full mb-4">
+                <Link href={`/discover`}>
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                    Btitle
+                  </h3>
+                </Link>
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                  Bauthor
+                </h4>
+              </div>
+              <div className="flex flex-row items-center space-x-2">
+                <div className="w-20 h-2.5 bg-white rounded-full">
+                  <div
+                    className="h-full bg-slate-800 rounded-full"
+                    style={{ width: `45%` }}
+                  ></div>
+                </div>
+                <p className="text-sm text-slate-800 font-medium">45%</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex w-96 flex-none mt-2 px-6 mb-0 rounded-md bg-slate-400 gap-8">
+            <Link href={`/discover`} className="w-20 flex-none">
+              <Image
+                width={200}
+                height={300}
+                src="/tomor.jpg"
+                alt="book"
+                className="w-full max-w-full rounded-md transition-all duration-200 -translate-y-5"
+              />
+            </Link>
+            <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
+              <div className="w-full mb-4">
+                <Link href={`/discover`}>
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                    Btitle
+                  </h3>
+                </Link>
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                  Bauthor
+                </h4>
+              </div>
+              <div className="flex flex-row items-center space-x-2">
+                <div className="w-20 h-2.5 bg-white rounded-full">
+                  <div
+                    className="h-full bg-slate-800 rounded-full"
+                    style={{ width: `45%` }}
+                  ></div>
+                </div>
+                <p className="text-sm text-slate-800 font-medium">45%</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex w-96 flex-none mt-2 px-6 mb-0 rounded-md bg-slate-400 gap-8">
+            <Link href={`/discover`} className="w-20 flex-none">
+              <Image
+                width={200}
+                height={300}
+                src="/tomor.jpg"
+                alt="book"
+                className="w-full max-w-full rounded-md transition-all duration-200 -translate-y-5"
+              />
+            </Link>
+            <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
+              <div className="w-full mb-4">
+                <Link href={`/discover`}>
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                    Btitle
+                  </h3>
+                </Link>
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                  Bauthor
+                </h4>
+              </div>
+              <div className="flex flex-row items-center space-x-2">
+                <div className="w-20 h-2.5 bg-white rounded-full">
+                  <div
+                    className="h-full bg-slate-800 rounded-full"
+                    style={{ width: `45%` }}
+                  ></div>
+                </div>
+                <p className="text-sm text-slate-800 font-medium">45%</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex w-96 flex-none mt-2 px-6 mb-0 rounded-md bg-slate-400 gap-8">
+            <Link href={`/discover`} className="w-20 flex-none">
+              <Image
+                width={200}
+                height={300}
+                src="/tomor.jpg"
+                alt="book"
+                className="w-full max-w-full rounded-md transition-all duration-200 -translate-y-5"
+              />
+            </Link>
+            <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
+              <div className="w-full mb-4">
+                <Link href={`/discover`}>
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                    Btitle
+                  </h3>
+                </Link>
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                  Bauthor
+                </h4>
+              </div>
+              <div className="flex flex-row items-center space-x-2">
+                <div className="w-20 h-2.5 bg-white rounded-full">
+                  <div
+                    className="h-full bg-slate-800 rounded-full"
+                    style={{ width: `45%` }}
+                  ></div>
+                </div>
+                <p className="text-sm text-slate-800 font-medium">45%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      {/* <section className="flex flex-col">
+        <div className="mb-4">
+          <h1 className="text-3xl font-medium mb-1">
+            {"Books You're Currently Reading..."}
+          </h1>
+          <hr />
+        </div>
+        <div className="py-8 w-full overflow-x-auto no-scrollbar flex gap-4 ">
+          {[...Array(5)].map((_, index) => (
+            //key should be book.bookId, but as a placeholder we use index
+            <DashboardBookItem
+              key={index}
+              book={{
+                bookId: 99,
+                title: "Long book title title title",
+                author: "Author Name",
+                description: "Not important",
+                pages: 19,
+                cover: { url: "/tomor.jpg" },
+              }}
+            />
+          ))}
+        </div>
+      </section> */}
     </div>
   );
 }
