@@ -9,7 +9,7 @@ interface Props {
 
 export default function UserOverviewBookItem({ sectionTitle, book }: Props) {
   return (
-    <div className="w-40 flex flex-col gap-2">
+    <div className="w-24 sm:w-32 md:w-40 flex flex-col gap-2">
         <DashboardBookCover coverUrl={book ? book.cover.url : "/no-book-in-category.png"} />
       <p className="uppercase text-base">{sectionTitle}</p>
     </div>

@@ -8,7 +8,7 @@ interface Props {
 
 export default function DashboardBookItem({ book }: Props) {
   return (
-    <div className="w-40 flex flex-col gap-2">
+    <div className="w-24 sm:w-32 md:w-40 flex flex-col gap-2">
       <DashboardBookCover coverUrl={book.cover.url} />
       <div className="gap-0">
         <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis">

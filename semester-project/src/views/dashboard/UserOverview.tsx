@@ -79,12 +79,10 @@ export default function UserOverview({ session }: Props) {
         sectionName={`${session.user.firstName}'s overview`}
       />
 
-      <div className="flex gap-20 justify-between items-center">
+      <div className="flex flex-col md:flex-row md:gap-20 justify-between items-center">
         {/* Circle for progress */}
 
-        <div className="w-64 h-64 flex justify-center items-center">
-          <CircleReadingProgress circleWidthRem={15} session={session} />
-        </div>
+        <CircleReadingProgress session={session} />
 
         {/* Section with current read, recently read and recently added */}
         <div className="grow flex justify-between">
