@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import UserOverview from "./UserOverview";
 import DashboardBookSection from "./DashboardBookSection";
+import DashboardReviewsSection from "./DashboardReviewsSection";
 
 interface BookshelfItem {
   shelf: number;
@@ -381,6 +382,7 @@ export default function Dashboard({ session }: Props) {
           ))}
         </div>
       </section> */}
+      <DashboardReviewsSection />
     </div>
   );
 }
