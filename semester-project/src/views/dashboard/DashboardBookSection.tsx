@@ -5,7 +5,13 @@ import { useEffect, useState } from "react";
 import BookItem from "../../../types/interfaces/BookItem";
 import ContentfulService from "@/services/ContentfulService";
 import Spinner from "@/components/icons/Spinner";
+import axios from "axios";
+import { Backend_URL } from "@/lib/constants";
 
+interface PopularItemFetch {
+  review_bookId: number;
+  review_count: string;
+}
 interface Props {
   sectionName: string;
 }
@@ -16,8 +22,32 @@ export default function DashboardBookSection({ sectionName }: Props) {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const newBooks = await ContentfulService.getNewBooks();
-      setBooks(newBooks);
+
+      if (sectionName == "New on Bookvoyage") {
+        const newBooks = await ContentfulService.getNewBooks();
+        setBooks(newBooks);
+      }
+
+      if (sectionName == "Popular on Bookvoyage") {
+        const response = await axios.get(`${Backend_URL}/dashboard/popular`);
+        const popularBooks = await Promise.all(
+          response.data.map(async (item: PopularItemFetch) => {
+            const bookId = item.review_bookId;
+            const book = await ContentfulService.getBookById(bookId);
+            return {
+              bookId: book.bookId,
+              title: book.title,
+              author: book.author,
+              description: book.description,
+              pages: book.pages,
+              cover: {
+                url: book.cover.url,
+              },
+            } as BookItem;
+          })
+        );
+        setBooks(popularBooks);
+      }
       setLoading(false);
     })();
   }, []);
@@ -28,41 +58,32 @@ export default function DashboardBookSection({ sectionName }: Props) {
       <DashboardSectionTitle sectionName={sectionName} />
 
       {/* Section with 5 newest books */}
-      <div className="overflow-x-auto no-scrollbar flex gap-4 md:justify-between items-center">
+      <div className="overflow-x-auto no-scrollbar flex gap-4 md:justify-between items-start">
         {loading ? (
           <div className="h-[calc(100vh-78px)] flex justify-center items-center">
             <Spinner />
           </div>
         ) : (
-          books.map((book) => (
-            //key should be book.bookId, but as a placeholder we use index
-            <DashboardBookItem
-              key={book.bookId}
-              book={{
-                bookId: book.bookId,
-                title: book.title,
-                author: book.author,
-                description: book.description,
-                pages: book.pages,
-                cover: { url: book.cover.url },
-              }}
-            />
-          ))
+          <>
+            {books.map((book) => (
+              <DashboardBookItem
+                key={book.bookId}
+                book={{
+                  bookId: book.bookId,
+                  title: book.title,
+                  author: book.author,
+                  description: book.description,
+                  pages: book.pages,
+                  cover: { url: book.cover.url },
+                }}
+              />
+            ))}
+
+            {Array.from({ length: Math.max(0, 5 - books.length) }, (_, i) => (
+              <DashboardBookItem key={i} book={null} />
+            ))}
+          </>
         )}
-        {/* {[...Array(5)].map((_, index) => (
-          //key should be book.bookId, but as a placeholder we use index
-          <DashboardBookItem
-            key={index}
-            book={{
-              bookId: 99,
-              title: "Long book title title title",
-              author: "Author Name",
-              description: "Not important",
-              pages: 19,
-              cover: { url: "/tomor.jpg" },
-            }}
-          />
-        ))} */}
       </div>
     </section>
   );
