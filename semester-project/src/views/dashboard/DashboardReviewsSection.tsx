@@ -16,6 +16,7 @@ const reviews = [
       lastName: "Tolic",
     },
     title: "Book Title",
+    myBookshelf: 1,
   },
   {
     id: 1,
@@ -26,17 +27,19 @@ const reviews = [
       lastName: "Tolic",
     },
     title: "Book Title",
+    myBookshelf: 3,
   },
   {
     id: 1,
     stars: 3,
     comment:
-      "I am very satisfied with my pure. Very very long comment. Very Very long. Very very long comment. Very Very long. Very very long comment. Very Very long. Very very long comment. Very Very long.",
+      "I am very satisfied with my pure. Very very long comment. Very Very long. Very very long comment. Very Very long. Very very long comment. Very Very long. Very very long comment. Very Very long. End.",
     user: {
       firstName: "Ante",
       lastName: "Tolic",
     },
     title: "Book Title",
+    myBookshelf: 0,
   },
   {
     id: 1,
@@ -47,6 +50,7 @@ const reviews = [
       lastName: "Tolic",
     },
     title: "Book Title",
+    myBookshelf: 0,
   },
 ];
 export default function DashboardReviewsSection({}: Props) {
@@ -92,10 +96,10 @@ export default function DashboardReviewsSection({}: Props) {
                   <span className="font-light">by </span>
                   <span>{review.title} Author</span>
                 </h3>
-                <p className="mt-2 text-sm text-gray-300 max-h-16 overflow-y-hidden text-ellipsis">
+                <p className="mt-2 text-sm text-gray-300 h-16 overflow-hidden text-ellipsis line-clamp-3">
                   {review.comment}
                 </p>
-                <ButtonAddBook />
+                <ButtonAddBook myBookshelf={review.myBookshelf} />
               </div>
             </div>
           </div>

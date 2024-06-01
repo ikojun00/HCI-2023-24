@@ -19,6 +19,7 @@ interface Props {
 export default function DashboardBookSection({ sectionName }: Props) {
   const [loading, setLoading] = useState<boolean>(false);
   const [books, setBooks] = useState<BookItem[]>([]);
+
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -50,7 +51,7 @@ export default function DashboardBookSection({ sectionName }: Props) {
       }
       setLoading(false);
     })();
-  }, []);
+  }, [sectionName]);
 
   return (
     <section className="px-2">
