@@ -1,7 +1,7 @@
 export default function GreyStar() {
   return (
     <svg
-      className="w-4 h-4 ms-1 text-gray-500"
+      className="w-4 h-4 mr-1 text-gray-500"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
