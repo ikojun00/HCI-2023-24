@@ -61,7 +61,7 @@ export default function ButtonAddBook({ bookId }: Props) {
   };
 
   return (
-    <div className="w-44 relative mt-3">
+    <div className="w-44 relative mt-3 text-sm">
       <div
         onClick={handleDropdownClick}
         className="bg-green-600 font-medium flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all hover:bg-green-700 duration-300"
@@ -80,7 +80,7 @@ export default function ButtonAddBook({ bookId }: Props) {
         </div>
       </div>
       <ul
-        className={`list-none bg-green-600 rounded-lg shadow-md absolute mt-1 left-1/2 w-full -translate-x-1/2 ${
+        className={`list-none bg-green-600 rounded-lg shadow-md absolute mt-1 left-1/2 w-44 -translate-x-1/2 ${
           isOpen ? "block opacity-100" : "opacity-0 hidden"
         } transition-all duration-500 z-10`}
       >
