@@ -4,29 +4,20 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-
-interface Session {
-  user: { id: number; email: string; firstName: string };
-  backendTokens: {
-    accessToken: string;
-    refreshToken: string;
-    expiresIn: number;
-  };
-}
+import { useSession } from "next-auth/react";
 
 interface Props {
-  session: Session;
-  bookId: Number;
+  bookId: number;
 }
 
-export default function ButtonAddBook({ session, bookId }: Props) {
+export default function ButtonAddBook({ bookId }: Props) {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState<Boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<Number>(0);
+  const [selectedOption, setSelectedOption] = useState<number>(0);
   // bookshelf code - 1 - Currently Reading, 2 - Read, 3 - Want to Read
 
-  const handleSubmit = async (shelfId: Number) => {
+  const handleSubmit = async (shelfId: number) => {
     try {
       await axios.post(
         `${Backend_URL}/bookshelf/${bookId}`,
@@ -46,7 +37,7 @@ export default function ButtonAddBook({ session, bookId }: Props) {
     }
   };
 
-  const handleOptionClicked = (optionId: Number) => {
+  const handleOptionClicked = (optionId: number) => {
     setIsOpen(false);
     setSelectedOption(optionId);
     session && session.user ? handleSubmit(optionId) : router.push("/signin");
@@ -54,7 +45,6 @@ export default function ButtonAddBook({ session, bookId }: Props) {
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       const response = await axios.get(`${Backend_URL}/bookshelf/${bookId}`, {
         headers: {
           Authorization: `Bearer ${session?.backendTokens.accessToken}`,
@@ -63,7 +53,6 @@ export default function ButtonAddBook({ session, bookId }: Props) {
       const myShelf = response.data.shelfId ? response.data.shelfId : 0;
 
       setSelectedOption(myShelf);
-      setLoading(false);
     })();
   }, [bookId, session, session?.backendTokens.accessToken]);
 
@@ -91,13 +80,13 @@ export default function ButtonAddBook({ session, bookId }: Props) {
         </div>
       </div>
       <ul
-        className={`list-none bg-green-600 rounded-lg shadow-md absolute top-11 left-1/2 w-full -translate-x-1/2 ${
+        className={`list-none bg-green-600 rounded-lg shadow-md absolute mt-1 left-1/2 w-full -translate-x-1/2 ${
           isOpen ? "block opacity-100" : "opacity-0 hidden"
         } transition-all duration-500 z-10`}
       >
         <li
           onClick={() => handleOptionClicked(1)}
-          className={`py-2 px-3 cursor-pointer hover:bg-green-400 ${
+          className={`py-2 px-3 rounded-t-lg cursor-pointer hover:bg-green-400 ${
             selectedOption === 1 && "bg-green-500"
           }`}
         >
@@ -105,7 +94,7 @@ export default function ButtonAddBook({ session, bookId }: Props) {
         </li>
         <li
           onClick={() => handleOptionClicked(2)}
-          className={`py-2 px-3 rounded-b-lg cursor-pointer hover:bg-green-400 ${
+          className={`py-2 px-3 cursor-pointer hover:bg-green-400 ${
             selectedOption === 2 && "bg-green-500"
           }`}
         >
@@ -113,7 +102,7 @@ export default function ButtonAddBook({ session, bookId }: Props) {
         </li>
         <li
           onClick={() => handleOptionClicked(3)}
-          className={`py-2 px-3 rounded-t-lg cursor-pointer hover:bg-green-400 ${
+          className={`py-2 px-3 rounded-b-lg cursor-pointer hover:bg-green-400 ${
             selectedOption === 3 && "bg-green-500"
           }`}
         >

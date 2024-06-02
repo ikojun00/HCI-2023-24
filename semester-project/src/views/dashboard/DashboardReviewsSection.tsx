@@ -110,7 +110,7 @@ export default function DashboardReviewsSection({ session }: Props) {
 
               <div className="flex gap-4">
                 <div className="w-24 sm:w-32 md:w-40 shrink-0">
-                  <DashboardBookCover coverUrl={review.bookImgSrc} />
+                  <DashboardBookCover bookId={review.bookId} coverUrl={review.bookImgSrc} />
                 </div>
                 <div className="font-light text-sm mt-8">
                   <p className="text-sm text-gray-300">read and reviewed</p>
@@ -122,7 +122,7 @@ export default function DashboardReviewsSection({ session }: Props) {
                   <p className="mt-2 text-sm text-gray-300 h-16 overflow-hidden text-ellipsis line-clamp-3">
                     {review.comment}
                   </p>
-                  <ButtonAddBook session={session} bookId={review.bookId} />
+                  <ButtonAddBook bookId={review.bookId} />
                 </div>
               </div>
             </div>
