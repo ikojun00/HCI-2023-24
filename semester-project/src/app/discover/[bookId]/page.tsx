@@ -12,6 +12,7 @@ import YellowStar from "@/components/icons/YellowStar";
 import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
 import Link from "next/link";
+import ButtonAddBook from "@/views/dashboard/ButtonAddBook";
 
 type Title = {
   title: string;
@@ -89,7 +90,7 @@ export default function Book() {
                     ))}
                   </div>
                   <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between md:items-center">
-                    <AddBookOnBookshelf pathname={pathname} />
+                    <ButtonAddBook bookId={parseInt(pathname)} />
                     {averageRating && (
                       <div className="flex items-center gap-2">
                         <YellowStar />

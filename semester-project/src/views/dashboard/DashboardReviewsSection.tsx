@@ -109,26 +109,47 @@ export default function DashboardReviewsSection({ session }: Props) {
               </div>
 
               <div className="flex gap-4">
-                <div className="w-24 sm:w-32 md:w-40 shrink-0">
-                  <DashboardBookCover
-                    bookId={review.bookId}
-                    coverUrl={review.bookImgSrc}
-                  />
-                </div>
-                <div className="font-light text-sm mt-8">
-                  <p className="text-sm text-gray-300">read and reviewed</p>
-                  <h3 className="text-base font-medium">
+                <div className="w-24 md:w-32 lg:w-40 shrink-0">
+                  {review.bookId ? (
                     <Link href={`/discover/${review.bookId}`}>
-                      <span className="hover:text-bv-purple transition-colors duration-300">
-                        {review.title}{" "}
-                      </span>
+                      <div className="w-full h-36 md:h-48 lg:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
+                        <Image
+                          src={review.bookImgSrc}
+                          alt="book"
+                          width={150}
+                          height={250}
+                          className="w-full h-full"
+                        />
+                      </div>
                     </Link>
-                    <span className="font-light">by </span>
-                    <span>{review.author}</span>
-                  </h3>
-                  <p className="mt-2 text-sm text-gray-300 h-16 overflow-hidden text-ellipsis line-clamp-3">
-                    {review.comment}
-                  </p>
+                  ) : (
+                    <div className="w-full h-36 md:h-48 lg:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
+                      <Image
+                        src="/no-book-in-category.png"
+                        alt="book"
+                        width={150}
+                        height={250}
+                        className="w-full h-full"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="font-light text-sm lg:mt-8 lg:mb-5 mr-2 flex flex-col justify-between">
+                  <div>
+                    <p className="text-sm text-gray-300">read and reviewed</p>
+                    <h3 className="text-base font-medium">
+                      <Link href={`/discover/${review.bookId}`}>
+                        <span className="hover:text-bv-purple transition-colors duration-300">
+                          {review.title}{" "}
+                        </span>
+                      </Link>
+                      <span className="font-light">by </span>
+                      <span>{review.author}</span>
+                    </h3>
+                    <p className="mt-2 text-sm text-gray-300 md:h-11 lg:h-16 overflow-hidden text-ellipsis line-clamp-2 lg:line-clamp-3">
+                      {review.comment}
+                    </p>
+                  </div>
                   <ButtonAddBook bookId={review.bookId} />
                 </div>
               </div>
