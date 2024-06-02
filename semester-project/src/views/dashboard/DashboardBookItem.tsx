@@ -1,6 +1,7 @@
 import Image from "next/image";
 import DashboardBookCover from "./DashboardBookCover";
 import BookItem from "../../../types/interfaces/BookItem";
+import Link from "next/link";
 
 interface Props {
   book: BookItem | null;
@@ -14,9 +15,16 @@ export default function DashboardBookItem({ book }: Props) {
         coverUrl={book ? book.cover.url : "/no-book-in-category.png"}
       />
       <div className="gap-0">
-        <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis">
-          {book && book.title}
-        </p>
+        {book ? (
+          <Link href={`/discover/${book.bookId}`}>
+            <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis hover:text-bv-purple  transition-colors duration-300">
+              {book && book.title}
+            </p>
+          </Link>
+        ) : (
+          <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis hover:text-bv-purple transition-colors duration-300"></p>
+        )}
+
         <p className="text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis">
           {book && book.author}
         </p>

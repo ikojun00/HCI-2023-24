@@ -110,12 +110,19 @@ export default function DashboardReviewsSection({ session }: Props) {
 
               <div className="flex gap-4">
                 <div className="w-24 sm:w-32 md:w-40 shrink-0">
-                  <DashboardBookCover bookId={review.bookId} coverUrl={review.bookImgSrc} />
+                  <DashboardBookCover
+                    bookId={review.bookId}
+                    coverUrl={review.bookImgSrc}
+                  />
                 </div>
                 <div className="font-light text-sm mt-8">
                   <p className="text-sm text-gray-300">read and reviewed</p>
                   <h3 className="text-base font-medium">
-                    <span>{review.title} </span>
+                    <Link href={`/discover/${review.bookId}`}>
+                      <span className="hover:text-bv-purple transition-colors duration-300">
+                        {review.title}{" "}
+                      </span>
+                    </Link>
                     <span className="font-light">by </span>
                     <span>{review.author}</span>
                   </h3>
