@@ -31,6 +31,7 @@ export default function UserOverview({ session }: Props) {
   const [lastCurrentBook, setLastCurrentBook] = useState<BookItem | null>(null);
   const [lastReadBook, setLastReadBook] = useState<BookItem | null>(null);
   const [lastAddedBook, setLastAddedBook] = useState<BookItem | null>(null);
+  // bookshelf code - 1 - Currently Reading, 2 - Read, 3 - Want to Read
 
   useEffect(() => {
     (async () => {
@@ -42,29 +43,20 @@ export default function UserOverview({ session }: Props) {
             },
           });
 
-          const lastItems = await Promise.all(
+          await Promise.all(
             response.data.map(async (item: BookshelfItemFetch) => {
               const lastBookIdOnThisShelf =
                 item.bookIds[item.bookIds.length - 1];
+              const shelfId = item.shelf;
 
               const book = await ContentfulService.getBookById(
                 parseInt(lastBookIdOnThisShelf)
               );
-              return {
-                bookId: book.bookId,
-                title: book.title,
-                author: book.author,
-                description: book.description,
-                pages: book.pages,
-                cover: {
-                  url: book.cover.url,
-                },
-              } as BookItem;
+              if (shelfId === 1) setLastCurrentBook(book);
+              else if (shelfId === 2) setLastReadBook(book);
+              else if (shelfId === 3) setLastAddedBook(book);
             })
           );
-          setLastCurrentBook(lastItems[0]);
-          setLastReadBook(lastItems[1]);
-          setLastAddedBook(lastItems[2]);
         } catch (error) {
           toast.error(error.response?.data?.message);
         }
