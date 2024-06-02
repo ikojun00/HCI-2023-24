@@ -1,25 +1,74 @@
 import Arrow from "@/components/icons/Arrow";
+import { Backend_URL } from "@/lib/constants";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-interface Props {
-  myBookshelf: Number;
+interface Session {
+  user: { id: number; email: string; firstName: string };
+  backendTokens: {
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: number;
+  };
 }
 
-export default function ButtonAddBook({ myBookshelf }: Props) {
+interface Props {
+  session: Session;
+  bookId: Number;
+}
+
+export default function ButtonAddBook({ session, bookId }: Props) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState<Boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<Number>(myBookshelf);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<Number>(0);
   // bookshelf code - 1 - Currently Reading, 2 - Read, 3 - Want to Read
 
-  /* useEffect(() => {
-    
-  }, [selectedOption]); */
-  const handleDropdownClick = () => {
-    isOpen === false ? setIsOpen(true) : setIsOpen(false);
+  const handleSubmit = async (shelfId: Number) => {
+    try {
+      await axios.post(
+        `${Backend_URL}/bookshelf/${bookId}`,
+        {
+          shelfId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        }
+      );
+      toast.success("Bookshelf updated!");
+    } catch (error) {
+      setSelectedOption(0);
+      toast.error(error.response?.data?.message);
+    }
   };
 
   const handleOptionClicked = (optionId: Number) => {
     setIsOpen(false);
     setSelectedOption(optionId);
+    session && session.user ? handleSubmit(optionId) : router.push("/signin");
+  };
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const response = await axios.get(`${Backend_URL}/bookshelf/${bookId}`, {
+        headers: {
+          Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+        },
+      });
+      const myShelf = response.data.shelfId ? response.data.shelfId : 0;
+
+      setSelectedOption(myShelf);
+      setLoading(false);
+    })();
+  }, [bookId, session, session?.backendTokens.accessToken]);
+
+  const handleDropdownClick = () => {
+    isOpen === false ? setIsOpen(true) : setIsOpen(false);
   };
 
   return (
@@ -47,14 +96,6 @@ export default function ButtonAddBook({ myBookshelf }: Props) {
         } transition-all duration-500 z-10`}
       >
         <li
-          onClick={() => handleOptionClicked(3)}
-          className={`py-2 px-3 rounded-t-lg cursor-pointer hover:bg-green-400 ${
-            selectedOption === 3 && "bg-green-500"
-          }`}
-        >
-          Want to Read
-        </li>
-        <li
           onClick={() => handleOptionClicked(1)}
           className={`py-2 px-3 cursor-pointer hover:bg-green-400 ${
             selectedOption === 1 && "bg-green-500"
@@ -69,6 +110,14 @@ export default function ButtonAddBook({ myBookshelf }: Props) {
           }`}
         >
           Read
+        </li>
+        <li
+          onClick={() => handleOptionClicked(3)}
+          className={`py-2 px-3 rounded-t-lg cursor-pointer hover:bg-green-400 ${
+            selectedOption === 3 && "bg-green-500"
+          }`}
+        >
+          Want to Read
         </li>
       </ul>
     </div>

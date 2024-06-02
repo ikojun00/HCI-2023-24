@@ -86,6 +86,8 @@ export default function Dashboard({ session }: Props) {
       {/* New on Bookvoyage section */}
       <DashboardBookSection sectionName="Popular on Bookvoyage" />
 
+      <DashboardReviewsSection session={session} />
+
       {/*
       <section className="flex flex-col">
         <div className="mb-4">
@@ -382,7 +384,6 @@ export default function Dashboard({ session }: Props) {
           ))}
         </div>
       </section> */}
-      <DashboardReviewsSection />
     </div>
   );
 }
