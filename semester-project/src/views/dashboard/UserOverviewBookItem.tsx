@@ -15,7 +15,9 @@ export default function UserOverviewBookItem({ sectionTitle, book }: Props) {
         bookId={book ? book.bookId : null}
         coverUrl={book ? book.cover.url : "/no-book-in-category.png"}
       />
-      <p className="uppercase text-base">{sectionTitle}</p>
+      <p className="whitespace-nowrap uppercase text-xs md:text-sm lg:text-base">
+        {sectionTitle}
+      </p>
     </div>
   );
 }

@@ -73,7 +73,7 @@ export default function Dashboard({ session }: Props) {
   };*/
   return (
     <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-28">
-      <div className="flex justify-center mt-44 text-2xl px-2">
+      <div className="flex justify-center mt-44 text-lg md:text-2xl px-2">
         Welcome, {session.user.firstName}! Here is what we have been reading...
       </div>
 
@@ -86,6 +86,7 @@ export default function Dashboard({ session }: Props) {
       {/* New on Bookvoyage section */}
       <DashboardBookSection sectionName="Popular on Bookvoyage" />
 
+      {/* Latest reviews on Bookvoyage section */}
       <DashboardReviewsSection session={session} />
 
       {/*
