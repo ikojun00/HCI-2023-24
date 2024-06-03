@@ -61,7 +61,7 @@ export default function ButtonAddBook({ bookId }: Props) {
   };
 
   return (
-    <div className="w-44 relative mt-3 text-sm">
+    <div className="w-40 lg:w-44 relative mt-3 text-xs lg:text-sm">
       <div
         onClick={handleDropdownClick}
         className="bg-green-600 font-medium flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all hover:bg-green-700 duration-300"
