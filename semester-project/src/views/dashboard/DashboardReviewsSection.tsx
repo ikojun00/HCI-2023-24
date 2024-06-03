@@ -164,57 +164,6 @@ export default function DashboardReviewsSection({ session }: Props) {
                   <ButtonAddBook bookId={review.bookId} />
                 </div>
               </div>
-
-              {/* <div className="grid grid-rows-3 grid-cols-5 lg:grid-cols-none grid-flow-row lg:grid-rows-2 lg:grid-flow-col justify-between items-end gap-x-4">
-                <div className="col-span-2 row-span-2 lg:row-span-3 ">
-                  <div className="w-24 md:w-32 lg:w-40 shrink-0">
-                    {review.bookId ? (
-                      <Link href={`/discover/${review.bookId}`}>
-                        <div className="w-full h-36 md:h-48 lg:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
-                          <Image
-                            src={review.bookImgSrc}
-                            alt="book"
-                            width={150}
-                            height={250}
-                            className="w-full h-full"
-                          />
-                        </div>
-                      </Link>
-                    ) : (
-                      <div className="w-full h-36 md:h-48 lg:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
-                        <Image
-                          src="/no-book-in-category.png"
-                          alt="book"
-                          width={150}
-                          height={250}
-                          className="w-full h-full"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="col-span-3 row-span-2 lg:col-span-2 font-light lg:mb-2 text-sm mr-2 ml-4 lg:ml-0 self-center">
-                  <p className="text-sm text-gray-300">read and reviewed</p>
-                  <h3 className="text-base font-medium">
-                    <Link href={`/discover/${review.bookId}`}>
-                      <span className="hover:text-bv-purple transition-colors duration-300">
-                        {review.title}{" "}
-                      </span>
-                    </Link>
-                    <span className="font-light">by </span>
-                    <span>{review.author}</span>
-                  </h3>
-                  <div className="flex items-start mt-1">
-                    {Stars(review.stars)}
-                  </div>
-                </div>
-                <div className="row-span-1 col-span-5 lg:row-span-1 lg:col-span-2 font-light text-sm  mr-2">
-                  <p className="lg:mt-2 text-sm text-gray-300 md:h-11 lg:h-16 overflow-hidden text-ellipsis line-clamp-2 lg:line-clamp-3">
-                    {review.comment}
-                  </p>
-                  <ButtonAddBook bookId={review.bookId} />
-                </div>
-              </div> */}
             </div>
           ))
         )}
