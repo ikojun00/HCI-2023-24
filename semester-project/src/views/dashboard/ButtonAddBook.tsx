@@ -64,7 +64,7 @@ export default function ButtonAddBook({ bookId }: Props) {
     <div className="w-40 lg:w-44 relative mt-3 text-xs lg:text-sm">
       <div
         onClick={handleDropdownClick}
-        className="bg-green-600 font-medium flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all hover:bg-green-700 duration-300"
+        className="bg-bv-green font-medium flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all hover:bg-bv-green-dark duration-300"
       >
         <span>
           {selectedOption === 1
@@ -80,14 +80,14 @@ export default function ButtonAddBook({ bookId }: Props) {
         </div>
       </div>
       <ul
-        className={`list-none bg-green-600 rounded-lg shadow-md absolute mt-1 left-1/2 w-44 -translate-x-1/2 ${
+        className={`list-none bg-bv-green rounded-lg shadow-md absolute mt-1 left-1/2 w-44 -translate-x-1/2 ${
           isOpen ? "block opacity-100" : "opacity-0 hidden"
         } transition-all duration-500 z-10`}
       >
         <li
           onClick={() => handleOptionClicked(1)}
           className={`py-2 px-3 rounded-t-lg cursor-pointer hover:bg-green-400 ${
-            selectedOption === 1 && "bg-green-500"
+            selectedOption === 1 && "bg-bv-green-light"
           }`}
         >
           Currently Reading
@@ -95,7 +95,7 @@ export default function ButtonAddBook({ bookId }: Props) {
         <li
           onClick={() => handleOptionClicked(2)}
           className={`py-2 px-3 cursor-pointer hover:bg-green-400 ${
-            selectedOption === 2 && "bg-green-500"
+            selectedOption === 2 && "bg-bv-green-light"
           }`}
         >
           Read
@@ -103,7 +103,7 @@ export default function ButtonAddBook({ bookId }: Props) {
         <li
           onClick={() => handleOptionClicked(3)}
           className={`py-2 px-3 rounded-b-lg cursor-pointer hover:bg-green-400 ${
-            selectedOption === 3 && "bg-green-500"
+            selectedOption === 3 && "bg-bv-green-light"
           }`}
         >
           Want to Read

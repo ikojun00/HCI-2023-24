@@ -95,7 +95,7 @@ export default function PostModifyReview({
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="flex justify-center text-center bg-green-500 py-2 px-8 mt-10 rounded-xl hover:bg-green-600 tracking-wider"
+                  className="flex justify-center text-center bg-bv-green-light py-2 px-8 mt-10 rounded-xl hover:bg-bv-green tracking-wider"
                 >
                   {isModify ? "Modify" : "Post"}
                 </button>

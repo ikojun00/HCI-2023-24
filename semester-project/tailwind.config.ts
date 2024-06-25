@@ -16,8 +16,9 @@ const config: Config = {
       },
       colors: {
         "bv-green": {
-          DEFAULT: "#16a34a",
           dark: "#15803d",
+          DEFAULT: "#16a34a",
+          light: "#22c55e",
         },
         "bv-purple": "#6c63ff",
         "bv-blue": {

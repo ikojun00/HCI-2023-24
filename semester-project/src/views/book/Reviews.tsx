@@ -145,7 +145,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
         <div>
           <div className="flex flex-start">
             <button
-              className="flex justify-center p-4 outline-none border-none rounded-md bg-green-600 text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-green-700"
+              className="flex justify-center p-4 outline-none border-none rounded-md bg-bv-green text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-bv-green-dark"
               onClick={handleReview}
             >
               Post Review

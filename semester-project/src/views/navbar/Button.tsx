@@ -10,7 +10,7 @@ export default function Button({ title, link }: ButtonProps) {
   return (
     <div>
       <Link href={link}>
-        <button className="bg-green-600 max-w-fit rounded-lg hover:bg-green-700">
+        <button className="bg-bv-green max-w-fit rounded-lg hover:bg-bv-green-dark">
           {link === "/signup" ? (
             <h2 className="px-6 py-4 text-lg">{title}</h2>
           ) : (

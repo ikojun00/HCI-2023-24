@@ -105,7 +105,7 @@ export default function SignIn() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center text-center bg-green-500 p-2 mt-10 rounded-xl hover:bg-green-600 tracking-wider"
+                className="flex w-full justify-center text-center bg-bv-green-light p-2 mt-10 rounded-xl hover:bg-bv-green tracking-wider"
               >
                 {loading ? <Spinner /> : "Sign in"}
               </button>
@@ -115,7 +115,7 @@ export default function SignIn() {
           <div className="flex justify-center mt-10 text-center text-sm text-gray-300 gap-1">
             Not a member?
             <Link href="/signup">
-              <p className="font-bold text-green-400 hover:text-green-500">
+              <p className="font-bold text-green-400 hover:text-bv-green-light">
                 Sign Up
               </p>
             </Link>

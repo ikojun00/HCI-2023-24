@@ -22,7 +22,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="flex justify-center p-4 outline-none border-none rounded-md bg-red-900 text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-green-500"
+          className="flex justify-center p-4 outline-none border-none rounded-md bg-red-900 text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-bv-green-light"
         >
           Return Home
         </Link>

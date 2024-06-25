@@ -156,7 +156,7 @@ export default function Dashboard({ session }: Props) {
               alt="book"
               width={200}
               height={300}
-              className="rounded-sm border-2 border-white hover:border-green-500"
+              className="rounded-sm border-2 border-white hover:border-bv-green-light"
             />
           </Link>
           <div className="flex gap-4">
@@ -166,7 +166,7 @@ export default function Dashboard({ session }: Props) {
                 alt="book"
                 width={200}
                 height={300}
-                className="rounded-sm border-2 border-white hover:border-green-500 w-52"
+                className="rounded-sm border-2 border-white hover:border-bv-green-light w-52"
               />
             </Link>
             <Link href={`/discover`} className="w-1/12">
@@ -175,7 +175,7 @@ export default function Dashboard({ session }: Props) {
                 alt="book"
                 width={200}
                 height={300}
-                className="rounded-sm border-2 border-white hover:border-green-500"
+                className="rounded-sm border-2 border-white hover:border-bv-green-light"
               />
             </Link>
             <Link href={`/discover`} className="w-1/12">
@@ -184,7 +184,7 @@ export default function Dashboard({ session }: Props) {
                 alt="book"
                 width={200}
                 height={300}
-                className="rounded-sm border-2 border-white hover:border-green-500"
+                className="rounded-sm border-2 border-white hover:border-bv-green-light"
               />
             </Link>
             <Link href={`/discover`} className="w-1/12">
@@ -193,7 +193,7 @@ export default function Dashboard({ session }: Props) {
                 alt="book"
                 width={200}
                 height={300}
-                className="rounded-sm border-2 border-white hover:border-green-500"
+                className="rounded-sm border-2 border-white hover:border-bv-green-light"
               />
             </Link>
             <Link href={`/discover`} className="w-1/12">
@@ -202,7 +202,7 @@ export default function Dashboard({ session }: Props) {
                 alt="book"
                 width={200}
                 height={300}
-                className="rounded-sm border-2 border-white hover:border-green-500"
+                className="rounded-sm border-2 border-white hover:border-bv-green-light"
               />
             </Link>
             <Link href={`/discover`} className="w-1/12">
@@ -211,7 +211,7 @@ export default function Dashboard({ session }: Props) {
                 alt="book"
                 width={200}
                 height={300}
-                className="rounded-sm border-2 border-white hover:border-green-500"
+                className="rounded-sm border-2 border-white hover:border-bv-green-light"
               />
             </Link>
           </div>
