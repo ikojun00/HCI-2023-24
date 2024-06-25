@@ -17,10 +17,5 @@ interface Props {
 }
 
 export default function AboutMeTab({ session }: Props) {
-  return (
-    <div className="flex flex-col mt-3">
-        About Me
-      </div>
-   
-  );
+  return <div className="flex flex-col ">About Me</div>;
 }

@@ -52,41 +52,46 @@ export default function ReadingGoalTab({ session }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mt-36">
-      <p className="text-xl">Choose your yearly reading goal!</p>
+    <>
+    <div  >
+        Reading Goal
+    </div>
+      <div className="flex flex-col items-center justify-center ">
+        <p className="text-lg">Choose your yearly reading goal!</p>
 
-      <div className="my-8 w-60 h-24 bg-gray-300 text-black flex items-center justify-center rounded-sm shadow-2xl">
-        <span
-          className="w-full text-center  text-bv-blue text-4xl font-semibold cursor-pointer"
-          onClick={() => handleNewGoal(goal - 1)}
-        >
-          -
-        </span>
-        <input
-          type="number"
-          value={goal}
-          onChange={(e) => {
-            handleNewGoal(parseInt(e.target.value));
-          }}
-          onWheel={(e) => e.preventDefault()} // Prevent mouse wheel from changing the value
-          min={1}
-          className="w-full text-center text-4xl font-semibold border-0 appearance-none outline-none focus:outline-none focus:border-bv-purple focus:transition-all focus:duration-300 border-x-2 border-gray-400 bg-transparent"
-        />
-        {/* <span className="w-full text-center text-4xl font-semibold border-x-2 border-gray-400 pointer-events-none">
+        <div className="my-8 w-60 h-24 bg-gray-300 text-black flex items-center justify-center rounded-sm shadow-2xl">
+          <span
+            className="w-full text-center  text-bv-blue text-3xl font-semibold cursor-pointer"
+            onClick={() => handleNewGoal(goal - 1)}
+          >
+            -
+          </span>
+          <input
+            type="number"
+            value={goal}
+            onChange={(e) => {
+              handleNewGoal(parseInt(e.target.value));
+            }}
+            onWheel={(e) => e.preventDefault()} // Prevent mouse wheel from changing the value
+            min={1}
+            className="w-full text-center text-3xl font-semibold border-0 appearance-none outline-none focus:outline-none focus:border-bv-purple focus:transition-all focus:duration-300 border-x-2 border-gray-400 bg-transparent"
+          />
+          {/* <span className="w-full text-center text-4xl font-semibold border-x-2 border-gray-400 pointer-events-none">
               {goal}
             </span> */}
-        <span
-          className="w-full text-center text-bv-blue text-4xl font-semibold cursor-pointer"
-          onClick={() => handleNewGoal(goal + 1)}
-        >
-          +
-        </span>
-      </div>
+          <span
+            className="w-full text-center text-bv-blue text-3xl font-semibold cursor-pointer"
+            onClick={() => handleNewGoal(goal + 1)}
+          >
+            +
+          </span>
+        </div>
 
-      <button className="" onClick={handleSaveGoal}>
-        Set Goal
-      </button>
-    </div>
+        <button className="" onClick={handleSaveGoal}>
+          Set Goal
+        </button>
+      </div>
+    </>
     /* <div className="flex justify-center items-center my-32">
           <form onSubmit={handleSubmit} className="text-center">
             <label htmlFor="goal" className="block mb-4">
@@ -110,6 +115,7 @@ export default function ReadingGoalTab({ session }: Props) {
               Set Goal
             </button>
           </form>
-        </div> */
+        </div>
+         */
   );
 }

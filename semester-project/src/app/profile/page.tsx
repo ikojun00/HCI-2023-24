@@ -47,7 +47,7 @@ export default function Profile() {
 
       <div className="flex gap-5">
         {/* Tabs */}
-        <div className="flex flex-col gap-4 min-w-fit h-fit bg-bv-blue-dark px-4 py-8 rounded-md">
+        <div className="flex flex-col gap-4 min-w-fit h-fit bg-bv-blue-dark px-4 py-8 border shadow-md rounded-md">
           {tabOptions.map((option) => (
             <button
               key={option.id}
@@ -60,7 +60,7 @@ export default function Profile() {
             </button>
           ))}
         </div>
-        <div className="w-full">
+        <div className="w-full border shadow-md rounded-md bg-bv-blue-dark px-6 py-8">
           {tab == "aboutMe" && <AboutMeTab session={session} />}
           {tab == "bookshelves" && <SelectBookshelfTab session={session} />}
           {tab == "readingGoal" && <ReadingGoalTab session={session} />}
@@ -73,7 +73,7 @@ export default function Profile() {
             key={option.id}
             onClick={() => setTab(option.id)}
             className={`text-sm md:text-base ${
-              tab === option.id ? "border-yellow-400" : "border-slate-800"
+              tab === option.id ? "border-yellow-400" : "border-bv-blue"
             } border-b-2`}
           >
             {option.title}
