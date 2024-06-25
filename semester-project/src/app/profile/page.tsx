@@ -1,12 +1,17 @@
 "use client";
 
 import Spinner from "@/components/icons/Spinner";
+import AboutMeTab from "@/views/profile/AboutMeTab";
 import ReadingGoalTab from "@/views/profile/ReadingGoalTab";
 import SelectBookshelfTab from "@/views/profile/SelectBookshelfTab";
 import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 
 const tabOptions = [
+  {
+    title: "About Me",
+    id: "aboutMe",
+  },
   {
     title: "Bookshelves",
     id: "bookshelves",
@@ -40,8 +45,29 @@ export default function Profile() {
         </button>
       </div>
 
+      <div className="flex gap-5">
+        {/* Tabs */}
+        <div className="flex flex-col gap-4 min-w-fit bg-black px-3 py-5">
+          {tabOptions.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => setTab(option.id)}
+              className={`text-sm md:text-base pl-3 text-right ${
+                tab === option.id ? "border-bv-purple" : "border-bv-blue-light"
+              } border-b-2`}
+            >
+              {option.title}
+            </button>
+          ))}
+        </div>
+        <div className="w-full">
+          {tab == "aboutMe" && <AboutMeTab session={session} />}
+          {tab == "bookshelves" && <SelectBookshelfTab session={session} />}
+          {tab == "readingGoal" && <ReadingGoalTab session={session} />}
+        </div>
+      </div>
       {/* Tabs */}
-      <div className="flex gap-6 border-b">
+      {/* <div className="flex gap-6 border-b">
         {tabOptions.map((option) => (
           <button
             key={option.id}
@@ -53,11 +79,12 @@ export default function Profile() {
             {option.title}
           </button>
         ))}
-      </div>
+      </div> */}
 
       {/* Content of the tabs */}
+      {/* {tab == "aboutMe" && <AboutMeTab session={session}/>}
       {tab == "bookshelves" && <SelectBookshelfTab session={session} />}
-      {tab == "readingGoal" && <ReadingGoalTab session={session} />}
+      {tab == "readingGoal" && <ReadingGoalTab session={session} />} */}
     </div>
   ) : (
     <div>No data.</div>

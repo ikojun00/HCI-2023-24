@@ -34,15 +34,15 @@ export default function SelectBookshelfTab({ session }: Props) {
   return (
     <>
       {/* Tabs */}
-      <div className="flex gap-6 border-b">
+      <div className="flex gap-6 border-b border-bv-blue-light">
         {bookshelfTabOptions.map((option) => (
           <button
             key={option.id}
             onClick={() => setBookshelf(option.id)}
             className={`text-sm md:text-base ${
               bookshelfNumber === option.id
-                ? "border-yellow-400"
-                : "border-slate-800"
+                ? "border-bv-purple "
+                : "border-transparent "
             } border-b-2`}
           >
             {option.title}
