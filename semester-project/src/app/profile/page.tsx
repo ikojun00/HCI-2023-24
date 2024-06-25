@@ -47,13 +47,13 @@ export default function Profile() {
 
       <div className="flex gap-5">
         {/* Tabs */}
-        <div className="flex flex-col gap-4 min-w-fit bg-black px-3 py-5">
+        <div className="flex flex-col gap-4 min-w-fit h-fit bg-bv-blue-dark px-4 py-8 rounded-md">
           {tabOptions.map((option) => (
             <button
               key={option.id}
               onClick={() => setTab(option.id)}
-              className={`text-sm md:text-base pl-3 text-right ${
-                tab === option.id ? "border-bv-purple" : "border-bv-blue-light"
+              className={`text-sm md:text-base px-3 pb-1 ${
+                tab === option.id ? "border-bv-purple" : "border-transparent hover:border-bv-purple hover:border-opacity-40 transition-colors duration-300 "
               } border-b-2`}
             >
               {option.title}
