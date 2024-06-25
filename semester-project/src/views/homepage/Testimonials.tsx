@@ -28,7 +28,7 @@ export default function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <div className="bg-slate-700 rounded-lg p-4 m-2">
+    <div className="bg-bv-blue-light rounded-lg p-4 m-2">
       <div className="flex gap-8">
         <div className="hidden md:flex items-center">
           <button

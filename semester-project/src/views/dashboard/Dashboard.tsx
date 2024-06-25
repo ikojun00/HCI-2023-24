@@ -118,22 +118,22 @@ export default function Dashboard({ session }: Props) {
               <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
                 <div className="w-full mb-4">
                   <Link href={`/discover/${book.bookId}`}>
-                    <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                    <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-bv-blue-dark">
                       {book.title}
                     </h3>
                   </Link>
-                  <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                  <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-bv-blue-light font-medium">
                     {book.author}
                   </h4>
                 </div>
                 <div className="flex flex-row items-center space-x-2">
                   <div className="w-20 h-2.5 bg-white rounded-full">
                     <div
-                      className="h-full bg-slate-800 rounded-full"
+                      className="h-full bg-bv-blue rounded-full"
                       style={{ width: `${progress}%` }}
                     ></div>
                   </div>
-                  <p className="text-sm text-slate-800 font-medium">
+                  <p className="text-sm text-bv-blue font-medium">
                     {progress}%
                   </p>
                 </div>
@@ -240,22 +240,22 @@ export default function Dashboard({ session }: Props) {
             <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
               <div className="w-full mb-4">
                 <Link href={`/discover`}>
-                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-bv-blue-dark">
                     Btitle
                   </h3>
                 </Link>
-                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-bv-blue-light font-medium">
                   Bauthor
                 </h4>
               </div>
               <div className="flex flex-row items-center space-x-2">
                 <div className="w-20 h-2.5 bg-white rounded-full">
                   <div
-                    className="h-full bg-slate-800 rounded-full"
+                    className="h-full bg-bv-blue rounded-full"
                     style={{ width: `45%` }}
                   ></div>
                 </div>
-                <p className="text-sm text-slate-800 font-medium">45%</p>
+                <p className="text-sm text-bv-blue font-medium">45%</p>
               </div>
             </div>
           </div>
@@ -273,22 +273,22 @@ export default function Dashboard({ session }: Props) {
             <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
               <div className="w-full mb-4">
                 <Link href={`/discover`}>
-                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-bv-blue-dark">
                     Btitle
                   </h3>
                 </Link>
-                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-bv-blue-light font-medium">
                   Bauthor
                 </h4>
               </div>
               <div className="flex flex-row items-center space-x-2">
                 <div className="w-20 h-2.5 bg-white rounded-full">
                   <div
-                    className="h-full bg-slate-800 rounded-full"
+                    className="h-full bg-bv-blue rounded-full"
                     style={{ width: `45%` }}
                   ></div>
                 </div>
-                <p className="text-sm text-slate-800 font-medium">45%</p>
+                <p className="text-sm text-bv-blue font-medium">45%</p>
               </div>
             </div>
           </div>
@@ -306,22 +306,22 @@ export default function Dashboard({ session }: Props) {
             <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
               <div className="w-full mb-4">
                 <Link href={`/discover`}>
-                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-bv-blue-dark">
                     Btitle
                   </h3>
                 </Link>
-                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-bv-blue-light font-medium">
                   Bauthor
                 </h4>
               </div>
               <div className="flex flex-row items-center space-x-2">
                 <div className="w-20 h-2.5 bg-white rounded-full">
                   <div
-                    className="h-full bg-slate-800 rounded-full"
+                    className="h-full bg-bv-blue rounded-full"
                     style={{ width: `45%` }}
                   ></div>
                 </div>
-                <p className="text-sm text-slate-800 font-medium">45%</p>
+                <p className="text-sm text-bv-blue font-medium">45%</p>
               </div>
             </div>
           </div>
@@ -339,22 +339,22 @@ export default function Dashboard({ session }: Props) {
             <div className="flex flex-1 overflow-hidden flex-col items-start justify-between py-5">
               <div className="w-full mb-4">
                 <Link href={`/discover`}>
-                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-slate-900">
+                  <h3 className="overflow-hidden whitespace-nowrap text-ellipsis font-black text-bv-blue-dark">
                     Btitle
                   </h3>
                 </Link>
-                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-slate-700 font-medium">
+                <h4 className="overflow-hidden whitespace-nowrap text-ellipsis text-bv-blue-light font-medium">
                   Bauthor
                 </h4>
               </div>
               <div className="flex flex-row items-center space-x-2">
                 <div className="w-20 h-2.5 bg-white rounded-full">
                   <div
-                    className="h-full bg-slate-800 rounded-full"
+                    className="h-full bg-bv-blue rounded-full"
                     style={{ width: `45%` }}
                   ></div>
                 </div>
-                <p className="text-sm text-slate-800 font-medium">45%</p>
+                <p className="text-sm text-bv-blue font-medium">45%</p>
               </div>
             </div>
           </div>

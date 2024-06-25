@@ -54,7 +54,7 @@ export default function SignUp() {
 
   return (
     <div className="text-white">
-      <div className="max-w-2xl mx-auto flex flex-col justify-center px-2 py-10 lg:px-4 bg-slate-900 rounded-xl mt-10">
+      <div className="max-w-2xl mx-auto flex flex-col justify-center px-2 py-10 lg:px-4 bg-bv-blue-dark rounded-xl mt-10">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
             Create an account

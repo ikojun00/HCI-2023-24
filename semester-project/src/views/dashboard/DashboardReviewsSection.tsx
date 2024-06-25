@@ -101,7 +101,7 @@ export default function DashboardReviewsSection({ session }: Props) {
           reviews.map((review) => (
             <div
               key={review.id}
-              className="border p-5 pb-6 pr-6 rounded-lg shadow-md bg-slate-900"
+              className="border p-5 pb-6 pr-6 rounded-lg shadow-md bg-bv-blue-dark"
             >
               <div className="flex items-center gap-2 pb-2 text-xs md:text-sm text-gray-400 mb-1">
                 <button className="relative w-6 h-6 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">

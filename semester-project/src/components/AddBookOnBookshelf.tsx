@@ -71,7 +71,7 @@ export default function AddBookOnBookshelf({ pathname }: Props) {
         name="shelf"
         required
         onChange={handleSelectChange}
-        className="block w-full rounded-md border-2 py-1.5 bg-slate-700 pr-8 pl-2"
+        className="block w-full rounded-md border-2 py-1.5 bg-bv-blue-light pr-8 pl-2"
       >
         <option value="">{bookStatus}</option>
         {bookStatus !== "Currently Reading" && (

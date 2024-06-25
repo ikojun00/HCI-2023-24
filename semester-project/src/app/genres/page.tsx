@@ -45,7 +45,7 @@ export default function Genres() {
                   sizes="100vw"
                   style={{ width: "200px", height: "auto" }}
                 />
-                <div className="relative bottom-6 bg-slate-700">
+                <div className="relative bottom-6 bg-bv-blue-light">
                   <p className="pl-1">{genre.title}</p>
                 </div>
               </Link>

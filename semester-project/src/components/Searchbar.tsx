@@ -47,7 +47,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
-      <div className="flex flex-col border-2 rounded-md w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 mx-auto bg-slate-800">
+      <div className="flex flex-col border-2 rounded-md w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 mx-auto bg-bv-blue">
         <div className="flex justify-end">
           <button className="text-white m-6 md:m-8" onClick={handleSearchbar}>
             <CloseButton />
@@ -55,12 +55,12 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2 md:gap-4 px-4 sm:px-6 lg:px-8">
-            <div className="w-full md:pl-4 flex border rounded-md h-10 md:h-12 items-center bg-slate-700 gap-4">
+            <div className="w-full md:pl-4 flex border rounded-md h-10 md:h-12 items-center bg-bv-blue-light gap-4">
               <div className="scale-75 md:scale-100">
                 <Search />
               </div>
               <input
-                className="w-11/12 h-full focus:outline-none text-base sm:text-lg md:text-xl bg-slate-700"
+                className="w-11/12 h-full focus:outline-none text-base sm:text-lg md:text-xl bg-bv-blue-light"
                 type="text"
                 placeholder="Search for books"
                 value={searchTerm}
@@ -71,7 +71,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
               <button
                 onClick={() => setTabs("title")}
                 className={`text-sm md:text-base ${
-                  tabs === "title" ? "border-yellow-400" : "border-slate-800"
+                  tabs === "title" ? "border-yellow-400" : "border-bv-blue"
                 } border-b-2`}
               >
                 Books
@@ -79,7 +79,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
               <button
                 onClick={() => setTabs("author")}
                 className={`text-sm md:text-base ${
-                  tabs === "author" ? "border-yellow-400" : "border-slate-800"
+                  tabs === "author" ? "border-yellow-400" : "border-bv-blue"
                 } border-b-2`}
               >
                 Authors
@@ -128,7 +128,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                   <div className="flex w-full justify-center">
                     {books.length !== 0 && books.length % limit === 0 && (
                       <button
-                        className="bg-slate-700 px-2 py-1 md:px-4 md:py-2 rounded-lg text-sm sm:text-base md:text-md"
+                        className="bg-bv-blue-light px-2 py-1 md:px-4 md:py-2 rounded-lg text-sm sm:text-base md:text-md"
                         onClick={handleMoreBooks}
                       >
                         Show more books

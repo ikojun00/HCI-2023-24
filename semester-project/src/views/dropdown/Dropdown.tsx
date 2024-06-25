@@ -7,7 +7,7 @@ interface DropdownProps {
 
 export default function Dropdown({ dropdownItems }: DropdownProps) {
   return (
-    <div className="z-10 relative bg-slate-800 rounded-lg md:pr-12 md:absolute md:border-2 md:mt-2">
+    <div className="z-10 relative bg-bv-blue rounded-lg md:pr-12 md:absolute md:border-2 md:mt-2">
       <ul className="py-2 text-sm">
         {dropdownItems.map((item) => (
           <li key={item.title}>

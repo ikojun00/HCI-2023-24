@@ -36,7 +36,7 @@ export default function Home() {
     <Dashboard session={session} />
   ) : (
     <>
-      <div className="bg-slate-900">
+      <div className="bg-bv-blue-dark">
         <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 py-16">
           <Hero />
         </div>

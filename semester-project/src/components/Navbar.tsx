@@ -71,7 +71,7 @@ export default function Navbar() {
   );
 
   return (
-    <div className="sticky z-10 top-0 left-0 bg-slate-800 border-b-2">
+    <div className="sticky z-10 top-0 left-0 bg-bv-blue border-b-2">
       <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4">
         <div className="flex justify-between items-center p-4">
           {hamburgerIcon}
@@ -85,13 +85,13 @@ export default function Navbar() {
             <div
               className={`md:flex ${
                 isOpen
-                  ? "absolute text-center top-16 right-0 w-full pt-8 bg-slate-800"
+                  ? "absolute text-center top-16 right-0 w-full pt-8 bg-bv-blue"
                   : "hidden gap-8"
               }`}
             >
               <div className="flex justify-center">
                 <button
-                  className="flex flex-row text-white md:mb-0 mb-8 bg-slate-700 p-1 md:hover:bg-slate-500 rounded-md pl-2 pr-20 py-2 gap-1"
+                  className="flex flex-row text-white md:mb-0 mb-8 bg-bv-blue-light p-1 md:hover:bg-slate-500 rounded-md pl-2 pr-20 py-2 gap-1"
                   onClick={handleSearchbar}
                 >
                   <Search />
