@@ -52,7 +52,7 @@ export default function Profile() {
             <button
               key={option.id}
               onClick={() => setTab(option.id)}
-              className={`uppercase text-gray-200 text-xs md:text-sm lg:text-base px-3 pb-1 ${
+              className={`uppercase text-gray-200 text-sm lg:text-base px-3 pb-1 ${
                 tab === option.id
                   ? "border-bv-purple"
                   : "text-gray-400 border-transparent hover:border-bv-purple hover:border-opacity-40 transition-colors duration-300"

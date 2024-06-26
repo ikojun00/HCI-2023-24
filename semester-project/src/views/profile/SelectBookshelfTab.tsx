@@ -39,11 +39,11 @@ export default function SelectBookshelfTab({ session }: Props) {
           <button
             key={option.id}
             onClick={() => setBookshelf(option.id)}
-            className={`text-sm md:text-base ${
+            className={`${
               bookshelfNumber === option.id
                 ? "border-bv-purple "
                 : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
-            } border-b-2 uppercase text-xs md:text-sm lg:text-base`}
+            } border-b-2 uppercase text-sm lg:text-base`}
           >
             {option.title}
           </button>
