@@ -89,7 +89,7 @@ export default function ReadingGoalTab({ session }: Props) {
 
         <button
           onClick={handleSaveGoal}
-          className="bg-bv-green hover:bg-bv-green-dark text-sm md:text-base cursor-pointer font-medium flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"
+          className="bg-bv-green hover:bg-bv-green-dark text-base cursor-pointer font-medium flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"
         >
           Set Goal
         </button>

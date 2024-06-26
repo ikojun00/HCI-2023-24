@@ -68,7 +68,7 @@ export default function AboutMeTab({ session }: Props) {
           </label>
           <div className="px-4 flex border rounded-md py-1 bg-bv-blue-light">
             <input
-              className="w-full h-full focus:outline-none text-sm md:text-base bg-transparent"
+              className="w-full h-full focus:outline-none text-base bg-transparent"
               id="name"
               type="text"
               placeholder="First Name"
@@ -86,7 +86,7 @@ export default function AboutMeTab({ session }: Props) {
           </label>
           <div className="px-4 flex border rounded-md py-1 bg-bv-blue-light">
             <input
-              className="w-full h-full focus:outline-none text-sm md:text-base bg-transparent"
+              className="w-full h-full focus:outline-none text-base bg-transparent"
               id="name"
               type="text"
               placeholder="Last Name"
@@ -104,7 +104,7 @@ export default function AboutMeTab({ session }: Props) {
           </label>
           <div className="px-4 flex border rounded-md py-1 bg-bv-blue-light">
             <input
-              className="w-full h-full focus:outline-none text-sm md:text-base bg-transparent"
+              className="w-full h-full focus:outline-none text-base bg-transparent"
               id="email"
               type="text"
               placeholder="Email"
@@ -123,7 +123,7 @@ export default function AboutMeTab({ session }: Props) {
               isChanged
                 ? "bg-bv-green hover:bg-bv-green-dark cursor-pointer"
                 : "bg-gray-600 hover:bg-gray-700 cursor-not-allowed"
-            }  font-medium text-sm md:text-base flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all duration-300`}
+            }  font-medium text-base flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all duration-300`}
           >
             Update Profile
           </button>
