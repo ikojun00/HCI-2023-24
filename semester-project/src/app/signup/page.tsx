@@ -128,7 +128,7 @@ export default function SignUp() {
                       email: e.target.value,
                     }))
                   }
-                  className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-40"
+                  className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
               </div>
             </div>
