@@ -55,7 +55,9 @@ export default function ReadingGoalTab({ session }: Props) {
   return (
     <div className="flex flex-col gap-16 md:gap-0 md:flex-row md:justify-around">
       <div className="flex flex-col items-center justify-center">
-        <p className="uppercase text-sm md:text-base text-gray-200 text-center">Choose your yearly reading goal</p>
+        <p className="uppercase text-sm md:text-base text-gray-200 text-center">
+          Choose your yearly reading goal
+        </p>
 
         <div className="my-8 h-20 w-48 lg:w-56 text-2xl lg:text-3xl bg-gray-200 text-bv-blue-dark flex items-center justify-center rounded-lg shadow-2xl">
           <span

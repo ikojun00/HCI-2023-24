@@ -32,7 +32,7 @@ export default function AboutMeTab({ session }: Props) {
 
   const handleProfilePhotoClick = () => {
     console.log("Profile Photo Clicked");
-  }
+  };
 
   return (
     <div className="flex gap-4">
@@ -46,7 +46,11 @@ export default function AboutMeTab({ session }: Props) {
           </label>
           <div className="flex justify-center lg:justify-start items-center gap-2 sm:gap-4 mt-1">
             {Array.from({ length: 5 }, (_, index) => (
-              <div key={index} onClick={handleProfilePhotoClick }className="flex shrink-0 justify-center items-center w-12 h-12 sm:w-14 sm:h-14 md:h-16 md:w-16 border-2 hover:border-bv-purple duration-300 transition-colors rounded-full overflow-hidden cursor-pointer">
+              <div
+                key={index}
+                onClick={handleProfilePhotoClick}
+                className="flex shrink-0 justify-center items-center w-12 h-12 sm:w-14 sm:h-14 md:h-16 md:w-16 border-2 hover:border-bv-purple duration-300 transition-colors rounded-full overflow-hidden cursor-pointer"
+              >
                 <Image
                   className="circle-image"
                   height={64}
