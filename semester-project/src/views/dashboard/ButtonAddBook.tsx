@@ -8,9 +8,13 @@ import { useSession } from "next-auth/react";
 
 interface Props {
   bookId: number;
+  pageComponentisUsedOn: "Dashboard" | "BookPage";
 }
 
-export default function ButtonAddBook({ bookId }: Props) {
+export default function ButtonAddBook({
+  bookId,
+  pageComponentisUsedOn,
+}: Props) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState<Boolean>(false);
@@ -61,7 +65,13 @@ export default function ButtonAddBook({ bookId }: Props) {
   };
 
   return (
-    <div className="w-40 lg:w-44 relative mt-3 text-xs lg:text-sm">
+    <div
+      className={`relative mt-3 ${
+        pageComponentisUsedOn == "Dashboard"
+          ? "w-40 lg:w-44 text-[0.825rem] lg:text-sm"
+          : "w-44 lg:w-48 text-sm lg:text-base"
+      }`}
+    >
       <div
         onClick={handleDropdownClick}
         className="bg-bv-green font-medium flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all hover:bg-bv-green-dark duration-300"

@@ -14,6 +14,7 @@ import PostModifyReview from "@/views/book/PostModifyReview";
 import Pencil from "@/components/icons/Pencil";
 import Trash from "@/components/icons/Trash";
 import { toast } from "react-toastify";
+import BookPageSectionTitle from "./BookPageSectionTitle";
 
 type Props = {
   pathname: string;
@@ -162,10 +163,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
       ) : (
         <div>
           <div className="flex flex-col gap-10 max-w-screen-lg mx-auto">
-            <div>
-              <h1 className="text-3xl font-bold">Your Review</h1>
-              <hr />
-            </div>
+            <BookPageSectionTitle sectionName="Your Review" />
             <div className="flex flex-row items-center justify-between">
               <div className="flex gap-1">
                 <p className="font-bold">{reviewExists.user.firstName}</p>
@@ -203,12 +201,11 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
         </div>
       )}
       <div>
-        <h1 className="text-3xl font-bold">
-          {reviewExists === undefined ? "All Reviews" : "Other Reviews"}
-        </h1>
-        <hr />
-        <br />
-        <br />
+        <BookPageSectionTitle
+          sectionName={
+            reviewExists === undefined ? "All Reviews" : "Other Reviews"
+          }
+        />
         {loading ? (
           <Spinner />
         ) : reviews.length === 0 ? (

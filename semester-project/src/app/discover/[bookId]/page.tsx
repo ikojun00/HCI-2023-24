@@ -13,6 +13,7 @@ import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
 import Link from "next/link";
 import ButtonAddBook from "@/views/dashboard/ButtonAddBook";
+import BookPageSectionTitle from "@/views/book/BookPageSectionTitle";
 
 type Title = {
   title: string;
@@ -69,11 +70,11 @@ export default function Book() {
                   />
                 </div>
                 <div className="flex flex-col gap-4 md:justify-between md:p-8">
-                  <div className="flex flex-col md:items-start items-center gap-4">
+                  <div className="flex flex-col md:items-start items-center gap-2">
                     <h1 className="text-3xl font-bold">{book.title}</h1>
-                    <div className="flex flex-row gap-1 items-center">
-                      <h1>By:</h1>
-                      <h1 className="text-xl font-bold">{book.author}</h1>
+                    <div className="flex text-lg flex-row gap-1 items-center">
+                      <h1 className="">by</h1>
+                      <h1 className="font-semibold">{book.author}</h1>
                     </div>
                   </div>
                   <div className="flex flex-row items-center gap-4">
@@ -90,7 +91,10 @@ export default function Book() {
                     ))}
                   </div>
                   <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between md:items-center">
-                    <ButtonAddBook bookId={parseInt(pathname)} />
+                    <ButtonAddBook
+                      bookId={parseInt(pathname)}
+                      pageComponentisUsedOn="BookPage"
+                    />
                     {averageRating && (
                       <div className="flex items-center gap-2">
                         <YellowStar />
@@ -101,10 +105,8 @@ export default function Book() {
                 </div>
               </div>
               <div>
-                <h1 className="text-3xl font-bold">Book Info</h1>
-                <hr />
-                <br />
-                <p className="">{book.description}</p>
+                <BookPageSectionTitle sectionName="Book Info" />
+                <p>{book.description}</p>
               </div>
               <Reviews
                 setAverageRating={setAverageRating}

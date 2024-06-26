@@ -161,7 +161,10 @@ export default function DashboardReviewsSection({ session }: Props) {
                       {review.comment}
                     </p>
                   </div>
-                  <ButtonAddBook bookId={review.bookId} />
+                  <ButtonAddBook
+                    bookId={review.bookId}
+                    pageComponentisUsedOn="Dashboard"
+                  />
                 </div>
               </div>
             </div>
