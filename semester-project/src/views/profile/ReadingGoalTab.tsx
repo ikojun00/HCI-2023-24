@@ -74,7 +74,7 @@ export default function ReadingGoalTab({ session }: Props) {
             }}
             onWheel={(e) => e.preventDefault()} // Prevent mouse wheel from changing the value
             min={1}
-            className="w-full text-center font-semibold border-0 appearance-none outline-none focus:outline-none focus:border-bv-purple focus:transition-all focus:duration-300 border-x-2 border-gray-400 bg-transparent"
+            className="w-full text-center font-semibold border-0 appearance-none outline-none focus:outline-none focus:border-bv-purple focus:transition-all focus:duration-300 border-x-2 rounded-none border-gray-400 bg-transparent"
           />
           {/* <span className="w-full text-center text-4xl font-semibold border-x-2 border-gray-400 pointer-events-none">
               {goal}
