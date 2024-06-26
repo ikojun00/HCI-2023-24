@@ -17,15 +17,15 @@ export default function DashboardBookItem({ book }: Props) {
       <div className="gap-0">
         {book ? (
           <Link href={`/discover/${book.bookId}`}>
-            <p className="text-sm md:text-sm lg:text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis hover:text-bv-purple  transition-colors duration-300">
+            <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis hover:text-bv-purple  transition-colors duration-300">
               {book && book.title}
             </p>
           </Link>
         ) : (
-          <p className="text-sm md:text-sm lg:text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis hover:text-bv-purple transition-colors duration-300"></p>
+          <p className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis hover:text-bv-purple transition-colors duration-300"></p>
         )}
 
-        <p className="text-xs md:text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis">
+        <p className="text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis">
           {book && book.author}
         </p>
       </div>

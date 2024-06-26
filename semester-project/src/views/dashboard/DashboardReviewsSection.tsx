@@ -103,7 +103,7 @@ export default function DashboardReviewsSection({ session }: Props) {
               key={review.id}
               className="border p-5 pb-6 pr-6 rounded-lg shadow-md bg-bv-blue-dark"
             >
-              <div className="flex items-center gap-2 pb-2 text-xs md:text-sm text-gray-400 mb-1">
+              <div className="flex items-center gap-2 pb-2 text-sm text-gray-400 mb-1">
                 <button className="relative w-6 h-6 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
                   <Link
                     href={"/profile"}
@@ -145,10 +145,10 @@ export default function DashboardReviewsSection({ session }: Props) {
                     </div>
                   )}
                 </div>
-                <div className="font-light text-xs md:text-sm lg:mt-8 lg:mb-5 mr-2 flex flex-col justify-between">
+                <div className="font-light text-sm lg:mt-8 lg:mb-5 mr-2 flex flex-col justify-between">
                   <div>
                     <p className="text-gray-300">read and reviewed</p>
-                    <h3 className="text-sm md:text-base font-medium">
+                    <h3 className="text-base font-medium">
                       <Link href={`/discover/${review.bookId}`}>
                         <span className="hover:text-bv-purple transition-colors duration-300">
                           {review.title}{" "}
