@@ -41,7 +41,7 @@ export default function AboutMeTab({ session }: Props) {
         className="flex flex-col gap-5 w-full lg:w-3/5"
       >
         <div className="flex flex-col gap-1">
-          <label className="uppercase text-gray-400 min-w-fit text-xs md:text-sm">
+          <label className="uppercase text-gray-400 min-w-fit text-sm">
             Profile Photo
           </label>
           <div className="flex justify-center lg:justify-start items-center gap-2 sm:gap-4 mt-1">
@@ -63,7 +63,7 @@ export default function AboutMeTab({ session }: Props) {
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <label className="uppercase text-gray-400 min-w-fit text-xs md:text-sm">
+          <label className="uppercase text-gray-400 min-w-fit text-sm">
             First Name
           </label>
           <div className="px-4 flex border rounded-md py-1 bg-bv-blue-light">
@@ -81,7 +81,7 @@ export default function AboutMeTab({ session }: Props) {
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <label className="uppercase text-gray-400 min-w-fit text-xs md:text-sm">
+          <label className="uppercase text-gray-400 min-w-fit text-sm">
             Last Name
           </label>
           <div className="px-4 flex border rounded-md py-1 bg-bv-blue-light">
@@ -99,7 +99,7 @@ export default function AboutMeTab({ session }: Props) {
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <label className="uppercase text-gray-400 min-w-fit text-xs md:text-sm">
+          <label className="uppercase text-gray-400 min-w-fit text-sm">
             Email
           </label>
           <div className="px-4 flex border rounded-md py-1 bg-bv-blue-light">

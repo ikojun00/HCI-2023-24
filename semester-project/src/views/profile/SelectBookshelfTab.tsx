@@ -43,7 +43,7 @@ export default function SelectBookshelfTab({ session }: Props) {
               bookshelfNumber === option.id
                 ? "border-bv-purple "
                 : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
-            } border-b-2 uppercase text-sm lg:text-base`}
+            } border-b-2 uppercase text-base`}
           >
             {option.title}
           </button>
