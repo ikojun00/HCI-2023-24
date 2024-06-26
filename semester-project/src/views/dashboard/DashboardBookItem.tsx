@@ -9,7 +9,7 @@ interface Props {
 
 export default function DashboardBookItem({ book }: Props) {
   return (
-    <div className="w-24 sm:w-32 md:w-40 flex flex-col gap-2 shrink-0">
+    <div className="w-28 sm:w-32 md:w-40 flex flex-col gap-2 shrink-0">
       <DashboardBookCover
         bookId={book ? book.bookId : null}
         coverUrl={book ? book.cover.url : "/no-book-in-category.png"}
