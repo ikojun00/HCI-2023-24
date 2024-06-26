@@ -119,7 +119,7 @@ export default function AboutMeTab({ session }: Props) {
               isChanged
                 ? "bg-bv-green hover:bg-bv-green-dark cursor-pointer"
                 : "bg-gray-600 hover:bg-gray-700 cursor-not-allowed"
-            }  font-medium flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all duration-300`}
+            }  font-medium text-sm md:text-base flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all duration-300`}
           >
             Update Profile
           </button>

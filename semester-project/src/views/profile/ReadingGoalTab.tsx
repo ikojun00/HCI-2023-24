@@ -2,6 +2,7 @@ import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import SetReadingGoalImage from "../../../public/SetReadingGoalImage";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
@@ -52,16 +53,13 @@ export default function ReadingGoalTab({ session }: Props) {
   };
 
   return (
-    <>
-    <div  >
-        Reading Goal
-    </div>
-      <div className="flex flex-col items-center justify-center ">
-        <p className="text-lg">Choose your yearly reading goal!</p>
+    <div className="flex flex-col gap-16 md:gap-0 md:flex-row md:justify-around">
+      <div className="flex flex-col items-center justify-center">
+        <p className="uppercase text-sm md:text-base text-gray-200 text-center">Choose your yearly reading goal</p>
 
-        <div className="my-8 w-60 h-24 bg-gray-300 text-black flex items-center justify-center rounded-sm shadow-2xl">
+        <div className="my-8 h-20 w-48 lg:w-56 text-2xl lg:text-3xl bg-gray-200 text-bv-blue-dark flex items-center justify-center rounded-lg shadow-2xl">
           <span
-            className="w-full text-center  text-bv-blue text-3xl font-semibold cursor-pointer"
+            className="w-full text-center font-semibold cursor-pointer"
             onClick={() => handleNewGoal(goal - 1)}
           >
             -
@@ -74,24 +72,30 @@ export default function ReadingGoalTab({ session }: Props) {
             }}
             onWheel={(e) => e.preventDefault()} // Prevent mouse wheel from changing the value
             min={1}
-            className="w-full text-center text-3xl font-semibold border-0 appearance-none outline-none focus:outline-none focus:border-bv-purple focus:transition-all focus:duration-300 border-x-2 border-gray-400 bg-transparent"
+            className="w-full text-center font-semibold border-0 appearance-none outline-none focus:outline-none focus:border-bv-purple focus:transition-all focus:duration-300 border-x-2 border-gray-400 bg-transparent"
           />
           {/* <span className="w-full text-center text-4xl font-semibold border-x-2 border-gray-400 pointer-events-none">
               {goal}
             </span> */}
           <span
-            className="w-full text-center text-bv-blue text-3xl font-semibold cursor-pointer"
+            className="w-full text-center font-semibold cursor-pointer"
             onClick={() => handleNewGoal(goal + 1)}
           >
             +
           </span>
         </div>
 
-        <button className="" onClick={handleSaveGoal}>
+        <button
+          onClick={handleSaveGoal}
+          className="bg-bv-green hover:bg-bv-green-dark text-sm md:text-base cursor-pointer font-medium flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"
+        >
           Set Goal
         </button>
       </div>
-    </>
+      <div className="flex justify-center ">
+        <SetReadingGoalImage />
+      </div>
+    </div>
     /* <div className="flex justify-center items-center my-32">
           <form onSubmit={handleSubmit} className="text-center">
             <label htmlFor="goal" className="block mb-4">
