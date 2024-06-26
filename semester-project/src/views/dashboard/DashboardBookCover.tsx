@@ -11,7 +11,7 @@ export default function DashboardBookCover({ bookId, coverUrl }: Props) {
     <>
       {bookId ? (
         <Link href={`/discover/${bookId}`}>
-          <div className="w-full h-40 sm:h-48 md:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
+          <div className="w-full h-44 sm:h-48 md:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
             <Image
               src={coverUrl}
               alt="book"
@@ -22,7 +22,7 @@ export default function DashboardBookCover({ bookId, coverUrl }: Props) {
           </div>
         </Link>
       ) : (
-        <div className="w-full h-36 sm:h-48 md:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
+        <div className="w-full h-44 sm:h-48 md:h-60 border-white border-2 hover:border-[3px] hover:border-bv-purple transition-colors duration-300">
           <Image
             src={coverUrl}
             alt="book"
