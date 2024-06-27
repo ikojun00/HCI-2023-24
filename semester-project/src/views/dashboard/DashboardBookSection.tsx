@@ -58,7 +58,7 @@ export default function DashboardBookSection({ sectionName }: Props) {
       {/* Section title and line below */}
       <DashboardSectionTitle sectionName={sectionName} />
 
-      {/* Section with 5 newest books */}
+      {/* Section with 5 books */}
       <div className="overflow-x-auto no-scrollbar flex gap-4 md:justify-between items-start">
         {loading ? (
           <div className="h-[calc(100vh-78px)] flex justify-center items-center">
