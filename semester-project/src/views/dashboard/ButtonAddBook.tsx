@@ -69,7 +69,7 @@ export default function ButtonAddBook({
       className={`relative mt-3 ${
         pageComponentisUsedOn == "Dashboard"
           ? "w-40 lg:w-44 text-[0.825rem] lg:text-sm"
-          : "w-44 lg:w-48 text-sm lg:text-base"
+          : "w-48 text-base"
       }`}
     >
       <div

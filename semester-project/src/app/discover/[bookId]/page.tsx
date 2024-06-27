@@ -69,7 +69,7 @@ export default function Book() {
                     style={{ width: "250px", height: "auto" }}
                   />
                 </div>
-                <div className="flex flex-col gap-4 md:justify-between md:p-8">
+                <div className="flex flex-col gap-4 md:gap-8 md:mt-8 md:ml-8">
                   <div className="flex flex-col md:items-start items-center gap-2">
                     <h1 className="text-3xl font-bold">{book.title}</h1>
                     <div className="flex text-lg flex-row gap-1 items-center">
@@ -77,7 +77,8 @@ export default function Book() {
                       <h1 className="font-semibold">{book.author}</h1>
                     </div>
                   </div>
-                  <div className="flex flex-row items-center gap-4">
+
+                  <div className="flex flex-row items-center justify-center md:justify-normal gap-4">
                     Genres:
                     {genres.map((item: Genre) => (
                       <Link
