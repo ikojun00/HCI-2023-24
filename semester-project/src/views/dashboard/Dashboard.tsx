@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import UserOverview from "./UserOverview";
 import DashboardBookSection from "./DashboardBookSection";
 import DashboardReviewsSection from "./DashboardReviewsSection";
+import HeroDashboard from "./HeroDashboard";
+import DiscoverCTA from "./DiscoverCTA";
 
 interface BookshelfItem {
   shelf: number;
@@ -72,24 +74,32 @@ export default function Dashboard({ session }: Props) {
     setProgress(newProgress);
   };*/
   return (
-    <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-28">
-      <div className="flex justify-center mt-44 text-lg md:text-2xl px-2">
+    <>
+      <div className="bg-bv-blue-dark">
+        <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 py-12">
+          <HeroDashboard session={session} />
+        </div>
+      </div>
+      {/* <div className="flex justify-center mt-44 text-lg md:text-2xl px-2">
         Welcome, {session.user.firstName}! Here is what we have been reading...
       </div>
+ */}
+      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-28 mt-24">
+        {/* User's overview section */}
+        <UserOverview session={session} />
 
-      {/* User's overview section */}
-      <UserOverview session={session} />
+        {/* New on Bookvoyage section */}
+        <DashboardBookSection sectionName="New on Bookvoyage" />
 
-      {/* New on Bookvoyage section */}
-      <DashboardBookSection sectionName="New on Bookvoyage" />
+        {/* New on Bookvoyage section */}
+        <DashboardBookSection sectionName="Popular on Bookvoyage" />
 
-      {/* New on Bookvoyage section */}
-      <DashboardBookSection sectionName="Popular on Bookvoyage" />
+        {/* Latest reviews on Bookvoyage section */}
+        <DashboardReviewsSection session={session} />
 
-      {/* Latest reviews on Bookvoyage section */}
-      <DashboardReviewsSection session={session} />
+        <DiscoverCTA />
 
-      {/*
+        {/*
       <section className="flex flex-col">
         <div className="mb-4">
           <h1 className="text-3xl font-medium mb-1">
@@ -143,7 +153,7 @@ export default function Dashboard({ session }: Props) {
         </div>
       </section>
       */}
-      {/*
+        {/*
       <section className="flex flex-col h-full">
         <div className="mb-4">
           <h1 className="text-3xl font-medium mb-1">{"Trending books"}</h1>
@@ -219,7 +229,7 @@ export default function Dashboard({ session }: Props) {
       </section>
       */}
 
-      {/* <section className="flex flex-col">
+        {/* <section className="flex flex-col">
         <div className="mb-4">
           <h1 className="text-3xl font-medium mb-1">
             {"Books You're Currently Reading..."}
@@ -361,7 +371,7 @@ export default function Dashboard({ session }: Props) {
         </div>
       </section> */}
 
-      {/* <section className="flex flex-col">
+        {/* <section className="flex flex-col">
         <div className="mb-4">
           <h1 className="text-3xl font-medium mb-1">
             {"Books You're Currently Reading..."}
@@ -385,6 +395,7 @@ export default function Dashboard({ session }: Props) {
           ))}
         </div>
       </section> */}
-    </div>
+      </div>
+    </>
   );
 }
