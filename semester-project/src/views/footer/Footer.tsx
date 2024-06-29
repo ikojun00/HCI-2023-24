@@ -6,38 +6,18 @@ const linkGroups = [
   {
     title: "Discover",
     links: [
-      { href: "/", label: "Recommendations" },
-      { href: "/", label: "Book Discovery" },
-      { href: "/", label: "Author Spotlight" },
-      { href: "/", label: "Quotes" },
-      { href: "/", label: "Wanderlust" },
-      { href: "/", label: "Genre Exploration" },
-      { href: "/", label: "Book Adaptations" },
+      { href: "/#", label: "User Dashboard" },
+      { href: "/discover", label: "Search Books" },
+      { href: "/genres", label: "Genre Exploration" },
     ],
   },
+
   {
-    title: "Reading Log",
+    title: "Profile",
     links: [
-      { href: "/", label: "Progress Tracker" },
-      { href: "/", label: "Challenges" },
-    ],
-  },
-  {
-    title: "Community",
-    links: [
-      { href: "/", label: "Discussions And Activities" },
-      { href: "/", label: "Book Club" },
-      { href: "/", label: "Book Swap And Trade" },
-      { href: "/", label: "Literary Events" },
-      { href: "/", label: "Bookstore and Library Locator" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { href: "/", label: "About" },
-      { href: "/", label: "Terms Of Services" },
-      { href: "/", label: "Contact" },
+      { href: "/profile", label: "About Me" },
+      { href: "/profile", label: "Bookshelves" },
+      { href: "/profile", label: "Reading Goal" },
     ],
   },
 ];
@@ -45,8 +25,8 @@ const linkGroups = [
 export default function Footer() {
   return (
     <div className="bg-black">
-      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 mt-44 py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 overflow-hidden">
+      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 mt-40 py-8">
+        <div className="flex justify-around overflow-hidden">
           {linkGroups.map((group, index) => (
             <FooterLinkList
               key={index}

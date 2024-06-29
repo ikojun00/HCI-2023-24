@@ -33,6 +33,16 @@ export default function AboutMeTab({ session }: Props) {
   const handleProfilePhotoClick = () => {
     console.log("Profile Photo Clicked");
   };
+  /* useEffect(() => {
+    (async () => {
+      const res = await axios.get(`${Backend_URL}/user/${session.user.id}`, {
+        headers: {
+          Authorization: `Bearer ${session.backendTokens.accessToken}`,
+        },
+        }
+      );
+    })();
+  }, []); */
 
   return (
     <div className="flex gap-4">
