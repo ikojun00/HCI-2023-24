@@ -42,6 +42,10 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
         );
         setLoading(false);
       }
+      else {
+        setBooks([]);
+        setLoading(false);
+      }
     })();
   }, [searchTerm, tabs]);
 
@@ -53,11 +57,11 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
             <CloseButton />
           </button>
         </div>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2 md:gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-4 px-2">
+          <div className="flex flex-col gap-4 px-4 sm:px-6 lg:px-8">
             <div className="w-full md:pl-4 flex border rounded-md h-10 md:h-12 items-center bg-bv-blue-light gap-4">
-              <div className="scale-75 md:scale-100">
-                <Search />
+              <div className="pl-2 scale-75 md:scale-100">
+                <Search color="white"/>
               </div>
               <input
                 className="w-11/12 h-full focus:outline-none text-base sm:text-lg md:text-xl bg-bv-blue-light"
@@ -67,20 +71,22 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex gap-6 border-b">
+            <div className="flex gap-6">
               <button
                 onClick={() => setTabs("title")}
                 className={`text-sm md:text-base ${
-                  tabs === "title" ? "border-yellow-400" : "border-bv-blue"
-                } border-b-2`}
+                  tabs === "title" ? "border-bv-purple "
+                  : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
+              } border-b-2 uppercase text-base whitespace-nowrap`}
               >
                 Books
               </button>
               <button
                 onClick={() => setTabs("author")}
                 className={`text-sm md:text-base ${
-                  tabs === "author" ? "border-yellow-400" : "border-bv-blue"
-                } border-b-2`}
+                  tabs === "author" ? "border-bv-purple "
+                  : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
+              } border-b-2 uppercase text-base whitespace-nowrap`}
               >
                 Authors
               </button>
@@ -108,17 +114,17 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                           sizes="100vw"
                           style={{ width: "auto", height: "100px" }}
                         />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col items-start">
                           <Link
                             href={`/discover/${book.bookId}`}
                             onClick={handleSearchbar}
                           >
-                            <h2 className="font-bold text-base sm:text-lg md:text-xl hover:underline">
+                            <h2 className="font-semibold text-left text-base sm:text-lg md:text-xl hover:text-bv-purple-light transition-colors duration-300">
                               {book.title}
                             </h2>
                           </Link>
                           <div className="flex flex-row gap-1 text-sm sm:text-base md:text-md">
-                            <p>By:</p>
+                            <span className="font-light">by </span>
                             <p className="font-medium">{book.author}</p>
                           </div>
                         </div>
@@ -128,7 +134,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                   <div className="flex w-full justify-center">
                     {books.length !== 0 && books.length % limit === 0 && (
                       <button
-                        className="bg-bv-blue-light px-2 py-1 md:px-4 md:py-2 rounded-lg text-sm sm:text-base md:text-md"
+                        className="bg-bv-green hover:bg-bv-green-dark cursor-pointer font-medium text-base flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"
                         onClick={handleMoreBooks}
                       >
                         Show more books
