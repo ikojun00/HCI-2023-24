@@ -41,8 +41,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
           await ContentfulService.getBooksByTabs(tabs, searchTerm, limit, 0)
         );
         setLoading(false);
-      }
-      else {
+      } else {
         setBooks([]);
         setLoading(false);
       }
@@ -51,17 +50,20 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
-      <div className="flex flex-col border-2 rounded-md w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 mx-auto bg-bv-blue">
+      <div className="flex flex-col border-2 rounded-md px-2 w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 mx-auto bg-bv-blue">
         <div className="flex justify-end">
-          <button className="text-white m-6 md:m-8" onClick={handleSearchbar}>
+          <button
+            className="text-white mx-4 my-6 sm:mx-6 md:m-8"
+            onClick={handleSearchbar}
+          >
             <CloseButton />
           </button>
         </div>
-        <div className="flex flex-col gap-4 px-2">
+        <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-4 px-4 sm:px-6 lg:px-8">
             <div className="w-full md:pl-4 flex border rounded-md h-10 md:h-12 items-center bg-bv-blue-light gap-4">
               <div className="pl-2 scale-75 md:scale-100">
-                <Search color="white"/>
+                <Search color="white" />
               </div>
               <input
                 className="w-11/12 h-full focus:outline-none text-base sm:text-lg md:text-xl bg-bv-blue-light"
@@ -75,18 +77,20 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
               <button
                 onClick={() => setTabs("title")}
                 className={`text-sm md:text-base ${
-                  tabs === "title" ? "border-bv-purple "
-                  : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
-              } border-b-2 uppercase text-base whitespace-nowrap`}
+                  tabs === "title"
+                    ? "border-bv-purple "
+                    : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
+                } border-b-2 uppercase text-base whitespace-nowrap`}
               >
                 Books
               </button>
               <button
                 onClick={() => setTabs("author")}
                 className={`text-sm md:text-base ${
-                  tabs === "author" ? "border-bv-purple "
-                  : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
-              } border-b-2 uppercase text-base whitespace-nowrap`}
+                  tabs === "author"
+                    ? "border-bv-purple "
+                    : "border-b border-bv-blue-light text-gray-400 hover:border-bv-purple transition-colors duration-300"
+                } border-b-2 uppercase text-base whitespace-nowrap`}
               >
                 Authors
               </button>
@@ -94,7 +98,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
           </div>
 
           <div className="w-full h-96 overflow-y-auto overflow-x-clip">
-            <ul className="flex flex-col items-start gap-4 flex-wrap px-4 sm:px-6 lg:px-8 my-4">
+            <ul className="flex flex-col items-start flex-wrap px-4 sm:px-6 lg:px-8 my-4">
               {loading ? (
                 <div className="flex h-48 w-full justify-center items-center">
                   <Spinner />
@@ -103,17 +107,21 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                 <p>No books.</p>
               ) : (
                 <>
-                  {books.map((book) => (
-                    <div key={book.bookId}>
+                  {books.map((book, index) => (
+                    <div className={`flex items-center w-full  py-4 ${
+                      index != 0 && "border-t-2 border-bv-blue-light"
+                    }`} key={book.bookId}>
                       <li className="flex flex-row gap-4">
-                        <Image
-                          src={book.cover?.url}
-                          alt="Cover"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          style={{ width: "auto", height: "100px" }}
-                        />
+                        <Link href={`/discover/${book.bookId}`}>
+                          <div className="border-white border-2 hover:border-bv-purple transition-colors duration-300">
+                            <Image
+                              src={book.cover?.url}
+                              alt="Cover"
+                              width={65}
+                              height={100}
+                              />
+                          </div>
+                        </Link>
                         <div className="flex flex-col items-start">
                           <Link
                             href={`/discover/${book.bookId}`}
@@ -131,7 +139,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                       </li>
                     </div>
                   ))}
-                  <div className="flex w-full justify-center">
+                  <div className="flex w-full justify-center mt-2 mb-4">
                     {books.length !== 0 && books.length % limit === 0 && (
                       <button
                         className="bg-bv-green hover:bg-bv-green-dark cursor-pointer font-medium text-base flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"

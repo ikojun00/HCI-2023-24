@@ -20,7 +20,10 @@ const config: Config = {
           DEFAULT: "#16a34a",
           light: "#22c55e",
         },
-        "bv-purple": { DEFAULT: "#6c63ff", light: "#c4b5fd"},
+        "bv-purple": {
+          DEFAULT: "#6c63ff",
+          light: "#c4b5fd",
+        },
         "bv-blue": {
           dark: "#0f172a",
           DEFAULT: "#1e293b",
