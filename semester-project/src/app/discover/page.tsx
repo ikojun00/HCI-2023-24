@@ -127,8 +127,8 @@ export default function Discover() {
                         key={book.bookId}
                       >
                         <li className="flex flex-row gap-4">
-                          <Link href={`/discover/${book.bookId}`}>
-                            <div className="border-white border-2 hover:border-bv-purple transition-colors duration-300">
+                          <Link className="shrink-0" href={`/discover/${book.bookId}`}>
+                            <div className=" border-white border-2 hover:border-bv-purple transition-colors duration-300">
                               <Image
                                 src={book.cover?.url}
                                 alt="Cover"

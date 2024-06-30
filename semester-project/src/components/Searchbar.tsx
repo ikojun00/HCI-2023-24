@@ -112,7 +112,7 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                       index != 0 && "border-t-2 border-bv-blue-light"
                     }`} key={book.bookId}>
                       <li className="flex flex-row gap-4">
-                        <Link href={`/discover/${book.bookId}`}>
+                        <Link className="shrink-0" href={`/discover/${book.bookId}`}>
                           <div className="border-white border-2 hover:border-bv-purple transition-colors duration-300">
                             <Image
                               src={book.cover?.url}
