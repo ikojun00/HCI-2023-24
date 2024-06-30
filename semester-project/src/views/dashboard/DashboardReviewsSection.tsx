@@ -150,7 +150,7 @@ export default function DashboardReviewsSection({ session }: Props) {
                     <p className="text-gray-300">read and reviewed</p>
                     <h3 className="text-base font-medium">
                       <Link href={`/discover/${review.bookId}`}>
-                        <span className="hover:text-bv-purple transition-colors duration-300">
+                        <span className="hover:text-bv-purple-light transition-colors duration-300">
                           {review.title}{" "}
                         </span>
                       </Link>
