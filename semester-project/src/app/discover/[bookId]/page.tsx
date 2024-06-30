@@ -97,7 +97,7 @@ export default function Book() {
                       pageComponentisUsedOn="BookPage"
                     />
                     {averageRating && (
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 mt-3">
                         <YellowStar />
                         <h1 className="text-xl font-bold">{averageRating}</h1>
                       </div>

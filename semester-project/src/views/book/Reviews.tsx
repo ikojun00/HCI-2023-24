@@ -123,7 +123,11 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
       const response = await axios.get(
         `${Backend_URL}/review/${pathname}/averageRating`
       );
-      setAverageRating(Math.round(response.data.averageRating * 10) / 10);
+      console.log(response.data);
+      console.log(parseInt(response.data.averagerating));
+      setAverageRating(
+        Math.round(parseInt(response.data.averagerating) * 10) / 10
+      );
     };
 
     (async () => {
