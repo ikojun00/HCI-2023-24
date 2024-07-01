@@ -14,13 +14,15 @@ interface Session {
 
 interface Props {
   session: Session;
+  totalBooksRead: number;
 }
-export default function CircleReadingProgress({ session }: Props) {
-  const [yearlyReadingGoal, setYearlyReadingGoal] = useState<number>(2); //ovo ce bit 0 kao i u donjem useStateu, kada dodemo do toga da dohvacamo booksReadThisYear
-  const [booksReadThisYear, setBooksReadThisYear] = useState<number>(40);
+export default function CircleReadingProgress({
+  session,
+  totalBooksRead,
+}: Props) {
+  const [yearlyReadingGoal, setYearlyReadingGoal] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
-  //const [widthValue, setWidthValue] = useState<number>(window.outerWidth>768 ? 256: window.outerWidth>640? 192 : 128);
-  const progressValue = (booksReadThisYear / yearlyReadingGoal) * 100;
+  const progressValue = (totalBooksRead / yearlyReadingGoal) * 100;
 
   useEffect(() => {
     (async () => {
@@ -32,7 +34,6 @@ export default function CircleReadingProgress({ session }: Props) {
         });
         if (response.data.readingGoal) {
           console.log(response.data.readingGoal);
-          console.log(typeof response.data.readingGoal);
           setYearlyReadingGoal(response.data.readingGoal);
         }
       } catch (error) {
@@ -43,7 +44,7 @@ export default function CircleReadingProgress({ session }: Props) {
   }, [session, session?.backendTokens.accessToken]);
 
   useEffect(() => {
-    if (progress < progressValue) {
+    if (progress < progressValue && progress < 100) {
       const interval = setInterval(() => {
         setProgress((prevProgress) =>
           prevProgress >= progressValue ? progressValue : prevProgress + 1
@@ -95,9 +96,9 @@ export default function CircleReadingProgress({ session }: Props) {
             dy="0.3rem"
             textAnchor="middle"
             dominantBaseline="middle"
-            className="text-4xl font-semibold fill-gray-200"
+            className="text-3xl font-semibold fill-gray-200"
           >
-            {progress}%
+            {` ${progress < 100 ? `${progress}%` : "🥳"} `}
           </text>
           <text
             x="50%"
@@ -107,7 +108,11 @@ export default function CircleReadingProgress({ session }: Props) {
             dominantBaseline="middle"
             className="text-base fill-gray-400"
           >
-            {yearlyReadingGoal - booksReadThisYear} books left
+            {` ${
+              progressValue < 100
+                ? `${yearlyReadingGoal - totalBooksRead} books left`
+                : "Goal reached!!"
+            } `}
           </text>
         </svg>
       </div>

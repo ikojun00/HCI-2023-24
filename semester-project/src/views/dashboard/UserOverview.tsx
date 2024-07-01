@@ -1,7 +1,6 @@
 import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import CircleReadingProgress from "./CircleReadingProgress";
 import { toast } from "react-toastify";
 import DashboardSectionTitle from "./DashboardSectionTitle";
@@ -31,6 +30,7 @@ export default function UserOverview({ session }: Props) {
   const [lastCurrentBook, setLastCurrentBook] = useState<BookItem | null>(null);
   const [lastReadBook, setLastReadBook] = useState<BookItem | null>(null);
   const [lastAddedBook, setLastAddedBook] = useState<BookItem | null>(null);
+  const [totalBooksRead, setTotalBooksRead] = useState<number>(0);
   // bookshelf code - 1 - Currently Reading, 2 - Read, 3 - Want to Read
 
   useEffect(() => {
@@ -53,8 +53,10 @@ export default function UserOverview({ session }: Props) {
                 parseInt(lastBookIdOnThisShelf)
               );
               if (shelfId === 1) setLastCurrentBook(book);
-              else if (shelfId === 2) setLastReadBook(book);
-              else if (shelfId === 3) setLastAddedBook(book);
+              else if (shelfId === 2) {
+                setTotalBooksRead(item.bookIds.length);
+                setLastReadBook(book);
+              } else if (shelfId === 3) setLastAddedBook(book);
             })
           );
         } catch (error) {
@@ -74,7 +76,10 @@ export default function UserOverview({ session }: Props) {
       <div className="flex overflow-x-auto no-scrollbar gap-4 md:flex-row md:gap-20 md:justify-between items-center">
         {/* Circle for progress */}
 
-        <CircleReadingProgress session={session} />
+        <CircleReadingProgress
+          session={session}
+          totalBooksRead={totalBooksRead}
+        />
 
         {/* Section with current read, recently read and recently added */}
         <div className="grow flex gap-4 md:justify-between">

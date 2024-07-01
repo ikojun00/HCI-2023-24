@@ -1,6 +1,6 @@
 import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import SetReadingGoalImage from "../../../public/SetReadingGoalImage";
 
@@ -18,12 +18,35 @@ interface Props {
 }
 
 export default function ReadingGoalTab({ session }: Props) {
-  const [goal, setGoal] = useState(1);
+  const [goal, setGoal] = useState(0);
+  const [isChanged, setIsChanged] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(`${Backend_URL}/users/readingGoal`, {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        });
+        if (response.data.readingGoal) {
+          console.log(response.data.readingGoal);
+          setGoal(response.data.readingGoal);
+        } else {
+          setGoal(1);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response?.data?.message);
+      }
+    })();
+  }, [session, session?.backendTokens.accessToken]);
 
   const handleNewGoal = (newGoal: number) => {
     if (newGoal <= 0) {
       return;
     }
+    setIsChanged(true);
     setGoal(newGoal);
   };
 
@@ -89,7 +112,11 @@ export default function ReadingGoalTab({ session }: Props) {
 
         <button
           onClick={handleSaveGoal}
-          className="bg-bv-green hover:bg-bv-green-dark text-base cursor-pointer font-medium flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"
+          className={`${
+            isChanged
+              ? "bg-bv-green hover:bg-bv-green-dark cursor-pointer"
+              : "bg-gray-600 hover:bg-gray-700 cursor-not-allowed"
+          }  font-medium text-base flex justify-between items-center rounded-lg py-2.5 px-3 cursor-pointer transition-all duration-300`}
         >
           Set Goal
         </button>
