@@ -1,5 +1,4 @@
 import Link from "next/link";
-import DashboardBookCover from "./DashboardBookCover";
 import DashboardSectionTitle from "./DashboardSectionTitle";
 import Image from "next/image";
 import ButtonAddBook from "./ButtonAddBook";
@@ -8,8 +7,6 @@ import axios from "axios";
 import { Backend_URL } from "@/lib/constants";
 import ContentfulService from "@/services/ContentfulService";
 import Spinner from "@/components/icons/Spinner";
-import YellowStar from "@/components/icons/YellowStar";
-import GreyStar from "@/components/icons/GreyStar";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
@@ -52,21 +49,12 @@ export default function DashboardReviewsSection({ session }: Props) {
   const [loading, setLoading] = useState<boolean>(false);
   const [reviews, setReviews] = useState<RecentReviewInterface[]>([]);
 
-  const Stars = (num: number) => {
-    const starArray = Array.from({ length: 5 }, (_, index) =>
-      index < num ? <YellowStar key={index} /> : <GreyStar key={index} />
-    );
-
-    return starArray;
-  };
-
   useEffect(() => {
     (async () => {
       setLoading(true);
       const response = await axios.get(`${Backend_URL}/dashboard/reviews`);
       const recentReviews = await Promise.all(
         response.data.map(async (item: ReviewFetch) => {
-          console.log("hi");
           const book = await ContentfulService.getBookById(item.bookId);
           return {
             id: item.id,
