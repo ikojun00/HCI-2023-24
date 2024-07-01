@@ -117,6 +117,7 @@ export default function DashboardReviewsSection({ session }: Props) {
                           alt="book"
                           width={150}
                           height={250}
+                          sizes="100vw"
                           className="w-full h-full"
                         />
                       </div>

@@ -135,6 +135,7 @@ export default function Searchbar({
                               alt="Cover"
                               width={65}
                               height={100}
+                              sizes="100vw"
                             />
                           </div>
                         </Link>

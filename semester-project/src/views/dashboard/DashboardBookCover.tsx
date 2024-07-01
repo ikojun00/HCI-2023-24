@@ -17,6 +17,7 @@ export default function DashboardBookCover({ bookId, coverUrl }: Props) {
               alt="book"
               width={150}
               height={250}
+              sizes="100vw"
               className="w-full h-full"
             />
           </div>
