@@ -127,13 +127,17 @@ export default function Discover() {
                         key={book.bookId}
                       >
                         <li className="flex flex-row gap-4">
-                          <Link className="shrink-0" href={`/discover/${book.bookId}`}>
+                          <Link
+                            className="shrink-0"
+                            href={`/discover/${book.bookId}`}
+                          >
                             <div className=" border-white border-2 hover:border-bv-purple transition-colors duration-300">
                               <Image
                                 src={book.cover?.url}
                                 alt="Cover"
                                 width={100}
                                 height={150}
+                                sizes="100vw"
                               />
                             </div>
                           </Link>
@@ -149,7 +153,6 @@ export default function Discover() {
                             </div>
                           </div>
                         </li>
-                        <br />
                       </div>
                     ))}
                     <div className="flex w-full justify-center mt-2 mb-4">

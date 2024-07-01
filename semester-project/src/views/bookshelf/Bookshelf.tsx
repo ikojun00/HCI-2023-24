@@ -101,23 +101,29 @@ export default function Bookshelf({ session, bookshelfNumber }: Props) {
               {item.bookIds.map((book: BookItem) => (
                 <div className="flex justify-between" key={book.bookId}>
                   <li className="flex flex-row gap-4">
-                    <Image
-                      src={book.cover?.url}
-                      alt="Cover"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: "100px", height: "auto" }}
-                    />
+                    <Link
+                      className="shrink-0"
+                      href={`/discover/${book.bookId}`}
+                    >
+                      <div className=" border-white border-2 hover:border-bv-purple transition-colors duration-300">
+                        <Image
+                          src={book.cover?.url}
+                          alt="Cover"
+                          width={100}
+                          height={150}
+                          sizes="100vw"
+                        />
+                      </div>
+                    </Link>
                     <div className="flex flex-col justify-between">
-                      <div>
+                      <div className="flex flex-col items-start">
                         <Link href={`/discover/${book.bookId}`}>
-                          <h2 className="font-bold text-base sm:text-lg md:text-xl hover:underline">
+                          <h2 className="font-semibold text-left text-base sm:text-lg md:text-xl hover:text-bv-purple-light transition-colors duration-300">
                             {book.title}
                           </h2>
                         </Link>
                         <div className="flex flex-row gap-1 text-sm sm:text-base md:text-md">
-                          <p>By:</p>
+                          <span className="font-light">by </span>
                           <p className="font-medium">{book.author}</p>
                         </div>
                       </div>

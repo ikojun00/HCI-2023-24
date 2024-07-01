@@ -78,7 +78,7 @@ export default function ReadingStatus({ session, bookId, pages }: Props) {
               <div className="w-32 md:w-96 bg-gray-700 rounded-full">
                 <div
                   style={{ width: `${data}%` }}
-                  className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                  className="bg-bv-purple text-xs font-semibold text-purple-100 text-center p-1 leading-none rounded-full"
                 >
                   {data}%
                 </div>
