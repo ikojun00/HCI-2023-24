@@ -108,18 +108,25 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
               ) : (
                 <>
                   {books.map((book, index) => (
-                    <div className={`flex items-center w-full  py-4 ${
-                      index != 0 && "border-t-2 border-bv-blue-light"
-                    }`} key={book.bookId}>
+                    <div
+                      className={`flex items-center w-full  py-4 ${
+                        index != 0 && "border-t-2 border-bv-blue-light"
+                      }`}
+                      key={book.bookId}
+                    >
                       <li className="flex flex-row gap-4">
-                        <Link className="shrink-0" href={`/discover/${book.bookId}`}>
+                        <Link
+                          className="shrink-0"
+                          href={`/discover/${book.bookId}`}
+                          onClick={handleSearchbar}
+                        >
                           <div className="border-white border-2 hover:border-bv-purple transition-colors duration-300">
                             <Image
                               src={book.cover?.url}
                               alt="Cover"
                               width={65}
                               height={100}
-                              />
+                            />
                           </div>
                         </Link>
                         <div className="flex flex-col items-start">

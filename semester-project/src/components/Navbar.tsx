@@ -94,7 +94,7 @@ export default function Navbar() {
                   className="flex flex-row text-white md:mb-0 mb-8 bg-bv-blue-light p-1 md:hover:bg-slate-500 rounded-md pl-2 pr-20 py-2 gap-1"
                   onClick={handleSearchbar}
                 >
-                  <Search color="white"/>
+                  <Search color="white" />
                   <h1>Search Books</h1>
                 </button>
               </div>
@@ -110,7 +110,11 @@ export default function Navbar() {
                     <Arrow active={activeDropdown === index} />
                   </h2>
                   {activeDropdown === index && (
-                    <Dropdown dropdownItems={item.dropdowns} />
+                    <Dropdown
+                      dropdownItems={item.dropdowns}
+                      isOpen={isOpen}
+                      toggleHamburgerMenu={toggleHamburgerMenu}
+                    />
                   )}
                 </div>
               ))}
