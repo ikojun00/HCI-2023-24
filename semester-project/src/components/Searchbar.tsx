@@ -11,9 +11,15 @@ import Search from "./icons/Search";
 
 interface HandleSearchbarProps {
   handleSearchbar: () => void;
+  isOpenMenuOnSmallScreen: boolean;
+  toggleHamburgerMenu: () => void;
 }
 
-export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
+export default function Searchbar({
+  handleSearchbar,
+  isOpenMenuOnSmallScreen,
+  toggleHamburgerMenu,
+}: HandleSearchbarProps) {
   const limit = 5;
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setBooks] = useState<BookItem[]>([]);
@@ -118,7 +124,10 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                         <Link
                           className="shrink-0"
                           href={`/discover/${book.bookId}`}
-                          onClick={handleSearchbar}
+                          onClick={() => {
+                            handleSearchbar();
+                            isOpenMenuOnSmallScreen && toggleHamburgerMenu();
+                          }}
                         >
                           <div className="border-white border-2 hover:border-bv-purple transition-colors duration-300">
                             <Image
@@ -132,7 +141,10 @@ export default function Searchbar({ handleSearchbar }: HandleSearchbarProps) {
                         <div className="flex flex-col items-start">
                           <Link
                             href={`/discover/${book.bookId}`}
-                            onClick={handleSearchbar}
+                            onClick={() => {
+                              handleSearchbar();
+                              isOpenMenuOnSmallScreen && toggleHamburgerMenu();
+                            }}
                           >
                             <h2 className="font-semibold text-left text-base sm:text-lg md:text-xl hover:text-bv-purple-light transition-colors duration-300">
                               {book.title}

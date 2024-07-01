@@ -3,13 +3,13 @@ import DropdownItem from "../../../types/interfaces/DropdownItem";
 
 interface DropdownProps {
   dropdownItems: DropdownItem[];
-  isOpen: boolean;
+  isOpenMenuOnSmallScreen: boolean;
   toggleHamburgerMenu: () => void;
 }
 
 export default function Dropdown({
   dropdownItems,
-  isOpen,
+  isOpenMenuOnSmallScreen,
   toggleHamburgerMenu,
 }: DropdownProps) {
   return (
@@ -20,7 +20,7 @@ export default function Dropdown({
             <Link
               href={item.path}
               className="block px-4 py-2 hover:ml-2 hover:text-bv-purple transition-all ease-in duration-200"
-              onClick={() => isOpen && toggleHamburgerMenu()}
+              onClick={() => isOpenMenuOnSmallScreen && toggleHamburgerMenu()}
             >
               {item.title}
             </Link>

@@ -98,7 +98,13 @@ export default function Navbar() {
                   <h1>Search Books</h1>
                 </button>
               </div>
-              {showSearchbar && <Searchbar handleSearchbar={handleSearchbar} />}
+              {showSearchbar && (
+                <Searchbar
+                  handleSearchbar={handleSearchbar}
+                  isOpenMenuOnSmallScreen={isOpen}
+                  toggleHamburgerMenu={toggleHamburgerMenu}
+                />
+              )}
               {navbarNames.map((item: NavbarItem, index: number) => (
                 <div
                   className="flex flex-col items-center mb-8 md:block md:mb-0"
@@ -112,7 +118,7 @@ export default function Navbar() {
                   {activeDropdown === index && (
                     <Dropdown
                       dropdownItems={item.dropdowns}
-                      isOpen={isOpen}
+                      isOpenMenuOnSmallScreen={isOpen}
                       toggleHamburgerMenu={toggleHamburgerMenu}
                     />
                   )}
