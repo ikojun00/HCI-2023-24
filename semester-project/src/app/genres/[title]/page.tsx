@@ -32,15 +32,12 @@ export default function Genre() {
   return (
     <div>
       <div>
-        <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
-          <br />
-          <br />
-          <h1 className="text-xl sm:text-2xl font-bold p-4 capitalize">
+        <div className="flex flex-col max-w-screen-lg mx-auto px-6 sm:px-8">
+          <h1 className="text-xl sm:text-2xl font-bold py-4 capitalize mt-6">
             {pathname}
           </h1>
           <div className="flex items-center flex-col">
-            <br />
-            <ul className="flex flex-col items-start w-full gap-16 px-4 mt-4">
+            <ul className="flex flex-col items-start w-full gap-16 mt-4">
               {loading ? (
                 <Spinner />
               ) : books.length === 0 ? (

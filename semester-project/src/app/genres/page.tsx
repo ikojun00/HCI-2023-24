@@ -18,11 +18,8 @@ export default function Genres() {
     })();
   }, []);
   return (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
-      <br />
-      <br />
-      <br />
-      <div className="flex flex-col gap-16 p-4">
+    <div className="max-w-screen-lg mx-auto px-6 sm:px-8 mt-6">
+      <div className="flex flex-col gap-16 py-4">
         <div className="flex flex-col gap-4">
           <h1 className="text-xl sm:text-2xl font-medium">Genres</h1>
           <h2>Explore all books on BookVoyage by genre.</h2>
