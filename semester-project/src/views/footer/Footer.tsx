@@ -44,7 +44,7 @@ export default function Footer() {
             </Link>
           </div>
           <div className="text-xs sm:text-sm flex justify-center">
-            &copy; 2023 BookVoyage. All rights reserved.
+            &copy; 2024 BookVoyage. All rights reserved.
           </div>
         </div>
       </div>
