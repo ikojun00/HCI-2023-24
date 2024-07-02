@@ -104,7 +104,7 @@ export default function DashboardReviewsSection({ session }: Props) {
                   {review.user.firstName + " " + review.user.lastName}{" "}
                 </p>
                 <p>|</p>
-                <p>2 days ago</p>
+                <p>{review.stars} stars</p>
               </div>
 
               <div className="flex gap-4 ">

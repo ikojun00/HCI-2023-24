@@ -15,6 +15,7 @@ import Pencil from "@/components/icons/Pencil";
 import Trash from "@/components/icons/Trash";
 import { toast } from "react-toastify";
 import BookPageSectionTitle from "./BookPageSectionTitle";
+import Link from "next/link";
 
 type Props = {
   pathname: string;
@@ -150,7 +151,7 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
         <div>
           <div className="flex flex-start">
             <button
-              className="flex justify-center p-4 outline-none border-none rounded-md bg-bv-green text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-bv-green-dark"
+              className="flex justify-center py-3 md:py-3.5 px-4 outline-none border-none rounded-md bg-bv-green text-base font-semibold cursor-pointer transition-all duration-300 hover:bg-bv-green-dark"
               onClick={handleReview}
             >
               Post Review
@@ -169,13 +170,24 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
           <div className="flex flex-col gap-10 max-w-screen-lg mx-auto">
             <BookPageSectionTitle sectionName="Your Review" />
             <div className="flex flex-row items-center justify-between">
-              <div className="flex gap-1">
-                <p className="font-bold">{reviewExists.user.firstName}</p>
-                <p className="font-bold">{reviewExists.user.lastName}</p>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <button className="relative w-6 h-6 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
+                  <Link
+                    href={"/profile"}
+                    className="flex justify-center items-center"
+                  >
+                    {/* User's image */}
+                  </Link>
+                </button>
+                <p className="text-white">
+                  {reviewExists.user.firstName +
+                    " " +
+                    reviewExists.user.lastName}
+                </p>
               </div>
               <div className="flex">{Stars(reviewExists.stars)}</div>
             </div>
-            <p className="text-xl">{reviewExists.comment}</p>
+            <p>{reviewExists.comment}</p>
             <div className="flex items-center justify-between">
               <Likes id={reviewExists.id} pathname={pathname} />
               <div className="flex items-center gap-4">
@@ -200,7 +212,6 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
               </div>
             </div>
             <hr />
-            <br />
           </div>
         </div>
       )}
@@ -221,16 +232,24 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
               key={index}
             >
               <div className="flex flex-row items-center justify-between">
-                <div className="flex gap-1">
-                  <p className="font-bold">{review.user.firstName}</p>
-                  <p className="font-bold">{review.user.lastName}</p>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <button className="relative w-6 h-6 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
+                    <Link
+                      href={"/profile"}
+                      className="flex justify-center items-center"
+                    >
+                      {/* User's image */}
+                    </Link>
+                  </button>
+                  <p className="text-white">
+                    {review.user.firstName + " " + review.user.lastName}
+                  </p>
                 </div>
                 <div className="flex">{Stars(review.stars)}</div>
               </div>
-              <p className="text-xl">{review.comment}</p>
+              <p>{review.comment}</p>
               <Likes id={review.id} pathname={pathname} />
               <hr />
-              <br />
             </div>
           ))
         )}

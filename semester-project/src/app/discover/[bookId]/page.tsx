@@ -44,10 +44,7 @@ export default function Book() {
   }, [pathname]);
 
   return (
-    <main className="flex flex-col">
-      <br />
-      <br />
-      <br />
+    <main className="flex flex-col mt-16">
       <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex flex-row p-4">
           {loading ? (
@@ -70,8 +67,10 @@ export default function Book() {
                   />
                 </div>
                 <div className="flex flex-col gap-4 md:gap-8 md:mt-8 md:ml-8">
-                  <div className="flex flex-col md:items-start items-center gap-2">
-                    <h1 className="text-3xl font-bold">{book.title}</h1>
+                  <div className="flex flex-col items-center md:items-start  gap-2">
+                    <h1 className="text-center text-3xl font-bold">
+                      {book.title}
+                    </h1>
                     <div className="flex text-lg flex-row gap-1 items-center">
                       <h1 className="">by</h1>
                       <h1 className="font-semibold">{book.author}</h1>
@@ -91,7 +90,7 @@ export default function Book() {
                       </Link>
                     ))}
                   </div>
-                  <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between md:items-center">
+                  <div className="flex flex-col items-center gap-4 md:flex-row ">
                     <ButtonAddBook
                       bookId={parseInt(pathname)}
                       pageComponentisUsedOn="BookPage"
