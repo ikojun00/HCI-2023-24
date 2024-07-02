@@ -35,7 +35,7 @@ export default function Profile() {
   }
 
   return session && session.user ? (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
+    <div className="max-w-screen-lg mx-auto px-6 sm:px-8">
       {/* User Info */}
       <div className="flex flex-col gap-4 items-center py-16">
         <p>{session.user.firstName}</p>
