@@ -87,7 +87,7 @@ export default function DashboardReviewsSection({ session }: Props) {
           </div>
         ) : (
           reviews.map((review) => (
-            <div
+            <article
               key={review.id}
               className="border p-5 pb-6 pr-6 rounded-lg shadow-md bg-bv-blue-dark"
             >
@@ -156,7 +156,7 @@ export default function DashboardReviewsSection({ session }: Props) {
                   />
                 </div>
               </div>
-            </div>
+            </article>
           ))
         )}
       </div>

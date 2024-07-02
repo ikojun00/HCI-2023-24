@@ -73,7 +73,7 @@ export default function UserOverview({ session }: Props) {
         sectionName={`${session.user.firstName}'s overview`}
       />
 
-      <div className="flex overflow-x-auto no-scrollbar gap-4 md:flex-row md:gap-20 md:justify-between items-center">
+      <div className="flex overflow-x-auto no-scrollbar gap-12 md:flex-row md:gap-20 md:justify-between items-center">
         {/* Circle for progress */}
 
         <CircleReadingProgress
