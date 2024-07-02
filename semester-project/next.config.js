@@ -1,11 +1,27 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "books.google.com",
-      "images.unsplash.com",
-      "lh3.googleusercontent.com",
-      "images.ctfassets.net",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "books.google.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+        port: "",
+      },
     ],
   },
   env: {
