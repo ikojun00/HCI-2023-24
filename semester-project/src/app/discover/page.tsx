@@ -68,7 +68,7 @@ export default function Discover() {
   }, [searchTerm, searchMode]);
 
   return (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
+    <div className="max-w-screen-lg mx-auto px-6 sm:px-8">
       <div className="my-10 text-base sm:text-lg md:text-xl lg:text-3xl font-bold text-center">
         Discover New Books
       </div>
