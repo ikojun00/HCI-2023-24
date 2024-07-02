@@ -26,12 +26,12 @@ export default function Dashboard({ session }: Props) {
   return (
     <>
       <div className="bg-bv-blue-dark">
-        <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 py-12">
+        <div className="flex flex-col max-w-screen-lg mx-auto px-6 sm:px-8 py-12">
           <HeroDashboard session={session} />
         </div>
       </div>
 
-      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 gap-28 mt-24">
+      <div className="flex flex-col max-w-screen-lg mx-auto px-6 sm:px-8 gap-28 mt-24">
         {/* User's overview section */}
         <UserOverview session={session} />
 

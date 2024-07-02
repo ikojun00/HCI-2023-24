@@ -76,7 +76,7 @@ export default function DashboardReviewsSection({ session }: Props) {
     })();
   }, [session, session?.backendTokens.accessToken]);
   return (
-    <section className="px-2">
+    <section>
       {/* Section title and line below */}
       <DashboardSectionTitle sectionName="Latest reviews on BookVoyage" />
 

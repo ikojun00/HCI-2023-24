@@ -3,7 +3,7 @@ import Button from "../navbar/Button";
 
 export default function DiscoverCTA() {
   return (
-    <div className="flex flex-col items-center gap-12 p-4 my-16">
+    <div className="flex flex-col items-center gap-12 my-16">
       <h1 className="text-3xl sm:text-5xl font-bold text-center">
         Discover More Books Today!
       </h1>

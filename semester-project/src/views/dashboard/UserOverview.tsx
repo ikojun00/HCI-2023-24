@@ -67,7 +67,7 @@ export default function UserOverview({ session }: Props) {
   }, [session, session?.backendTokens.accessToken]);
 
   return (
-    <section className="px-2">
+    <section>
       {/* Section title and line below */}
       <DashboardSectionTitle
         sectionName={`${session.user.firstName}'s overview`}

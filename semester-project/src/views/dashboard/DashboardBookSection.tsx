@@ -54,7 +54,7 @@ export default function DashboardBookSection({ sectionName }: Props) {
   }, [sectionName]);
 
   return (
-    <section className="px-2">
+    <section>
       {/* Section title and line below */}
       <DashboardSectionTitle sectionName={sectionName} />
 
