@@ -29,7 +29,7 @@ const features = [
 
 export default function Feature() {
   return (
-    <section className="grid px-2 grid-cols-2 md:grid-cols-4 gap-4 overflow-hidden">
+    <section className="grid grid-cols-2 md:grid-cols-4 gap-4 overflow-hidden">
       {features.map((item) => (
         <FeatureCard key={item.title} {...item} />
       ))}

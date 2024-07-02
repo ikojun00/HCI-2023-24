@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <div className="flex flex-col gap-5 text-white mt-8">
       <div className="flex flex-col lg:flex-row justify-between gap-16">
-        <div className="w-full px-2 lg:w-4/5 lg:pb-4 flex justify-center lg:block">
+        <div className="w-full lg:w-4/5 lg:pb-4 flex justify-center lg:block">
           <HeroIcon />
         </div>
         <div className="flex flex-col items-center lg:justify-center lg:items-start gap-5">

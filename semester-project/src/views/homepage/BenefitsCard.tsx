@@ -16,7 +16,7 @@ export default function BenefitsCard({
   imageElement,
 }: BenefitsCardProps) {
   return (
-    <div className="flex px-2 flex-col gap-20 sm:flex-row md:justify-between sm:items-center items-start">
+    <div className="flex flex-col gap-20 sm:flex-row md:justify-between sm:items-center items-start">
       <div
         className={`flex flex-col gap-6 text-sm md:text-base order-first ${
           reversed ? "sm:order-last" : "sm:order-first"
