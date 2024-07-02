@@ -26,6 +26,7 @@ export default function Searchbar({
   const [loading, setLoading] = useState<boolean>(false);
   const [tabs, setTabs] = useState("title");
   const [page, setPage] = useState(1);
+  const [noNewBooks, setNoNewBooks] = useState(false);
 
   const handleMoreBooks = async () => {
     const newBooks = await ContentfulService.getBooksByTabs(
@@ -34,8 +35,12 @@ export default function Searchbar({
       limit,
       limit * page
     );
-    setBooks(books.concat(newBooks));
-    setPage(page + 1);
+    if (newBooks.length > 0) {
+      setBooks(books.concat(newBooks));
+      setPage(page + 1);
+    } else {
+      setNoNewBooks(true);
+    }
   };
 
   useEffect(() => {
@@ -160,14 +165,16 @@ export default function Searchbar({
                     </div>
                   ))}
                   <div className="flex w-full justify-center mt-2 mb-4">
-                    {books.length !== 0 && books.length % limit === 0 && (
-                      <button
-                        className="bg-bv-green hover:bg-bv-green-dark cursor-pointer font-medium text-base flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"
-                        onClick={handleMoreBooks}
-                      >
-                        Show more books
-                      </button>
-                    )}
+                    {books.length !== 0 &&
+                      books.length % limit === 0 &&
+                      noNewBooks === false && (
+                        <button
+                          className="bg-bv-green hover:bg-bv-green-dark cursor-pointer font-medium text-base flex justify-between items-center rounded-lg py-2.5 px-3 transition-all duration-300"
+                          onClick={handleMoreBooks}
+                        >
+                          Show more books
+                        </button>
+                      )}
                   </div>
                 </>
               )}
