@@ -7,7 +7,6 @@ interface ButtonProps {
 }
 
 export default function Button({ title, link }: ButtonProps) {
-  console.log(link);
   return (
     <div>
       <Link href={link}>

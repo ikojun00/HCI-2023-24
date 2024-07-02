@@ -49,14 +49,16 @@ export default function ButtonAddBook({
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`${Backend_URL}/bookshelf/${bookId}`, {
-        headers: {
-          Authorization: `Bearer ${session?.backendTokens.accessToken}`,
-        },
-      });
-      const myShelf = response.data.shelfId ? response.data.shelfId : 0;
+      if (session && session.user) {
+        const response = await axios.get(`${Backend_URL}/bookshelf/${bookId}`, {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        });
+        const myShelf = response.data.shelfId ? response.data.shelfId : 0;
 
-      setSelectedOption(myShelf);
+        setSelectedOption(myShelf);
+      }
     })();
   }, [bookId, session, session?.backendTokens.accessToken]);
 
