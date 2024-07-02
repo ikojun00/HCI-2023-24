@@ -6,6 +6,8 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import Spinner from "@/components/icons/Spinner";
 import { toast } from "react-toastify";
+import EyeOff from "@/components/icons/EyeOff";
+import Eye from "@/components/icons/Eye";
 
 type Credentials = {
   email: string;
@@ -19,6 +21,7 @@ export default function SignIn() {
     password: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
+  const [type, setType] = useState("password");
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -39,6 +42,10 @@ export default function SignIn() {
       setLoading(false);
       throw error;
     }
+  };
+
+  const handlePasswordVisibility = () => {
+    type === "password" ? setType("text") : setType("password");
   };
 
   return (
@@ -85,11 +92,11 @@ export default function SignIn() {
                   Password
                 </label>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 flex">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={type}
                   required
                   onChange={(e) =>
                     setCredentials((prevData: Credentials) => ({
@@ -97,8 +104,14 @@ export default function SignIn() {
                       password: e.target.value,
                     }))
                   }
-                  className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
+                  className="block rounded-l-md w-full border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
+                <span
+                  className="bg-white rounded-r-md w-10 text-black p-1 flex justify-center items-center"
+                  onClick={handlePasswordVisibility}
+                >
+                  {type === "password" ? <EyeOff /> : <Eye />}
+                </span>
               </div>
             </div>
 

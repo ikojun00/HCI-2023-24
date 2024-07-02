@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Spinner from "@/components/icons/Spinner";
 import { toast } from "react-toastify";
+import EyeOff from "@/components/icons/EyeOff";
+import Eye from "@/components/icons/Eye";
 
 type FormInputs = {
   firstName: string;
@@ -24,6 +26,7 @@ export default function SignUp() {
     email: "",
     password: "",
   });
+  const [type, setType] = useState("password");
 
   const register = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -43,13 +46,16 @@ export default function SignUp() {
           },
         }
       );
-      setLoading(false);
       toast.success("User Registered!");
       router.push("/signin");
     } catch (error) {
-      setLoading(false);
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message[0]);
     }
+    setLoading(false);
+  };
+
+  const handlePasswordVisibility = () => {
+    type === "password" ? setType("text") : setType("password");
   };
 
   return (
@@ -141,11 +147,11 @@ export default function SignUp() {
                   Password
                 </label>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 flex">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={type}
                   required
                   onChange={(e) =>
                     setRegistration((prevData: FormInputs) => ({
@@ -153,8 +159,14 @@ export default function SignUp() {
                       password: e.target.value,
                     }))
                   }
-                  className="block w-full rounded-md border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
+                  className="block rounded-l-md w-full border-0 py-1.5 text-black pl-2 placeholder:text-gray-400"
                 />
+                <span
+                  className="bg-white rounded-r-md w-10 text-black p-1 flex justify-center items-center"
+                  onClick={handlePasswordVisibility}
+                >
+                  {type === "password" ? <EyeOff /> : <Eye />}
+                </span>
               </div>
             </div>
             <div>
