@@ -45,8 +45,8 @@ export default function Book() {
 
   return (
     <main className="flex flex-col mt-16">
-      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6">
-        <div className="flex flex-row p-4">
+      <div className="flex flex-col max-w-screen-lg mx-auto px-6 sm:px-8">
+        <div className="flex flex-row">
           {loading ? (
             <div className="h-[calc(100vh-78px)] flex justify-center items-center">
               <Spinner />
