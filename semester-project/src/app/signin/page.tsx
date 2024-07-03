@@ -50,14 +50,14 @@ export default function SignIn() {
 
   return (
     <div className="text-white">
-      <div className="max-w-2xl mx-auto flex flex-col justify-center px-2 py-10 lg:px-4 bg-bv-blue-dark rounded-xl mt-20">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="max-w-full sm:max-w-md md:max-w-xl mx-6 sm:mx-auto flex flex-col justify-center px-2 py-10 lg:px-4 bg-bv-blue-dark rounded-xl mt-20">
+        <div className="mx-auto w-full max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
             Sign in to your account
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mt-10 mx-auto w-full max-w-[16rem] sm:max-w-xs md:max-w-sm">
           <form onSubmit={onSubmit} className="space-y-6">
             <div>
               <label
