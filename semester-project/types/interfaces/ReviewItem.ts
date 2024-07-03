@@ -6,5 +6,6 @@ export default interface ReviewItem {
   user: {
     firstName: string;
     lastName: string;
+    profileImageId: number;
   };
 }

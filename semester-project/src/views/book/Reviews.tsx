@@ -16,6 +16,8 @@ import Trash from "@/components/icons/Trash";
 import { toast } from "react-toastify";
 import BookPageSectionTitle from "./BookPageSectionTitle";
 import Link from "next/link";
+import Image from "next/image";
+import ContentfulService from "@/services/ContentfulService";
 
 type Props = {
   pathname: string;
@@ -143,6 +145,31 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
     })();
   }, [pathname, session, setAverageRating, status]);
 
+  const [profileImageUrls, setProfileImageUrls] = useState<{
+    [key: string]: string;
+  }>({});
+
+  useEffect(() => {
+    const fetchProfileImages = async () => {
+      const newProfileImageUrls: { [key: string]: string } = {};
+      await Promise.all(
+        reviews.map(async (review) => {
+          if (review.user.profileImageId) {
+            const res = await ContentfulService.getProfileImageById(
+              review.user.profileImageId
+            );
+            newProfileImageUrls[review.id] = res?.image.url || "";
+          }
+        })
+      );
+      setProfileImageUrls(newProfileImageUrls);
+    };
+
+    if (reviews.length > 0) {
+      fetchProfileImages();
+    }
+  }, [reviews]);
+
   return (
     <div className="flex flex-col gap-24">
       {reviewExists === null ? (
@@ -175,6 +202,17 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
                     className="flex justify-center items-center"
                   >
                     {/* User's image */}
+                    {reviewExists.user.profileImageId &&
+                      profileImageUrls[reviewExists.id] && (
+                        <Image
+                          className="circle-image"
+                          height={64}
+                          width={64}
+                          sizes="100vw"
+                          src={profileImageUrls[reviewExists.id]}
+                          alt="Profile Photo"
+                        />
+                      )}
                   </Link>
                 </button>
                 <p className="text-white">
@@ -237,6 +275,17 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
                       className="flex justify-center items-center"
                     >
                       {/* User's image */}
+                      {review.user.profileImageId &&
+                        profileImageUrls[review.id] && (
+                          <Image
+                            className="circle-image"
+                            height={64}
+                            width={64}
+                            sizes="100vw"
+                            src={profileImageUrls[review.id]}
+                            alt="Profile Photo"
+                          />
+                        )}
                     </Link>
                   </button>
                   <p className="text-white">
