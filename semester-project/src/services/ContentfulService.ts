@@ -8,6 +8,9 @@ import BookItem from "../../types/interfaces/BookItem";
 import qGetAllGenres from "../../types/queries/GetAllGenres";
 import genresCollectionResponse from "../../types/interfaces/GenresCollectionResponse";
 import GenreItem from "../../types/interfaces/GenreItem";
+import ProfileImageItem from "../../types/interfaces/ProfileImageItem";
+import qGetAllProfileImages from "../../types/queries/GetAllProfileImages";
+import profileImagesCollectionResponse from "../../types/interfaces/ProfileImagesCollectionResponse";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
@@ -126,12 +129,36 @@ const getAllGenres = async (): Promise<GenreItem[]> => {
   }
 };
 
+const getAllProfileImages = async (): Promise<ProfileImageItem[]> => {
+  try {
+    const response = await graphqlRequest(qGetAllProfileImages);
+    const body = (await response.json()) as {
+      data: profileImagesCollectionResponse;
+    };
+
+    const profileImages = body.data.profileImagesCollection.items.map(
+      (item) => ({
+        id: item.id,
+        title: item.title,
+        image: item.image,
+      })
+    );
+
+    return profileImages;
+  } catch (error) {
+    console.log(error);
+
+    return [];
+  }
+};
+
 const ContentfulService = {
   getAllNavbarNames,
   getBooksByTabs,
   getNewBooks,
   getBookById,
   getAllGenres,
+  getAllProfileImages,
 };
 
 export default ContentfulService;

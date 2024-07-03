@@ -1,9 +1,11 @@
 import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import EditProfileImage from "../../../public/EditProfileImage";
 import Image from "next/image";
+import ProfileImageItem from "../../../types/interfaces/ProfileImageItem";
+import ContentfulService from "@/services/ContentfulService";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
@@ -23,6 +25,16 @@ export default function AboutMeTab({ session }: Props) {
   const [lastName, setLastName] = useState(session.user.firstName);
   const [email, setEmail] = useState(session.user.email);
   const [isChanged, setIsChanged] = useState(false);
+
+  const [profileImages, setProfileImages] = useState<ProfileImageItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      setProfileImages(await ContentfulService.getAllProfileImages());
+      setLoading(false);
+    })();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,9 +57,9 @@ export default function AboutMeTab({ session }: Props) {
             Profile Photo
           </label>
           <div className="flex justify-center lg:justify-start items-center gap-2 sm:gap-4 mt-1">
-            {Array.from({ length: 5 }, (_, index) => (
+            {profileImages.map((item) => (
               <div
-                key={index}
+                key={item.id}
                 onClick={handleProfilePhotoClick}
                 className="flex shrink-0 justify-center items-center w-12 h-12 sm:w-14 sm:h-14 md:h-16 md:w-16 border-2 hover:border-bv-purple duration-300 transition-colors rounded-full overflow-hidden cursor-pointer"
               >
@@ -55,7 +67,8 @@ export default function AboutMeTab({ session }: Props) {
                   className="circle-image"
                   height={64}
                   width={64}
-                  src="/tomor.jpg"
+                  sizes="100vw"
+                  src={item.image.url}
                   alt="Profile Photo"
                 />
               </div>
