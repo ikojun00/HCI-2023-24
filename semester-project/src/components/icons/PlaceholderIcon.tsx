@@ -1,7 +1,6 @@
 export default function PlaceholderIcon() {
   return (
     <svg
-      className="absolute w-12 h-12 text-gray-500 -right-1 -bottom-2"
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"

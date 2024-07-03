@@ -18,6 +18,7 @@ import BookPageSectionTitle from "./BookPageSectionTitle";
 import Link from "next/link";
 import Image from "next/image";
 import ContentfulService from "@/services/ContentfulService";
+import PlaceholderIcon from "@/components/icons/PlaceholderIcon";
 
 type Props = {
   pathname: string;
@@ -203,16 +204,20 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
                   >
                     {/* User's image */}
                     {reviewExists.user.profileImageId &&
-                      profileImageUrls[reviewExists.id] && (
-                        <Image
-                          className="circle-image"
-                          height={64}
-                          width={64}
-                          sizes="100vw"
-                          src={profileImageUrls[reviewExists.id]}
-                          alt="Profile Photo"
-                        />
-                      )}
+                    profileImageUrls[reviewExists.id] ? (
+                      <Image
+                        className="circle-image"
+                        height={64}
+                        width={64}
+                        sizes="100vw"
+                        src={profileImageUrls[reviewExists.id]}
+                        alt="Profile Photo"
+                      />
+                    ) : (
+                      <div className="absolute w-8 h-8 text-gray-500 -right-1 -bottom-2">
+                        <PlaceholderIcon />
+                      </div>
+                    )}
                   </Link>
                 </button>
                 <p className="text-white">
@@ -276,16 +281,20 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
                     >
                       {/* User's image */}
                       {review.user.profileImageId &&
-                        profileImageUrls[review.id] && (
-                          <Image
-                            className="circle-image"
-                            height={64}
-                            width={64}
-                            sizes="100vw"
-                            src={profileImageUrls[review.id]}
-                            alt="Profile Photo"
-                          />
-                        )}
+                      profileImageUrls[review.id] ? (
+                        <Image
+                          className="circle-image"
+                          height={64}
+                          width={64}
+                          sizes="100vw"
+                          src={profileImageUrls[review.id]}
+                          alt="Profile Photo"
+                        />
+                      ) : (
+                        <div className="absolute w-8 h-8 text-gray-500 -right-1 -bottom-2">
+                          <PlaceholderIcon />
+                        </div>
+                      )}
                     </Link>
                   </button>
                   <p className="text-white">

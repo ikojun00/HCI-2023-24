@@ -41,7 +41,9 @@ export default function SignInForm() {
               alt="Profile Photo"
             />
           ) : (
-            <PlaceholderIcon />
+            <div className="absolute w-12 h-12 text-gray-500 -right-1 -bottom-2">
+              <PlaceholderIcon />
+            </div>
           )}
         </Link>
       </button>

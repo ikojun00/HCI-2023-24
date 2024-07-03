@@ -99,7 +99,11 @@ export default function AboutMeTab({ session, update }: Props) {
                     profileImageId: item.id,
                   }));
                 }}
-                className="flex shrink-0 justify-center items-center w-12 h-12 sm:w-14 sm:h-14 md:h-16 md:w-16 border-2 hover:border-bv-purple duration-300 transition-colors rounded-full overflow-hidden cursor-pointer"
+                className={`flex shrink-0 justify-center items-center w-12 h-12 sm:w-14 sm:h-14 md:h-16 md:w-16 border-2 rounded-full overflow-hidden cursor-pointer transition-colors duration-300 ${
+                  user.profileImageId === item.id
+                    ? "border-bv-purple"
+                    : "border"
+                }`}
               >
                 <Image
                   className="circle-image"

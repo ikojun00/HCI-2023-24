@@ -7,6 +7,7 @@ import axios from "axios";
 import { Backend_URL } from "@/lib/constants";
 import ContentfulService from "@/services/ContentfulService";
 import Spinner from "@/components/icons/Spinner";
+import PlaceholderIcon from "@/components/icons/PlaceholderIcon";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
@@ -123,17 +124,20 @@ export default function DashboardReviewsSection({ session }: Props) {
               <div className="flex items-center gap-2 pb-2 text-sm text-gray-400 mb-1">
                 <div className="relative w-6 h-6 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
                   {/* User's image */}
-                  {review.user.profileImageId &&
-                    profileImageUrls[review.id] && (
-                      <Image
-                        className="circle-image"
-                        height={64}
-                        width={64}
-                        sizes="100vw"
-                        src={profileImageUrls[review.id]}
-                        alt="Profile Photo"
-                      />
-                    )}
+                  {review.user.profileImageId && profileImageUrls[review.id] ? (
+                    <Image
+                      className="circle-image"
+                      height={64}
+                      width={64}
+                      sizes="100vw"
+                      src={profileImageUrls[review.id]}
+                      alt="Profile Photo"
+                    />
+                  ) : (
+                    <div className="absolute w-8 h-8 text-gray-500 -right-1 -bottom-2">
+                      <PlaceholderIcon />
+                    </div>
+                  )}
                 </div>
                 <p className="text-white">
                   {review.user.firstName + " " + review.user.lastName}{" "}

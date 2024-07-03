@@ -5,7 +5,11 @@ import AboutMeTab from "@/views/profile/AboutMeTab";
 import ReadingGoalTab from "@/views/profile/ReadingGoalTab";
 import SelectBookshelfTab from "@/views/profile/SelectBookshelfTab";
 import { signOut, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ProfileImageItem from "../../../types/interfaces/ProfileImageItem";
+import ContentfulService from "@/services/ContentfulService";
+import Image from "next/image";
+import PlaceholderIcon from "@/components/icons/PlaceholderIcon";
 
 const tabOptions = [
   {
@@ -25,6 +29,18 @@ const tabOptions = [
 export default function Profile() {
   const { data: session, status, update } = useSession();
   const [tab, setTab] = useState(tabOptions[0].id);
+  const [image, setImage] = useState<ProfileImageItem | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      if (session?.user.profileImageId) {
+        const data = await ContentfulService.getProfileImageById(
+          session.user.profileImageId
+        );
+        setImage(data);
+      }
+    })();
+  }, [session?.user.profileImageId]);
 
   if (status === "loading") {
     return (
@@ -37,10 +53,29 @@ export default function Profile() {
   return session && session.user ? (
     <div className="max-w-screen-lg mx-auto px-6 sm:px-8">
       {/* User Info */}
-      <div className="flex flex-col gap-4 items-center py-16">
-        <p>{session.user.firstName}</p>
-        <p>{session.user.email}</p>
-        <button className="text-red-600" onClick={() => signOut()}>
+      <div className="flex flex-col items-center py-16 gap-4">
+        <div className="relative border-2 w-24 h-24 overflow-hidden rounded-full">
+          {image ? (
+            <Image
+              src={image.image.url}
+              alt="Profile Picture"
+              layout="fill"
+              objectFit="cover"
+            />
+          ) : (
+            <div className="absolute w-24 h-24 bg-gray-300 text-gray-500 -bottom-3">
+              <PlaceholderIcon />
+            </div>
+          )}
+        </div>
+        <p className="text-2xl font-semibold">
+          {session.user.firstName} {session.user.lastName}
+        </p>
+        <p className="text-gray-400">{session.user.email}</p>
+        <button
+          className="mt-4 text-red-600 border border-red-600 px-4 py-2 rounded-md transition-colors duration-300 hover:bg-red-600 hover:text-white"
+          onClick={() => signOut()}
+        >
           Sign out
         </button>
       </div>
