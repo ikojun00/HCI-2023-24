@@ -25,6 +25,7 @@ interface ReviewFetch {
   user: {
     firstName: string;
     lastName: string;
+    profileImageId: number;
   };
 }
 
@@ -36,6 +37,7 @@ interface RecentReviewInterface {
   user: {
     firstName: string;
     lastName: string;
+    profileImageId: number;
   };
   title: string;
   author: string;
@@ -64,6 +66,7 @@ export default function DashboardReviewsSection({ session }: Props) {
             user: {
               firstName: item.user.firstName,
               lastName: item.user.lastName,
+              profileImageId: item.user.profileImageId,
             },
             title: book.title,
             author: book.author,
@@ -75,6 +78,32 @@ export default function DashboardReviewsSection({ session }: Props) {
       setLoading(false);
     })();
   }, [session, session?.backendTokens.accessToken]);
+
+  const [profileImageUrls, setProfileImageUrls] = useState<{
+    [key: string]: string;
+  }>({});
+
+  useEffect(() => {
+    const fetchProfileImages = async () => {
+      const newProfileImageUrls: { [key: string]: string } = {};
+      await Promise.all(
+        reviews.map(async (review) => {
+          if (review.user.profileImageId) {
+            const res = await ContentfulService.getProfileImageById(
+              review.user.profileImageId
+            );
+            newProfileImageUrls[review.id] = res?.image.url || "";
+          }
+        })
+      );
+      setProfileImageUrls(newProfileImageUrls);
+    };
+
+    if (reviews.length > 0) {
+      fetchProfileImages();
+    }
+  }, [reviews]);
+
   return (
     <section>
       {/* Section title and line below */}
@@ -92,14 +121,20 @@ export default function DashboardReviewsSection({ session }: Props) {
               className="border p-5 pb-6 pr-6 rounded-lg shadow-md bg-bv-blue-dark"
             >
               <div className="flex items-center gap-2 pb-2 text-sm text-gray-400 mb-1">
-                <button className="relative w-6 h-6 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
-                  <Link
-                    href={"/profile"}
-                    className="flex justify-center items-center"
-                  >
-                    {/* User's image */}
-                  </Link>
-                </button>
+                <div className="relative w-6 h-6 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
+                  {/* User's image */}
+                  {review.user.profileImageId &&
+                    profileImageUrls[review.id] && (
+                      <Image
+                        className="circle-image"
+                        height={64}
+                        width={64}
+                        sizes="100vw"
+                        src={profileImageUrls[review.id]}
+                        alt="Profile Photo"
+                      />
+                    )}
+                </div>
                 <p className="text-white">
                   {review.user.firstName + " " + review.user.lastName}{" "}
                 </p>
