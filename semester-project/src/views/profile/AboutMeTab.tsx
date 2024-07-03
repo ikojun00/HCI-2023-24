@@ -6,9 +6,17 @@ import EditProfileImage from "../../../public/EditProfileImage";
 import Image from "next/image";
 import ProfileImageItem from "../../../types/interfaces/ProfileImageItem";
 import ContentfulService from "@/services/ContentfulService";
+import Spinner from "@/components/icons/Spinner";
+import { signOut } from "next-auth/react";
 
 interface Session {
-  user: { id: number; email: string; firstName: string };
+  user: {
+    id: number;
+    email: string;
+    firstName: string;
+    lastName: string;
+    profileImageId: number;
+  };
   backendTokens: {
     accessToken: string;
     refreshToken: string;
@@ -18,12 +26,16 @@ interface Session {
 
 interface Props {
   session: Session;
+  update: any;
 }
 
-export default function AboutMeTab({ session }: Props) {
-  const [firstName, setFirstName] = useState(session.user.firstName);
-  const [lastName, setLastName] = useState(session.user.firstName);
-  const [email, setEmail] = useState(session.user.email);
+export default function AboutMeTab({ session, update }: Props) {
+  const [user, setUser] = useState({
+    firstName: session.user.firstName,
+    lastName: session.user.lastName,
+    email: session.user.email,
+    profileImageId: session.user.profileImageId,
+  });
   const [isChanged, setIsChanged] = useState(false);
 
   const [profileImages, setProfileImages] = useState<ProfileImageItem[]>([]);
@@ -39,12 +51,32 @@ export default function AboutMeTab({ session }: Props) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isChanged) return;
-    console.log("submitting");
+    try {
+      await axios.patch(
+        `${Backend_URL}/users/profile`,
+        {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          profileImageId: user.profileImageId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+          },
+        }
+      );
+      toast.success("User updated! Sign in to see new info!");
+      setTimeout(() => signOut(), 2000);
+      setIsChanged(false);
+    } catch (error) {
+      console.error("Error handling upvote:", error);
+    }
   };
 
-  const handleProfilePhotoClick = () => {
-    console.log("Profile Photo Clicked");
-  };
+  if (loading === true) {
+    return <Spinner />;
+  }
 
   return (
     <div className="flex gap-4">
@@ -60,7 +92,13 @@ export default function AboutMeTab({ session }: Props) {
             {profileImages.map((item) => (
               <div
                 key={item.id}
-                onClick={handleProfilePhotoClick}
+                onClick={() => {
+                  setIsChanged(true);
+                  setUser((prevData) => ({
+                    ...prevData,
+                    profileImageId: item.id,
+                  }));
+                }}
                 className="flex shrink-0 justify-center items-center w-12 h-12 sm:w-14 sm:h-14 md:h-16 md:w-16 border-2 hover:border-bv-purple duration-300 transition-colors rounded-full overflow-hidden cursor-pointer"
               >
                 <Image
@@ -85,10 +123,13 @@ export default function AboutMeTab({ session }: Props) {
               id="name"
               type="text"
               placeholder="First Name"
-              value={firstName}
+              value={user.firstName}
               onChange={(e) => {
                 setIsChanged(true);
-                setFirstName(e.target.value);
+                setUser((prevData) => ({
+                  ...prevData,
+                  firstName: e.target.value,
+                }));
               }}
             />
           </div>
@@ -103,10 +144,13 @@ export default function AboutMeTab({ session }: Props) {
               id="name"
               type="text"
               placeholder="Last Name"
-              value={lastName}
+              value={user.lastName}
               onChange={(e) => {
                 setIsChanged(true);
-                setLastName(e.target.value);
+                setUser((prevData) => ({
+                  ...prevData,
+                  lastName: e.target.value,
+                }));
               }}
             />
           </div>
@@ -121,10 +165,13 @@ export default function AboutMeTab({ session }: Props) {
               id="email"
               type="text"
               placeholder="Email"
-              value={email}
+              value={user.email}
               onChange={(e) => {
                 setIsChanged(true);
-                setEmail(e.target.value);
+                setUser((prevData) => ({
+                  ...prevData,
+                  email: e.target.value,
+                }));
               }}
             />
           </div>

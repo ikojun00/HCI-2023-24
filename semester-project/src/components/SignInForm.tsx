@@ -1,13 +1,27 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/views/navbar/Button";
 import Spinner from "./icons/Spinner";
 import PlaceholderIcon from "./icons/PlaceholderIcon";
+import ContentfulService from "@/services/ContentfulService";
+import ProfileImageItem from "../../types/interfaces/ProfileImageItem";
 
 export default function SignInForm() {
   const { data: session, status } = useSession();
+  const [image, setImage] = useState<ProfileImageItem | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      if (session?.user.profileImageId) {
+        const data = await ContentfulService.getProfileImageById(
+          session.user.profileImageId
+        );
+        setImage(data);
+      }
+    })();
+  }, [session?.user.profileImageId]);
 
   if (status === "loading") {
     return <Spinner />;
@@ -17,7 +31,18 @@ export default function SignInForm() {
     <div>
       <button className="relative w-10 h-10 overflow-hidden bg-gray-300 hover:bg-gray-200 rounded-full">
         <Link href={"/profile"}>
-          <PlaceholderIcon />
+          {image ? (
+            <Image
+              className="circle-image"
+              height={64}
+              width={64}
+              sizes="100vw"
+              src={image.image.url}
+              alt="Profile Photo"
+            />
+          ) : (
+            <PlaceholderIcon />
+          )}
         </Link>
       </button>
 

@@ -23,7 +23,7 @@ const tabOptions = [
 ];
 
 export default function Profile() {
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
   const [tab, setTab] = useState(tabOptions[0].id);
 
   if (status === "loading") {
@@ -63,7 +63,7 @@ export default function Profile() {
           ))}
         </div>
         <div className="w-full border shadow-md rounded-md bg-bv-blue-dark px-6 py-8">
-          {tab == "aboutMe" && <AboutMeTab session={session} />}
+          {tab == "aboutMe" && <AboutMeTab session={session} update={update} />}
           {tab == "bookshelves" && <SelectBookshelfTab session={session} />}
           {tab == "readingGoal" && <ReadingGoalTab session={session} />}
         </div>

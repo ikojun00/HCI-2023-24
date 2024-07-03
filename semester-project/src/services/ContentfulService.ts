@@ -11,6 +11,7 @@ import GenreItem from "../../types/interfaces/GenreItem";
 import ProfileImageItem from "../../types/interfaces/ProfileImageItem";
 import qGetAllProfileImages from "../../types/queries/GetAllProfileImages";
 import profileImagesCollectionResponse from "../../types/interfaces/ProfileImagesCollectionResponse";
+import qGetProfileImageById from "../../types/queries/GetProfileImageById";
 
 const baseUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
@@ -152,6 +153,29 @@ const getAllProfileImages = async (): Promise<ProfileImageItem[]> => {
   }
 };
 
+const getProfileImageById = async (id: number): Promise<ProfileImageItem | null> => {
+  try {
+    const response = await graphqlRequest(qGetProfileImageById(id));
+    const body = (await response.json()) as {
+      data: profileImagesCollectionResponse;
+    };
+
+    const profileImages = body.data.profileImagesCollection.items.map(
+      (item) => ({
+        id: item.id,
+        title: item.title,
+        image: item.image,
+      })
+    );
+
+    return profileImages[0];
+  } catch (error) {
+    console.log(error);
+
+    return null;
+  }
+};
+
 const ContentfulService = {
   getAllNavbarNames,
   getBooksByTabs,
@@ -159,6 +183,7 @@ const ContentfulService = {
   getBookById,
   getAllGenres,
   getAllProfileImages,
+  getProfileImageById
 };
 
 export default ContentfulService;
