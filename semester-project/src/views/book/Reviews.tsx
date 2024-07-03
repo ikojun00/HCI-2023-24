@@ -124,10 +124,8 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
       const response = await axios.get(
         `${Backend_URL}/review/${pathname}/averageRating`
       );
-      console.log(response.data);
-      console.log(parseInt(response.data.averagerating));
       setAverageRating(
-        Math.round(parseInt(response.data.averagerating) * 10) / 10
+        Math.round(parseFloat(response.data.averagerating) * 10) / 10
       );
     };
 
@@ -224,11 +222,11 @@ export default function Reviews({ setAverageRating, pathname }: Props) {
         {loading ? (
           <Spinner />
         ) : reviews.length === 0 ? (
-          <p>No reviews.</p>
+          <p className="mt-10">No reviews.</p>
         ) : (
           reviews.map((review: ReviewItem, index: number) => (
             <div
-              className="flex flex-col gap-10 max-w-screen-lg mx-auto"
+              className="flex flex-col gap-10 max-w-screen-lg mx-auto mt-10"
               key={index}
             >
               <div className="flex flex-row items-center justify-between">

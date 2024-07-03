@@ -106,7 +106,7 @@ export default function Book() {
               </div>
               <div>
                 <BookPageSectionTitle sectionName="Book Info" />
-                <p className="whitespace-pre-line">{book.description}</p>
+                <p className="mt-6 whitespace-pre-line">{book.description}</p>
               </div>
               <Reviews
                 setAverageRating={setAverageRating}
