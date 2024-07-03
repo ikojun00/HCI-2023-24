@@ -30,49 +30,43 @@ export default function Genre() {
   }, [pathname]);
 
   return (
-    <div>
-      <div>
-        <div className="flex flex-col max-w-screen-lg mx-auto px-6 sm:px-8">
-          <h1 className="text-xl sm:text-2xl font-bold py-4 capitalize mt-6">
-            {pathname}
-          </h1>
-          <div className="flex items-center flex-col">
-            <ul className="flex flex-col items-start w-full gap-16 mt-4">
-              {loading ? (
-                <Spinner />
-              ) : books.length === 0 ? (
-                <p>No books.</p>
-              ) : (
-                books.map((book) => (
-                  <div key={book.bookId}>
-                    <li className="flex flex-row gap-8">
-                      <Image
-                        src={book.cover?.url}
-                        alt="Cover"
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        style={{ width: "100px", height: "auto" }}
-                      />
-                      <div className="flex flex-col gap-2">
-                        <Link href={`/discover/${book.bookId}`}>
-                          <h2 className="text-2xl font-bold hover:underline">
-                            {book.title}
-                          </h2>
-                        </Link>
-                        <div className="flex flex-row gap-1 md:text-md">
-                          <p>By:</p>
-                          <p className="font-medium">{book.author}</p>
-                        </div>
-                      </div>
-                    </li>
+    <div className="max-w-screen-lg mx-auto px-6 sm:px-8 mt-14">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-center capitalize mb-10">
+        {pathname}
+      </h1>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {books.length === 0 ? (
+            <p className="col-span-full text-center text-lg">
+              No books available.
+            </p>
+          ) : (
+            books.map((book) => (
+              <Link href={`/discover/${book.bookId}`} key={book.bookId}>
+                <div className="flex flex-col items-center p-4 rounded-lg h-full border-2 border-gray-400">
+                  <div className="w-full h-48 relative mb-4">
+                    <Image
+                      src={book.cover?.url}
+                      alt="Cover"
+                      layout="fill"
+                      objectFit="contain"
+                      className="rounded"
+                    />
                   </div>
-                ))
-              )}
-            </ul>
-          </div>
+                  <h2 className="text-lg font-semibold mb-2 text-center">
+                    {book.title}
+                  </h2>
+                  <p className="text-sm text-gray-400 text-center">
+                    By: {book.author}
+                  </p>
+                </div>
+              </Link>
+            ))
+          )}
         </div>
-      </div>
+      )}
     </div>
   );
 }
