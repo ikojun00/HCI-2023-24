@@ -54,7 +54,7 @@ export default function Profile() {
     <div className="max-w-screen-lg mx-auto px-6 sm:px-8">
       {/* User Info */}
       <div className="flex flex-col items-center py-16 gap-4">
-        <div className="relative border-2 w-24 h-24 overflow-hidden rounded-full">
+        <div className="relative border-2 w-24 h-24 overflow-hidden rounded-full bg-gray-300">
           {image ? (
             <Image
               src={image.image.url}
@@ -63,7 +63,7 @@ export default function Profile() {
               objectFit="cover"
             />
           ) : (
-            <div className="absolute w-24 h-24 bg-gray-300 text-gray-500 -bottom-3">
+            <div className="absolute w-24 h-24 text-gray-500 -bottom-3 -left-0.5">
               <PlaceholderIcon />
             </div>
           )}
