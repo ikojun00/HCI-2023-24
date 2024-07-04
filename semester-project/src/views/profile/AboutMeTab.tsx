@@ -70,6 +70,7 @@ export default function AboutMeTab({ session, update }: Props) {
       setTimeout(() => signOut(), 2000);
       setIsChanged(false);
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error("Error handling upvote:", error);
     }
   };
