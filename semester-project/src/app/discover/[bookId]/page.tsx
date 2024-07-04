@@ -77,7 +77,7 @@ export default function Book() {
                     </div>
                   </div>
 
-                  <div className="flex flex-row items-center justify-center md:justify-normal gap-4">
+                  <div className="flex flex-row items-center justify-center md:justify-normal gap-4 flex-wra">
                     Genres:
                     {genres.map((item: Genre) => (
                       <Link
