@@ -8,7 +8,7 @@ import BookItem from "../../../types/interfaces/BookItem";
 import Spinner from "@/components/icons/Spinner";
 import Search from "@/components/icons/Search";
 import Arrow from "@/components/icons/Arrow";
-import SearchImage from "../../../public/SearchImage";
+import SearchImage from "../../../public/searchPageImages/SearchImage";
 
 interface SearchOptionsInterface {
   option: string;

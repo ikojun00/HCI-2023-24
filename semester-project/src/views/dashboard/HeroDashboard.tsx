@@ -1,5 +1,5 @@
 import HeroIcon from "@/components/icons/HeroIcon";
-import HeroDashboardIcon from "../../../public/HeroDashboardIcon";
+import HeroDashboardIcon from "../../../public/dashboardImages/HeroDashboardIcon";
 
 interface Session {
   user: { id: number; email: string; firstName: string };

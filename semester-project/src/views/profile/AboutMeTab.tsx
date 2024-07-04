@@ -2,7 +2,7 @@ import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import EditProfileImage from "../../../public/EditProfileImage";
+import EditProfileImage from "../../../public/profilePageImages/EditProfileImage";
 import Image from "next/image";
 import ProfileImageItem from "../../../types/interfaces/ProfileImageItem";
 import ContentfulService from "@/services/ContentfulService";

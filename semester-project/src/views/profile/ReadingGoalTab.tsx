@@ -2,7 +2,7 @@ import { Backend_URL } from "@/lib/constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import SetReadingGoalImage from "../../../public/SetReadingGoalImage";
+import SetReadingGoalImage from "../../../public/profilePageImages/SetReadingGoalImage";
 
 interface Session {
   user: { id: number; email: string; firstName: string };
