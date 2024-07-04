@@ -7,7 +7,7 @@ export default withAuth(
   async function middleware(req) {
     const token = await getToken({ req });
     const isAuthenticated = !!token;
-    console.log(token);
+
     const authRoutes = ["/signin", "/signup"];
     const restrictedRoutes = ["/bookshelf", "/profile"];
 
