@@ -37,6 +37,7 @@ export default function SignIn() {
       else {
         toast.success("Login successful!");
         router.push("/");
+        router.refresh();
       }
     } catch (error) {
       setLoading(false);
