@@ -49,7 +49,9 @@ export default function SignUp() {
       toast.success("User Registered!");
       router.push("/signin");
     } catch (error) {
-      toast.error(error.response.data.message[0]);
+      typeof error.response.data.message === "string"
+        ? toast.error(error.response.data.message)
+        : toast.error(error.response.data.message[0]);
     }
     setLoading(false);
   };
