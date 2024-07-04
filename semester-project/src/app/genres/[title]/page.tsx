@@ -45,7 +45,7 @@ export default function Genre() {
           ) : (
             books.map((book) => (
               <Link href={`/discover/${book.bookId}`} key={book.bookId}>
-                <div className="flex flex-col items-center p-4 rounded-lg h-full border-2 border-gray-400">
+                <div className="flex flex-col items-center bg-bv-blue-dark px-4 py-6 rounded-lg h-full border-2 border-white hover:border-bv-purple transition-colors duration-300 ">
                   <div className="w-full h-48 relative mb-4">
                     <Image
                       src={book.cover?.url}
@@ -59,7 +59,7 @@ export default function Genre() {
                     {book.title}
                   </h2>
                   <p className="text-sm text-gray-400 text-center">
-                    By: {book.author}
+                    by {book.author}
                   </p>
                 </div>
               </Link>
