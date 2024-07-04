@@ -16,9 +16,9 @@ export default function BenefitsCard({
   imageElement,
 }: BenefitsCardProps) {
   return (
-    <div className="flex flex-col gap-20 sm:flex-row md:justify-between sm:items-center items-start">
+    <div className="flex flex-col gap-12 sm:gap-20 sm:flex-row md:justify-between items-center">
       <div
-        className={`flex flex-col gap-6 text-sm md:text-base order-first ${
+        className={`w-full sm:w-3/5 flex flex-col gap-6 text-sm md:text-base order-first ${
           reversed ? "sm:order-last" : "sm:order-first"
         }`}
       >
@@ -33,7 +33,7 @@ export default function BenefitsCard({
           ))}
         </ul>
       </div>
-      <div className="w-3/5">{imageElement}</div>
+      <div className="w-4/5 sm:w-2/5">{imageElement}</div>
     </div>
   );
 }

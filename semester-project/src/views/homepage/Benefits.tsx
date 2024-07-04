@@ -9,8 +9,6 @@ const benefits = [
     subtitle: "Build Your Digital Library and Organize Your Reads.",
     bulletpoints: [
       "Craft a personalized reading space with our virtual bookshelves.",
-      "Tag, categorize, and arrange titles to suit your preferences.",
-      "Share your curated shelves with the community.",
       "Let your virtual library become a testament to your literary journey.",
     ],
     imageElement: <BenefitsCardImage1 />,
@@ -23,8 +21,6 @@ const benefits = [
       "Track status for every book.",
       "Track progress on your currently read book(s).",
       "Give rating(s) in star increments.",
-      "Your review.",
-      "Any number of lists for each book.",
     ],
     imageElement: <BenefitsCardImage2 />,
   },
@@ -34,8 +30,6 @@ const benefits = [
     bulletpoints: [
       "Join a community of avid readers sharing their thoughts and experiences.",
       "Leave reviews and ratings for the books you've explored.",
-      "Create a digital journal of your literary endeavors.",
-      "Build a reading history that reflects your unique taste in literature.",
     ],
     imageElement: <BenefitsCardImage3 />,
   },
