@@ -17,7 +17,7 @@ export default function Book({ inNavBar }: BookProps) {
           <path d="M5.896 2.302a.568.568 0 0 0 0 1.135h12.77V2.302H5.896Z" />
         </g>
         <defs>
-          <clipPath id="a">
+          <clipPath id="abc">
             <path fill="#fff" d="M0 0h21v21H0z" />
           </clipPath>
         </defs>

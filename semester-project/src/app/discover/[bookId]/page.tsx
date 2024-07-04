@@ -56,7 +56,7 @@ export default function Book() {
           ) : (
             <div className="flex flex-col gap-24">
               <div className="flex gap-4 flex-col md:flex-row">
-                <div className="flex justify-center">
+                <div className="flex justify-center border-2 rounded-sm">
                   <Image
                     src={book.cover?.url}
                     alt="Cover"
@@ -64,6 +64,7 @@ export default function Book() {
                     height={0}
                     sizes="100vw"
                     style={{ width: "250px", height: "auto" }}
+                    className="rounded-sm"
                   />
                 </div>
                 <div className="flex flex-col gap-4 md:gap-8 md:mt-8 md:ml-8">

@@ -646,7 +646,7 @@ export default function SearchImage() {
       />
     </g>
     <defs>
-      <clipPath id="a">
+      <clipPath id="ab">
         <path fill="#fff" d="M0 0h472v343H0z" />
       </clipPath>
     </defs>
