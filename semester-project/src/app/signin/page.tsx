@@ -92,7 +92,7 @@ export default function SignIn() {
                   Password
                 </label>
               </div>
-              <div className="mt-2 flex">
+              <div className="mt-2 flex bg-white rounded-md">
                 <input
                   id="password"
                   name="password"
