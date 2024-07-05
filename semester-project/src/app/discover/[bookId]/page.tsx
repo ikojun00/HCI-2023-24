@@ -44,7 +44,7 @@ export default function Book() {
   }, [pathname]);
 
   return (
-    <main className="flex flex-col mt-16">
+    <main className="flex flex-col mt-16 pb-20">
       <div className="flex flex-col max-w-screen-lg mx-auto px-6 sm:px-8">
         <div className="flex flex-row">
           {loading ? (
@@ -56,7 +56,7 @@ export default function Book() {
           ) : (
             <div className="flex flex-col gap-24">
               <div className="flex gap-4 flex-col md:flex-row">
-                <div className="flex justify-center border-2 rounded-sm">
+                <div className="flex justify-center">
                   <Image
                     src={book.cover?.url}
                     alt="Cover"
@@ -64,7 +64,7 @@ export default function Book() {
                     height={0}
                     sizes="100vw"
                     style={{ width: "250px", height: "auto" }}
-                    className="rounded-sm"
+                    className="rounded-sm border-[3px]"
                   />
                 </div>
                 <div className="flex flex-col gap-4 md:gap-8 md:mt-8 md:ml-8">
@@ -78,7 +78,7 @@ export default function Book() {
                     </div>
                   </div>
 
-                  <div className="flex flex-row items-center justify-center md:justify-normal gap-4 flex-wra">
+                  <div className="flex flex-row items-center justify-center md:justify-normal gap-4 flex-wrap">
                     Genres:
                     {genres.map((item: Genre) => (
                       <Link
