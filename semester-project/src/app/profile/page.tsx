@@ -51,7 +51,7 @@ export default function Profile() {
   }
 
   return session && session.user ? (
-    <div className="max-w-screen-lg mx-auto px-6 sm:px-8">
+    <div className="max-w-screen-lg mx-auto px-6 sm:px-8 pb-20">
       {/* User Info */}
       <div className="flex flex-col items-center py-16 gap-4">
         <div className="relative border-2 w-24 h-24 overflow-hidden rounded-full bg-gray-300">

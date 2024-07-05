@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${inter.className} text-white bg-bv-blue`}>
         <Providers>
           <Navbar />
-          <section>{children}</section>
+          <section className="min-h-screen">{children}</section>
           <Footer />
           <ToastContainer />
         </Providers>

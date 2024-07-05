@@ -25,7 +25,7 @@ const linkGroups = [
 export default function Footer() {
   return (
     <div className="bg-black">
-      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 mt-40 py-8">
+      <div className="flex flex-col max-w-screen-lg mx-auto px-2 sm:px-4 lg:px-6 mt-20 py-8">
         <div className="flex justify-around overflow-hidden">
           {linkGroups.map((group, index) => (
             <FooterLinkList
