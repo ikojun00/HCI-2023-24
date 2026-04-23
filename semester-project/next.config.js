@@ -25,9 +25,6 @@ const nextConfig = {
     ],
   },
   env: {
-    API_KEY: process.env.API_KEY,
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     NEXT_PUBLIC_SECRET: process.env.NEXT_PUBLIC_SECRET,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
