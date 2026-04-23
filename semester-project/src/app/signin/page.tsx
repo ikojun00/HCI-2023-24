@@ -58,7 +58,7 @@ export default function SignIn() {
           </h2>
         </div>
 
-        <div className="mt-10 mx-auto w-full max-w-[16rem] sm:max-w-xs md:max-w-sm">
+        <div className="mt-10 mx-auto w-full max-w-[16rem] sm:max-w-xs md:max-w-[28rem]">
           <form onSubmit={onSubmit} className="space-y-6">
             <div>
               <label
@@ -115,14 +115,29 @@ export default function SignIn() {
                 </span>
               </div>
             </div>
-
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center text-center bg-bv-green-light p-2 mt-10 rounded-xl hover:bg-bv-green tracking-wider"
-              >
-                {loading ? <Spinner /> : "Sign in"}
-              </button>
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center text-center bg-bv-green-light p-2 mt-10 rounded-xl hover:bg-bv-green tracking-wider"
+                >
+                  {loading ? <Spinner /> : "Sign in"}
+                </button>
+              </div>
+              <div>
+                <button
+                  onClick={() =>
+                    signIn("credentials", {
+                      redirect: true,
+                      email: "tolic@gmail.com",
+                      password: "P@ssw0rd",
+                    })
+                  }
+                  className="flex w-full justify-center text-center bg-bv-green-light p-2 mt-10 rounded-xl hover:bg-bv-green tracking-wider"
+                >
+                  Login as demo user
+                </button>
+              </div>
             </div>
           </form>
 
